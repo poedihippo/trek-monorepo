@@ -50,7 +50,7 @@ export default () => {
       >
         <Div w="100%" justifyContent="center" alignItems="center">
           <Image
-            width={widthPercentageToDP(90)}
+            width={widthPercentageToDP(60)}
             source={require("assets/TrekLogo.png")}
             resizeMode="contain"
             scalable
