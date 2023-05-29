@@ -1,7 +1,5 @@
 import {
-  useFonts,
-  Roboto_400Regular,
-  Roboto_700Bold,
+  useFonts
 } from "@expo-google-fonts/roboto"
 import AppLoading from "expo-app-loading"
 import "intl"
@@ -15,14 +13,14 @@ import "react-native-url-polyfill/auto"
 import { QueryClientProvider } from "react-query"
 
 import ErrorBoundary from "components/ErrorBoundary"
-
 import { AuthProvider } from "providers/Auth"
 import { CartProvider } from "providers/Cart"
+import { RecoilRoot } from "recoil"
 
 import { theme } from "helper/theme"
 
-import Root from "./src/Root"
 import { queryClient } from "./src/query"
+import Root from "./src/Root"
 
 enableScreens()
 
@@ -58,11 +56,13 @@ export default () => {
     <SafeAreaProvider>
       <ErrorBoundary>
         <QueryClientProvider client={queryClient}>
+          <RecoilRoot>
           <ComposeProvider providers={[AuthProvider, CartProvider]}>
             <ThemeProvider theme={theme}>
               <Root />
             </ThemeProvider>
           </ComposeProvider>
+          </RecoilRoot>
         </QueryClientProvider>
       </ErrorBoundary>
     </SafeAreaProvider>

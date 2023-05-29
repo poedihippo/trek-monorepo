@@ -49,7 +49,6 @@ import { activityStatusConfig } from "types/Activity"
 import { ActivityComment } from "types/ActivityComment"
 import { getFullName } from "types/Customer"
 import { leadStatusConfig } from "types/Lead"
-
 import ActivityCommentItem from "./ActivityCommentItem"
 
 type CurrentScreenRouteProp = RouteProp<

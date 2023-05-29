@@ -104,8 +104,8 @@ export default ({
               loading={isSubmitting}
               disabled={isSubmitting}
               onPress={() => {
-                setFieldValue("email", "sales@melandas.id")
-                setFieldValue("password", "password")
+                setFieldValue("email", "sales@general.com")
+                setFieldValue("password", "12345678")
                 return Promise.resolve()
               }}
               testID="loginButton"
