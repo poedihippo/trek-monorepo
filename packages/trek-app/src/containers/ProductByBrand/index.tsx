@@ -148,9 +148,10 @@ export default () => {
             <NewProductCard
               key={`model_${productModel.id}`}
               productModel={productModel}
-              onPress={() =>
-                navigation.navigate("ProductDetail", { id: productModel.id })
-              }
+              // onPress={() =>
+              //   navigation.navigate("ProductDetail", { id: productModel.id })
+              // }
+              onPress={() => console.log()}
               imageWidth={0.4 * screenWidth}
             />
           )}
