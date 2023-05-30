@@ -308,6 +308,24 @@ export default () => {
       })
   })
 
+  const dataTop = [
+    {
+      number: '1',
+      name: 'Michael',
+      percentage: '50%',
+    },
+    {
+      number: '2',
+      name: 'William',
+      percentage: '30%',
+    },
+    {
+      number: '3',
+      name: 'Cindy',
+      percentage: '20%',
+    },
+  ]
+
   const SalesFilter = () => (
     <Div w={102} mr={15}>
       <MonthPickerInput
@@ -393,7 +411,7 @@ export default () => {
             />
             <BotSection
               userData={userData}
-              data={topSalesData?.data}
+              data={dataTop}
               startDate={!!params?.startDate ? params.startDate : startDate}
               endDate={params?.endDate || endDate}
             />
