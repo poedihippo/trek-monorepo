@@ -513,11 +513,11 @@ export default function OrderDetail({
                 </Div>
               </>
             )}
-            {showQuotation && (
+            {/* {showQuotation && (
               <>
                 <QuotationButton isDeals={isDeals} order={orderData} />
               </>
-            )}
+            )} */}
 
             {orderData.paymentStatus !== "NONE" ? null : userData.type ===
               "SALES" ? (

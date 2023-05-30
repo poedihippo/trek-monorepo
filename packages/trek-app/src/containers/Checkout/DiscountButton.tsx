@@ -8,11 +8,12 @@ import Text from "components/Text"
 import { responsive } from "helper"
 import { COLOR_PRIMARY } from "helper/theme"
 
-export default ({ activeDiscount, setVisible, disabled, discountDetail }) => {
+export default ({ activeDiscount, setVisible, disabled }) => {
   const { width: screenWidth } = useWindowDimensions()
+
   return (
-    <Div px={20} pt={10} bg="white">
-      {activeDiscount.length > 0 ? (
+    <Div mt={5} px={20} pt={20} bg="white">
+      {!!activeDiscount ? (
         <Button
           block
           py={20}
@@ -33,11 +34,9 @@ export default ({ activeDiscount, setVisible, disabled, discountDetail }) => {
                 style={{ tintColor: COLOR_PRIMARY }}
               />
               <Div ml={10} maxW={0.6 * screenWidth}>
-                {discountDetail.map((e) => (
-                  <Text fontSize={14} fontWeight="bold">
-                    {e?.name}
-                  </Text>
-                ))}
+                <Text fontSize={14} fontWeight="bold">
+                  {activeDiscount?.name}
+                </Text>
                 <Text>{activeDiscount?.description}</Text>
               </Div>
             </Div>

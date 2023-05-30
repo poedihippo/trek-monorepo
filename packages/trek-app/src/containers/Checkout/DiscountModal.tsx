@@ -37,21 +37,22 @@ export default ({
   } = useMultipleQueries([
     useDiscountList({ filterName: discountCode }),
   ] as const)
+  console.log(data)
   // DEBT: Handle this properly
-  // const {
-  //   meta: { refetch },
-  // } = useMultipleQueries([
-  //   useDiscountByCode(
-  //     discountCode,
-  //     { enabled: false },
-  //     customErrorHandler({
-  //       404: () => {
-  //         setVisible(false)
-  //         toast("Discount code invalid.")
-  //       },
-  //     }),
-  //   ),
-  // ] as const)
+  const {
+    meta: { refetch },
+  } = useMultipleQueries([
+    useDiscountByCode(
+      discountCode,
+      { enabled: false },
+      customErrorHandler({
+        404: () => {
+          setVisible(false)
+          toast("Discount code invalid.")
+        },
+      }),
+    ),
+  ] as const)
 
   useEffect(() => {
     setData(dataFromPaginated(discountPaginatedData))
@@ -101,6 +102,43 @@ export default ({
           onEndReached={() => {
             if (hasNextPage) fetchNextPage()
           }}
+          ListHeaderComponent={
+            <Div row px={20} pt={20} bg="white">
+              <Input
+                flex={1}
+                mr={5}
+                placeholder={"Input Discount Code Here"}
+                focusBorderColor="primary"
+                value={discountCode}
+                onChangeText={(val) => {
+                  setDiscountCode(val)
+                }}
+              />
+              <Button
+                p={5}
+                bg="white"
+                rounded="circle"
+                onPress={() => {
+                  Promise.all(refetch()).then((res) => {
+                    if (!!res[0].data) {
+                      if (!data.some((x) => x.id === res[0].data.id)) {
+                        setData([res[0].data, ...data])
+                      }
+                    }
+                  })
+                }}
+                justifyContent="center"
+                alignSelf="center"
+              >
+                <Icon
+                  name="send-sharp"
+                  fontFamily="Ionicons"
+                  fontSize={18}
+                  color="primary"
+                />
+              </Button>
+            </Div>
+          }
           ListFooterComponent={() =>
             !!data &&
             data.length > 0 &&
@@ -110,21 +148,10 @@ export default ({
             return (
               <DiscountCard
                 item={item}
-                activeDiscount={activeDiscount}
-                setDiscountDetail={(val) =>
-                  discountDetail.find((e) => e === val) !== undefined
-                    ? setDiscountDetail(
-                        discountDetail.filter((e) => e !== item),
-                      )
-                    : setDiscountDetail(discountDetail.concat(val))
-                }
-                setActiveDiscount={(val) =>
-                  activeDiscount.find((e) => e === val) !== undefined
-                    ? setActiveDiscount(
-                        activeDiscount.filter((e) => e !== item.id),
-                      )
-                    : setActiveDiscount(activeDiscount.concat(val))
-                }
+                setActiveDiscount={(val) => {
+                  setActiveDiscount(val)
+                  setVisible(false)
+                }}
               />
             )
           }}
@@ -137,13 +164,9 @@ export default ({
 const DiscountCard = ({
   item,
   setActiveDiscount,
-  activeDiscount,
-  setDiscountDetail,
 }: {
   item: Discount
-  activeDiscount: []
   setActiveDiscount: (val) => void
-  setDiscountDetail: (val) => void
 }) => {
   return (
     <Div mx={20} mt={20} rounded={8} bg="white" shadow="sm">
@@ -161,20 +184,13 @@ const DiscountCard = ({
         </Text>
         <Button
           px={20}
-          bg={
-            activeDiscount.find((e) => e === item.id) !== undefined
-              ? "#e84118"
-              : "primary"
-          }
+          bg="primary"
           color="white"
           onPress={() => {
-            setActiveDiscount(item.id)
-            setDiscountDetail(item)
+            setActiveDiscount(item)
           }}
         >
-          {activeDiscount.find((e) => e === item.id) !== undefined
-            ? "Delete"
-            : "Apply"}
+          Apply
         </Button>
       </Div>
       <Text px={20} py={10}>

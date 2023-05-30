@@ -38,6 +38,7 @@ import DiscountModal from "./DiscountModal"
 import NewProduct from "./NewProduct"
 import VoucherButton from "./VoucherButton"
 import moment from "moment"
+import { Discount } from "types/Discount"
 
 type CurrentScreenRouteProp = RouteProp<EntryStackParamList, "Checkout">
 
@@ -92,7 +93,8 @@ export default () => {
     useActivityCheckout(leadId),
   ] as const)
   // const [discountId, setDiscountId] = useState(null)
-  const [activeDiscount, setActiveDiscount] = useState<[]>([])
+  const [activeDiscount, setActiveDiscount] = useState<Discount>(null)
+  console.log(activeDiscount?.id)
   const [activeVoucher, setActiveVoucher] = useState<[]>([])
   const [discountDetail, setDiscountDetail] = useState<[]>([])
   const [shippingId, setShippingId] = useState(null)
@@ -125,7 +127,7 @@ export default () => {
           is_ready: x?.is_ready,
           location_id: x?.location?.orlan_id,
         })),
-        discountId: activeDiscount,
+        discountId: activeDiscount?.id,
         expectedPrice: null,
         shippingAddressId: shippingId,
         billingAddressId: billingId,
@@ -192,7 +194,6 @@ export default () => {
         // disabled={!shippingId || !billingId}
       /> */}
       <DiscountButton
-        discountDetail={discountDetail}
         activeDiscount={activeDiscount}
         setVisible={setDiscModalVisible}
         disabled={!shippingId || !billingId}
@@ -323,7 +324,7 @@ export default () => {
                   is_ready: x?.is_ready,
                   location_id: x?.location?.orlan_id,
                 })),
-                discountId: activeDiscount,
+                discountId: activeDiscount?.id,
                 expectedPrice: expectedPrice,
                 shippingAddressId: shippingId,
                 billingAddressId: billingId,

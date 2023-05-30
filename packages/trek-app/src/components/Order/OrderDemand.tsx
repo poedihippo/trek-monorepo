@@ -179,9 +179,9 @@ export default function OrderDetail({
               </Div>
             </>
           )}
-          {showQuotation && (
+          {/* {showQuotation && (
             <QuotationButton isDeals={isDeals} order={orderData} />
-          )}
+          )} */}
         </>
       }
       renderItem={({ item, index }) => (

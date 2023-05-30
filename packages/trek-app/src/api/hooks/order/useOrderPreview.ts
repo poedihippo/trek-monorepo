@@ -10,7 +10,7 @@ import standardErrorHandling, { CustomAxiosErrorType } from "../../errors"
 type OrderPreviewData = {
   leadId: number
   items: { id: number; quantity: number }[]
-  discountId: Nullable<[]>
+  discountId: number
   expectedPrice: number
   shippingAddressId: number
   billingAddressId: number
@@ -61,7 +61,7 @@ export default (
           data: {
             lead_id: leadId,
             items: items,
-            discount_ids: discountId,
+            discount_id: discountId,
             expected_price: expectedPrice,
             shipping_address_id: shippingAddressId,
             billing_address_id: billingAddressId,
@@ -77,10 +77,10 @@ export default (
             expected_shipping_datetime: expectedShippingDateTime
               ? expectedShippingDateTime.toISOString()
               : tomorrow.toISOString(),
-            voucher_ids: voucherId,
           },
         })
         .then((res) => {
+          console.log(res,'test')
           const data: Order = mapOrder(res.data.data)
           return data
         })

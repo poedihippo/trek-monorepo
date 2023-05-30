@@ -7,7 +7,7 @@ import defaultMutationErrorHandler from "../../errors/defaultMutationError"
 type CreateOrderMutationData = {
   leadId: number
   items: { id: number; quantity: number }[]
-  discountId: Nullable<[]>
+  discountId: number
   expectedPrice: number
   shippingAddressId: number
   billingAddressId: number
@@ -52,7 +52,7 @@ export default () => {
           lead_id: leadId,
           items: items,
           interior_design_id: interiorDesignId,
-          discount_ids: discountId,
+          discount_id: discountId,
           expected_price: expectedPrice,
           shipping_address_id: shippingAddressId,
           billing_address_id: billingAddressId,
