@@ -9,7 +9,7 @@ import standardErrorHandling from "../../errors"
 export default (requestObject, perPage = 20) => {
   const axios = useAxios()
   const queryData = useQuery<any>(
-    ["userList", requestObject, perPage],
+    ["userListDetails", requestObject, perPage],
     ({ pageParam = 1 }) => {
       return axios
         .get(`new-reports/details`, {

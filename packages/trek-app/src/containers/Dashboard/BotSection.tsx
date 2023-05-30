@@ -14,6 +14,22 @@ import Text from "components/Text"
 
 const BotSection = ({ data, startDate, endDate, userData }) => {
   const navigation = useNavigation()
+  const dummy = [
+    {
+      priority: 1,
+      model: {
+        name: "Jesse Pinkman"
+      },
+      percentage: "45%"
+    },
+    {
+      priority: 2,
+      model: {
+        name: "White walker"
+      },
+      percentage: "30%"
+    },
+  ]
   const windowWidth = Dimensions.get("window").width
   const renderTopSales = ({ item }) => (
     <>
@@ -96,13 +112,14 @@ const BotSection = ({ data, startDate, endDate, userData }) => {
         {userData.type === "DIRECTOR" ? (
           <>
             <TouchableOpacity
-              onPress={() =>
-                navigation.navigate("TopSales", {
-                  startDate: startDate,
-                  endDate: endDate,
-                  type: "supervisor",
-                })
-              }
+              
+              // onPress={() =>
+              //   navigation.navigate("TopSales", {
+              //     startDate: startDate,
+              //     endDate: endDate,
+              //     type: "supervisor",
+              //   })
+              // }
             >
               <FlatList
                 style={{ padding: 10, width: windowWidth }}
@@ -113,13 +130,13 @@ const BotSection = ({ data, startDate, endDate, userData }) => {
               />
             </TouchableOpacity>
             <TouchableOpacity
-              onPress={() =>
-                navigation.navigate("TopSales", {
-                  startDate: startDate,
-                  endDate: endDate,
-                  type: "channel",
-                })
-              }
+              // onPress={() =>
+              //   navigation.navigate("TopSales", {
+              //     startDate: startDate,
+              //     endDate: endDate,
+              //     type: "channel",
+              //   })
+              // }
             >
               <FlatList
                 style={{ padding: 20, width: windowWidth }}
@@ -130,13 +147,13 @@ const BotSection = ({ data, startDate, endDate, userData }) => {
               />
             </TouchableOpacity>
             <TouchableOpacity
-              onPress={() =>
-                navigation.navigate("TopSales", {
-                  startDate: startDate,
-                  endDate: endDate,
-                  type: "sales",
-                })
-              }
+              // onPress={() =>
+              //   navigation.navigate("TopSales", {
+              //     startDate: startDate,
+              //     endDate: endDate,
+              //     type: "sales",
+              //   })
+              // }
             >
               <FlatList
                 style={{ padding: 20, width: windowWidth }}
@@ -150,13 +167,13 @@ const BotSection = ({ data, startDate, endDate, userData }) => {
         ) : userData.type === "SUPERVISOR" ? (
           <>
             <TouchableOpacity
-              onPress={() =>
-                navigation.navigate("TopSales", {
-                  startDate: startDate,
-                  endDate: endDate,
-                  type: "channel",
-                })
-              }
+              // onPress={() =>
+              //   navigation.navigate("TopSales", {
+              //     startDate: startDate,
+              //     endDate: endDate,
+              //     type: "channel",
+              //   })
+              // }
             >
               <FlatList
                 style={{ padding: 20, width: windowWidth }}
@@ -167,13 +184,13 @@ const BotSection = ({ data, startDate, endDate, userData }) => {
               />
             </TouchableOpacity>
             <TouchableOpacity
-              onPress={() =>
-                navigation.navigate("TopSales", {
-                  startDate: startDate,
-                  endDate: endDate,
-                  type: "sales",
-                })
-              }
+              // onPress={() =>
+              //   navigation.navigate("TopSales", {
+              //     startDate: startDate,
+              //     endDate: endDate,
+              //     type: "sales",
+              //   })
+              // }
             >
               <FlatList
                 style={{ padding: 20, width: windowWidth }}
@@ -186,18 +203,18 @@ const BotSection = ({ data, startDate, endDate, userData }) => {
           </>
         ) : (
           <TouchableOpacity
-            onPress={() =>
-              navigation.navigate("TopSales", {
-                startDate: startDate,
-                endDate: endDate,
-                type: "sales",
-              })
-            }
+            // onPress={() =>
+            //   navigation.navigate("TopSales", {
+            //     startDate: startDate,
+            //     endDate: endDate,
+            //     type: "sales",
+            //   })
+            // }
           >
             <FlatList
               style={{ padding: 20, width: windowWidth }}
               renderItem={renderTopSales}
-              data={data?.sales}
+              data={ dummy}
               keyExtractor={(_, idx: number) => idx.toString()}
               ListHeaderComponent={header("Sales Name")}
             />

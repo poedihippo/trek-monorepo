@@ -19,12 +19,12 @@ export default ({ item }: PropTypes) => {
         <Text fontSize={14} fontWeight="bold" mb={5}>
           {item?.productUnit?.name ?? ""}
         </Text>
-        <Text color="grey" mb={5}>
+        {/* <Text color="grey" mb={5}>
           Covering: {Case.title(item?.covering?.name ?? "-")}
         </Text>
         <Text color="grey" mb={5}>
           Color: {Case.title(item?.colour?.name ?? "-")}
-        </Text>
+        </Text> */}
         <Text mb={5}>{formatCurrency(item?.productUnit?.price)}</Text>
         <Text mb={10}>Qty: {item.quantity}</Text>
       </Div>
