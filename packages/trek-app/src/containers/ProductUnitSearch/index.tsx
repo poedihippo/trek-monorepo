@@ -35,6 +35,7 @@ import { dataFromPaginated } from "helper/pagination"
 import s from "helper/theme"
 
 import { ProductUnit } from "types/POS/ProductUnit/ProductUnit"
+import { heightPercentageToDP, widthPercentageToDP } from "react-native-responsive-screen"
 
 type CurrentScreenNavigationProp = CompositeNavigationProp<
   StackNavigationProp<ProductStackParamList, "ProductUnitSearch">,
@@ -109,25 +110,30 @@ export default () => {
               <Text mb={5}>{item.name}</Text>
               <Text>{formatCurrency(item.price)}</Text>
             </Div>
-            <TouchableOpacity
-              onPress={() => {
-                onAddToCard(item)
-              }}
-            >
-              <LinearGradient
-                style={{
-                  paddingVertical: 10,
-                  paddingHorizontal: 20,
-                  justifyContent: "center",
-                  alignSelf: "center",
-                  borderRadius: 4,
+            <Div>
+              <TouchableOpacity
+                onPress={() => {
+                  onAddToCard(item)
                 }}
-                locations={[0.5, 1.0]}
-                colors={["#20B5C0", "#17949D"]}
               >
-                <Text color="white">+ Cart</Text>
-              </LinearGradient>
-            </TouchableOpacity>
+                <LinearGradient
+                  style={{
+                    paddingVertical: 10,
+                    paddingHorizontal: 20,
+                    justifyContent: "center",
+                    alignSelf: "center",
+                    borderRadius: 4,
+                  }}
+                  locations={[0.5, 1.0]}
+                  colors={["#20B5C0", "#17949D"]}
+                >
+                  <Text color="white">+ Cart</Text>
+                </LinearGradient>
+              </TouchableOpacity>
+              <Button onPress={() => navigation.navigate('Stocks')} color="#20B5C0" bg="transparent" borderColor="#20B5C0" borderWidth={1} mt={heightPercentageToDP(0.5)} w={widthPercentageToDP(22)} h={heightPercentageToDP(6)}>
+                Stocks
+              </Button>
+            </Div>
           </Div>
         )}
       />

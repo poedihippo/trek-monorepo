@@ -157,10 +157,10 @@ const Profile = () => {
           <Text color="white">Roles</Text>
           <Text color="white">{userData.type}</Text>
         </Div>
-        <Div justifyContent="space-between" row p={10}>
+        {/* <Div justifyContent="space-between" row p={10}>
           <Text color="white">Company</Text>
           <Text color="white">{userData.company.name.toUpperCase()}</Text>
-        </Div>
+        </Div> */}
       </Div>  
       <Div>
         <FlatList

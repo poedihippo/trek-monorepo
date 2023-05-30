@@ -2172,6 +2172,7 @@ const TargetScreen = () => {
       <Image
         source={require("assets/TrekLogo.png")}
         style={{
+          marginTop: heightPercentageToDP(1),
           width: 150,
           height: heightPercentageToDP(10),
           resizeMode: "contain",

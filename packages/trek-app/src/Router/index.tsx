@@ -113,6 +113,7 @@ import { CustomerStackParamList, MainTabParamList } from "./MainTabParamList"
 import { withRequireLoginMiddleware } from "./RequireLoginMiddleware"
 import { withRequireSelectChannelMiddleware } from "./RequireSelectChannel"
 import UploadImageActivity from "containers/AddActivity/UploadImageActivity"
+import Stocks from "containers/ProductUnitSearch/stocks"
 
 const EntryStack = createStackNavigator<EntryStackParamList>()
 const MainTab = createBottomTabNavigator<MainTabParamList>()
@@ -691,6 +692,14 @@ const ProductStackScreen = () => {
           title: "Product Stock",
         }}
         component={StockDetail}
+      />
+
+      <Product.Screen
+        name="Stocks"
+        options={{
+          title: "Product Detail",
+        }}
+        component={Stocks}
       />
     </Product.Navigator>
   )
