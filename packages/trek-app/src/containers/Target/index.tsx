@@ -86,6 +86,7 @@ const TargetScreen = () => {
     }),
   ] as const)
   const data = target?.data
+  console.log(data)
   const navigation = useNavigation()
   const status = [
     {
@@ -349,7 +350,7 @@ const TargetScreen = () => {
                           h={heightPercentageToDP(3)}
                         />
                       ) : (
-                        !!data?.delas?.value ? formatCurrency(data?.deals?.value) : formatCurrency(0) 
+                        formatCurrency(data?.deals?.value) 
                       )}
                     </Text>
                     <Icon
@@ -1079,7 +1080,7 @@ const TargetScreen = () => {
                         h={heightPercentageToDP(3)}
                       />
                     ) : (
-                      !!data?.deals?.value ? formatCurrency(data?.deals?.value) : formatCurrency(0)
+                      formatCurrency(data?.deals?.value)
                     )}
                   </Text>
                   <Icon
