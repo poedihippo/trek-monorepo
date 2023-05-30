@@ -124,7 +124,7 @@ const BotSection = ({ data, startDate, endDate, userData }) => {
               <FlatList
                 style={{ padding: 10, width: windowWidth }}
                 renderItem={renderTopSales}
-                data={data?.bum}
+                data={dummy}
                 keyExtractor={(_, idx: number) => idx.toString()}
                 ListHeaderComponent={header("BUM Name")}
               />
@@ -141,7 +141,7 @@ const BotSection = ({ data, startDate, endDate, userData }) => {
               <FlatList
                 style={{ padding: 20, width: windowWidth }}
                 renderItem={renderTopSales}
-                data={data?.channel}
+                data={dummy}
                 keyExtractor={(_, idx: number) => idx.toString()}
                 ListHeaderComponent={header("Channel Name")}
               />
@@ -158,7 +158,7 @@ const BotSection = ({ data, startDate, endDate, userData }) => {
               <FlatList
                 style={{ padding: 20, width: windowWidth }}
                 renderItem={renderTopSales}
-                data={data?.sales}
+                data={dummy}
                 keyExtractor={(_, idx: number) => idx.toString()}
                 ListHeaderComponent={header("Sales Name")}
               />
@@ -178,7 +178,7 @@ const BotSection = ({ data, startDate, endDate, userData }) => {
               <FlatList
                 style={{ padding: 20, width: windowWidth }}
                 renderItem={renderTopSales}
-                data={data?.channel}
+                data={dummy}
                 keyExtractor={(_, idx: number) => idx.toString()}
                 ListHeaderComponent={header("Channel Name")}
               />
@@ -195,7 +195,7 @@ const BotSection = ({ data, startDate, endDate, userData }) => {
               <FlatList
                 style={{ padding: 20, width: windowWidth }}
                 renderItem={renderTopSales}
-                data={data?.sales}
+                data={dummy}
                 keyExtractor={(_, idx: number) => idx.toString()}
                 ListHeaderComponent={header("Sales Name")}
               />

@@ -64,6 +64,7 @@ export default ({ order, isDeals }: PropTypes) => {
       },
     )
       .then(async ({ uri }) => {
+        console.log(uri)
         Sharing.shareAsync(uri).then((res) => {
           // console.log(res, "quotation")
         })

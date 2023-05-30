@@ -59,12 +59,13 @@ export default function OrderPaymentDetail({ orderData }: PropTypes) {
         fontSize="sm"
         onPress={() => {
           // @ts-ignore
-          navigation.navigate("OrderPaymentInfo",
-           {
-             orderId: orderData.id,
-             companyId: orderData.companyId,
-           }
-          )
+          navigation.navigate("Customer", {
+            screen: "OrderPaymentInfo",
+            params: {
+              orderId: orderData.id,
+              companyId: orderData.companyId,
+            },
+          })
         }}
       >
         See Payment Details

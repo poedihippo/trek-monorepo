@@ -139,7 +139,7 @@ const mapOrderDetails = (
     totalDiscount: apiObj.total_discount,
     totalPrice: apiObj.total_price,
     status: apiObj.status,
-    productUnit: apiObj.product_unit,
+    productUnit: apiObj.product,
     colour: apiObj.colour,
     covering: apiObj.covering,
     brand: apiObj.brand,

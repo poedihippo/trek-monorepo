@@ -1,9 +1,7 @@
 import { BottomTabNavigationProp } from "@react-navigation/bottom-tabs"
 import {
-  RouteProp,
-  CompositeNavigationProp,
-  useNavigation,
-  useRoute,
+  CompositeNavigationProp, RouteProp, useNavigation,
+  useRoute
 } from "@react-navigation/native"
 import { StackNavigationProp } from "@react-navigation/stack"
 import * as FileSystem from "expo-file-system"
@@ -29,7 +27,7 @@ import usePaymentList from "api/hooks/payment/usePaymentList"
 import { EntryStackParamList } from "Router/EntryStackParamList"
 import {
   CustomerStackParamList,
-  MainTabParamList,
+  MainTabParamList
 } from "Router/MainTabParamList"
 
 import { formatCurrency } from "helper"
@@ -39,7 +37,6 @@ import s, { COLOR_DISABLED, COLOR_PRIMARY } from "helper/theme"
 
 import { Payment, paymentStatusConfig } from "types/Payment/Payment"
 
-import GenerateReceiptPdf from "./GenerateReceipt"
 
 type CurrentScreenRouteProp = RouteProp<
   CustomerStackParamList,
@@ -58,8 +55,7 @@ export default () => {
   const navigation = useNavigation<CurrentScreenNavigationProp>()
 
   const orderId = route?.params?.orderId ?? -1
-  const companyId = route?.params?.companyId ?? -1
-  if (orderId === -1 || companyId === -1) {
+  if (orderId === -1) {
     if (navigation.canGoBack()) {
       navigation.goBack()
     } else {
@@ -85,7 +81,6 @@ export default () => {
   } = useMultipleQueries([
     useOrderById(orderId),
     usePaymentList({ filterOrderId: orderId.toString(), sort: "-id" }),
-    useCompanyById(companyId),
   ] as const)
   const {
     data: { jwt },
