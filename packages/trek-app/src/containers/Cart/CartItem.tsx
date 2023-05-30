@@ -38,12 +38,12 @@ export default ({
           <Text fontSize={14} fontWeight="bold" mb={5}>
             {item?.productUnitData?.name ?? ""}
           </Text>
-          <Text color="grey" mb={5}>
+          {/* <Text color="grey" mb={5}>
             Covering: {Case.title(item?.productUnitData?.covering?.name ?? "-")}
           </Text>
           <Text color="grey" mb={5}>
             Color: {Case.title(item?.productUnitData?.colour?.name ?? "-")}
-          </Text>
+          </Text> */}
           <Text mb={10}>{formatCurrency(item?.productUnitData?.price)}</Text>
 
           <QuantitySelector

@@ -43,9 +43,9 @@ export default ({
         <Text fontWeight="bold" mb={5}>
           {productUnit.name}
         </Text>
-        <Text fontWeight="bold" mb={5}>
+        {/* <Text fontWeight="bold" mb={5}>
           {productUnit.covering.name} - {productUnit.colour.name}
-        </Text>
+        </Text> */}
         <Text>{formatCurrency(productUnit.price)}</Text>
       </Div>
 

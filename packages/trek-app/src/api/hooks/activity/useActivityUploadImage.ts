@@ -23,7 +23,7 @@ export default () => {
       chainSettle: (x) =>
         x
           .then(() => {
-            toast("Payment proof berhasil diupload")
+            toast("Activity proof berhasil diupload")
           })
           .catch(defaultMutationErrorHandler({})),
     },
@@ -45,7 +45,6 @@ export const orderPaymentUploadProofMutation = (
       },
     })
     .then((res) => {
-        console.log(res,'suseful')
       return res.data
     })
 }
