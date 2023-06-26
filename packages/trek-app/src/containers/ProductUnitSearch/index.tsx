@@ -32,7 +32,7 @@ import {
 
 import { formatCurrency } from "helper"
 import { dataFromPaginated } from "helper/pagination"
-import s from "helper/theme"
+import s, { COLOR_PRIMARY } from "helper/theme"
 
 import { ProductUnit } from "types/POS/ProductUnit/ProductUnit"
 import { heightPercentageToDP, widthPercentageToDP } from "react-native-responsive-screen"
@@ -111,7 +111,7 @@ export default () => {
               <Text>{formatCurrency(item.price)}</Text>
             </Div>
             <Div>
-              <TouchableOpacity
+              {/* <TouchableOpacity
                 onPress={() => {
                   onAddToCard(item)
                 }}
@@ -129,8 +129,11 @@ export default () => {
                 >
                   <Text color="white">+ Cart</Text>
                 </LinearGradient>
-              </TouchableOpacity>
-              <Button onPress={() => navigation.navigate('Stocks')} color="#20B5C0" bg="transparent" borderColor="#20B5C0" borderWidth={1} mt={heightPercentageToDP(0.5)} w={widthPercentageToDP(22)} h={heightPercentageToDP(6)}>
+              </TouchableOpacity> */}
+              <Button onPress={() => {onAddToCard(item)}} px={20} py={10} justifyContent="center" alignSelf="center" rounded={4} bg={COLOR_PRIMARY}>
+                + Cart
+              </Button>
+              <Button onPress={() => navigation.navigate('Stocks')} color={COLOR_PRIMARY} bg="transparent" borderColor={COLOR_PRIMARY} borderWidth={1} mt={heightPercentageToDP(0.5)} w={widthPercentageToDP(24)} h={heightPercentageToDP(6)}>
                 Stocks
               </Button>
             </Div>
