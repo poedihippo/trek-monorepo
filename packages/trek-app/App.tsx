@@ -1,7 +1,5 @@
-import {
-  useFonts
-} from "@expo-google-fonts/roboto"
 import AppLoading from "expo-app-loading"
+import { useFonts } from "expo-font"
 import "intl"
 import "intl/locale-data/jsonp/id"
 import React from "react"
@@ -11,16 +9,17 @@ import { SafeAreaProvider } from "react-native-safe-area-context"
 import { enableScreens } from "react-native-screens"
 import "react-native-url-polyfill/auto"
 import { QueryClientProvider } from "react-query"
+import { RecoilRoot } from "recoil"
 
 import ErrorBoundary from "components/ErrorBoundary"
+
 import { AuthProvider } from "providers/Auth"
 import { CartProvider } from "providers/Cart"
-import { RecoilRoot } from "recoil"
 
 import { theme } from "helper/theme"
 
-import { queryClient } from "./src/query"
 import Root from "./src/Root"
+import { queryClient } from "./src/query"
 
 enableScreens()
 
@@ -57,11 +56,11 @@ export default () => {
       <ErrorBoundary>
         <QueryClientProvider client={queryClient}>
           <RecoilRoot>
-          <ComposeProvider providers={[AuthProvider, CartProvider]}>
-            <ThemeProvider theme={theme}>
-              <Root />
-            </ThemeProvider>
-          </ComposeProvider>
+            <ComposeProvider providers={[AuthProvider, CartProvider]}>
+              <ThemeProvider theme={theme}>
+                <Root />
+              </ThemeProvider>
+            </ComposeProvider>
           </RecoilRoot>
         </QueryClientProvider>
       </ErrorBoundary>
