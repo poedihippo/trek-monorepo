@@ -9,7 +9,7 @@ import { V1Api } from "api/openapi"
 
 ///http://178.128.214.193
 //http://139.59.224.48
-let baseUrl = "http://139.59.224.48"
+let baseUrl = "https://trek.albatech.id"
 if (
   Constants?.manifest?.releaseChannel &&
   Constants?.manifest?.releaseChannel?.indexOf("prod") !== -1
