@@ -82,7 +82,7 @@ export default ({
           <DateTimePicker
             value={dateObject || todayDate}
             mode="date"
-            display="calendar"
+            display="default"
             onChange={onChange}
             minimumDate={minimumDate}
             maximumDate={maximumDate}

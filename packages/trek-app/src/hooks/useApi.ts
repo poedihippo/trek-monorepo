@@ -14,7 +14,7 @@ if (
   Constants?.manifest?.releaseChannel &&
   Constants?.manifest?.releaseChannel?.indexOf("prod") !== -1
 ) {
-  baseUrl = "https://app.melandas-indonesia.com"
+  baseUrl = "https://trek.albatech.id"
 }
 
 const getHeader = (loggedIn: boolean, jwt: string) => ({
