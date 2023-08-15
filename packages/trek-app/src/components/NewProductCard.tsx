@@ -61,7 +61,6 @@ export default ({
 
           elevation: 6,
         }}
-        mt={heightPercentageToDP(2)}
         mb={heightPercentageToDP(2)}
         mx={heightPercentageToDP(0.5)}
         h={heightPercentageToDP(35)}
@@ -85,10 +84,10 @@ export default ({
           }}
         />
         <Div p={8} overflow="hidden">
-          <Text fontWeight="bold" mb={5} numberOfLines={2}>
+          <Text  mb={5} fontSize={14} numberOfLines={2}>
             {productModel.name}
           </Text>
-          <Text fontSize={10} mb={10}>{`${formatCurrency(
+          <Text fontSize={10} fontWeight="bold" mb={10}>{`${formatCurrency(
             productModel.price,
           )}`}</Text>
           <Button

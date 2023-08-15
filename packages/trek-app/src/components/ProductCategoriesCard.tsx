@@ -1,16 +1,15 @@
 import React from "react"
-import { TouchableOpacity, Dimensions, Pressable } from "react-native"
+import { Dimensions, Pressable } from "react-native"
 import { Div } from "react-native-magnus"
 import {
   heightPercentageToDP,
-  widthPercentageToDP,
+  widthPercentageToDP
 } from "react-native-responsive-screen"
 
 import Image from "components/Image"
 import Text from "components/Text"
 
-import { formatCurrency } from "helper"
-import s, { COLOR_BLUE, COLOR_PRIMARY } from "helper/theme"
+import { COLOR_PRIMARY } from "helper/theme"
 
 import { ProductModel } from "types/POS/Product/ProductModel"
 
@@ -45,9 +44,9 @@ export default ({
 
           elevation: 6,
         }}
-        mt={heightPercentageToDP(2)}
+  
         mb={heightPercentageToDP(2)}
-        mx={heightPercentageToDP(0.5)}
+        mx={heightPercentageToDP(0.1)}
         h={heightPercentageToDP(23)}
         rounded={6}
         w={widthPercentageToDP(40)}
@@ -67,7 +66,7 @@ export default ({
           }}
         />
         <Div maxW={widthPercentageToDP(35)}>
-          <Text fontWeight="bold" textAlign="center" my={5} numberOfLines={3}>
+          <Text fontSize={14} textAlign="center" my={5} numberOfLines={1}>
             {productModel.name}
           </Text>
         </Div>

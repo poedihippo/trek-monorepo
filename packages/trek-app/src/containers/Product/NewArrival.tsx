@@ -1,7 +1,6 @@
 import { BottomTabNavigationProp } from "@react-navigation/bottom-tabs"
 import {
-  useNavigation,
-  CompositeNavigationProp,
+  CompositeNavigationProp, useNavigation
 } from "@react-navigation/native"
 import { StackNavigationProp } from "@react-navigation/stack"
 import React from "react"
@@ -11,7 +10,6 @@ import { Div } from "react-native-magnus"
 import Error from "components/Error"
 import Loading from "components/Loading"
 import NewProductCard from "components/NewProductCard"
-import ProductCard from "components/ProductCard"
 import Text from "components/Text"
 
 import useMultipleQueries from "hooks/useMultipleQueries"
@@ -20,13 +18,12 @@ import useProductModelList from "api/hooks/pos/product/useProductModelList"
 
 import {
   MainTabParamList,
-  ProductStackParamList,
+  ProductStackParamList
 } from "Router/MainTabParamList"
 
-import { dataFromPaginated } from "helper/pagination"
 import s from "helper/theme"
 
-import { ProductModel } from "types/POS/Product/ProductModel"
+import { heightPercentageToDP } from "react-native-responsive-screen"
 
 type CurrentScreenNavigationProp = CompositeNavigationProp<
   StackNavigationProp<ProductStackParamList, "Product">,
@@ -54,10 +51,11 @@ export default (props: PropTypes) => {
   }
 
   return (
-    <Div mb={20}>
-      <Text fontSize={14} fontWeight="bold" px={20} mb={10}>
+    <Div  borderBottomWidth={10}  borderColor='#f0f3fa'>
+      <Text fontSize={14} fontWeight="bold" ml={20} my={10} mb={20}>
         New Arrival
       </Text>
+      <Div h={heightPercentageToDP(25)} bg='#2980b9' mt={heightPercentageToDP(-20)} bottom={heightPercentageToDP(-20)}/>
       <FlatList
         horizontal
         data={productModelsData?.data?.data}

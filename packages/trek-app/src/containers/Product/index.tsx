@@ -107,8 +107,8 @@ export default () => {
             </Div>
             <ProductCategory />
             <NewArrival />
-            <Div row justifyContent="space-between" px={20} mb={10}>
-              <Text fontSize={14} fontWeight="bold">
+            <Div row justifyContent="space-between">
+              <Text fontSize={14} fontWeight="bold" p={20}>
                 All Brand
               </Text>
             </Div>
@@ -158,14 +158,14 @@ const BrandCard = ({ item }: any) => {
           width={0.4 * screenWidth}
           scalable
           source={{ uri: item?.images?.length > 0 ? item.images[0].url : null }}
-          style={[s.mB10]}
+          style={[s.mB5]}
         />
         <Text
           maxW={0.4 * screenWidth}
-          fontWeight="bold"
+          fontWeight='normal'
           textAlign="center"
-          mb={5}
-          numberOfLines={3}
+          numberOfLines={1}
+          fontSize={14}
         >
           {item.name}
         </Text>
