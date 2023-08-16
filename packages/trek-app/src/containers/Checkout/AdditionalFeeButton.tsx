@@ -13,6 +13,7 @@ export default ({
   packingFee,
   shippingFee,
   additionalDiscount,
+  type,
 }) => {
   const { width: screenWidth } = useWindowDimensions()
 
@@ -48,7 +49,7 @@ export default ({
               )}
               {!!additionalDiscount && (
                 <Text my={5}>
-                  Additional Discount {formatCurrency(additionalDiscount)}
+                  Additional Discount {type === 0 ? formatCurrency(additionalDiscount) : `${additionalDiscount}%`}
                 </Text>
               )}
             </Div>

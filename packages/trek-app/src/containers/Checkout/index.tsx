@@ -203,6 +203,7 @@ export default () => {
         packingFee={packingFee}
         shippingFee={shippingFee}
         additionalDiscount={additionalDiscount}
+        type={discountType}
       />
       <Div
         mt={5}
@@ -233,7 +234,7 @@ export default () => {
             {!!orderPreviewData?.totalDiscount && (
               <Div row justifyContent="space-between" mb={5}>
                 <Text>Discount</Text>
-                <Text>{formatCurrency(orderPreviewData?.totalDiscount)}</Text>
+                <Text>{formatCurrency(-1 * orderPreviewData?.totalDiscount)}</Text>
               </Div>
             )}
             {!!orderPreviewData?.totalVoucher && (

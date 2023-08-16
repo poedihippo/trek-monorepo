@@ -34,7 +34,7 @@ import {
   MainTabParamList,
 } from "Router/MainTabParamList"
 
-import { formatCurrency } from "helper"
+import { formatCurrency, responsive } from "helper"
 import { dataFromPaginated } from "helper/pagination"
 import s, { COLOR_PRIMARY } from "helper/theme"
 
@@ -137,14 +137,16 @@ export default () => {
                 onPress={() => {
                   onAddToCard(item)
                 }}
-                px={20}
-                py={10}
+                // px={20}
+                // py={10}
                 justifyContent="center"
                 alignSelf="center"
                 rounded={4}
                 bg={COLOR_PRIMARY}
-                w={widthPercentageToDP(24)}
-                h={heightPercentageToDP(6)}
+                fontSize={responsive(8)}
+                // w={widthPercentageToDP(20)}
+                // h={heightPercentageToDP(5)}
+                
               >
                 + Cart
               </Button>
@@ -155,8 +157,9 @@ export default () => {
                 borderColor={COLOR_PRIMARY}
                 borderWidth={1}
                 mt={heightPercentageToDP(0.5)}
-                w={widthPercentageToDP(24)}
-                h={heightPercentageToDP(6)}
+                fontSize={responsive(8)}
+                // w={widthPercentageToDP(20)}
+                // h={heightPercentageToDP(5)}
               >
                 Stocks
               </Button>
