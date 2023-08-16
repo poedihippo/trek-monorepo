@@ -63,7 +63,6 @@ export default ({
         }}
         mb={heightPercentageToDP(2)}
         mx={heightPercentageToDP(0.5)}
-        my={heightPercentageToDP(2)}
         h={heightPercentageToDP(35)}
         rounded={6}
         w={widthPercentageToDP(40)}
