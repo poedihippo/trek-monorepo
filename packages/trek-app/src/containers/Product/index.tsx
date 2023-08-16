@@ -1,27 +1,22 @@
 import { BottomTabNavigationProp } from "@react-navigation/bottom-tabs"
 import {
-  useNavigation,
-  CompositeNavigationProp,
+  CompositeNavigationProp, useNavigation
 } from "@react-navigation/native"
 import { StackNavigationProp } from "@react-navigation/stack"
-import React, { useEffect, useState } from "react"
+import React, { useState } from "react"
 import {
-  FlatList,
-  Pressable,
-  TouchableOpacity,
-  useWindowDimensions,
+  FlatList, TouchableOpacity,
+  useWindowDimensions
 } from "react-native"
-import { Button, Div, Icon } from "react-native-magnus"
-import Modal from "react-native-modal"
+import { Div } from "react-native-magnus"
 import {
   heightPercentageToDP,
-  widthPercentageToDP,
+  widthPercentageToDP
 } from "react-native-responsive-screen"
 import Carousel from "react-native-snap-carousel"
 
 import FooterLoading from "components/CommonList/FooterLoading"
 import Image from "components/Image"
-import LeadDropdownInput from "components/LeadDropdownInput"
 import Loading from "components/Loading"
 import Text from "components/Text"
 
@@ -30,21 +25,15 @@ import useMultipleQueries from "hooks/useMultipleQueries"
 import useBrandList from "api/hooks/pos/productCategorization/useBrandList"
 
 import {
-  ProductStackParamList,
-  MainTabParamList,
+  MainTabParamList, ProductStackParamList
 } from "Router/MainTabParamList"
 
-import { responsive } from "helper"
-import { dataFromPaginated } from "helper/pagination"
 import s from "helper/theme"
 
-import { Brand } from "types/POS/ProductCategorization/Brand"
 
 import CafeButton from "./CafeButton"
 import NewArrival from "./NewArrival"
 import ProductCategory from "./ProductCategory"
-import ScanQR from "./ScanQR"
-import StockButton from "./StockButton"
 
 type CurrentScreenNavigationProp = CompositeNavigationProp<
   StackNavigationProp<ProductStackParamList, "Product">,
