@@ -4,7 +4,7 @@
     "slug": "trek-app",
     "privacy": "hidden",
     "orientation": "portrait",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "icon": "./assets/icon.png",
     "splash": {
       "image": "./assets/splashscreen.png",
@@ -26,7 +26,7 @@
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.trek.alba",
-      "buildNumber": "1.0"
+      "buildNumber": "1.1"
     },
     "android": {
       "googleServicesFile": "./google-services.json",
