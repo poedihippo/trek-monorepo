@@ -47,7 +47,7 @@ const TargetList = ({ type }: PropTypes) => {
   const [key, setKey] = useState<string>()
   const [start, setStart] = useState<any>()
   const [end, setEnd] = useState<any>()
-  const [search, setSearch] = useState<string>()
+  const [search, setSearch] = useState<any>()
   const navigation = useNavigation()
   const {
     queries: [{ data: targetData }],
@@ -60,6 +60,7 @@ const TargetList = ({ type }: PropTypes) => {
       name: search,
     }),
   ] as const)
+  console.log(targetData, 'check targetData')
   const [show, setShow] = useState(69)
   const renderStatus = ({ data }) => (
     <Pressable
@@ -137,7 +138,7 @@ const TargetList = ({ type }: PropTypes) => {
             {item.name}
           </Text>
           <Div row alignItems="center">
-            <TouchableOpacity
+            {/* <TouchableOpacity
               style={{ width: widthPercentageToDP(10) }}
               onPress={() => {
                 setVisibleCompare(true)
@@ -150,7 +151,7 @@ const TargetList = ({ type }: PropTypes) => {
                 fontSize={16}
                 color="#313132"
               />
-            </TouchableOpacity>
+            </TouchableOpacity> */}
             <TouchableOpacity
               style={{ width: widthPercentageToDP(10) }}
               onPress={() => {
@@ -1010,7 +1011,7 @@ const TargetList = ({ type }: PropTypes) => {
           </Div>
         </Div>
       </Modal>
-      <Comparison />
+      {/* <Comparison /> */}
     </Div>
   )
 }

@@ -159,20 +159,7 @@ const TargetScreen = () => {
             </Div>
           </Div>
         ) : userData?.type === "SUPERVISOR" ? (
-          <Div row m={5} alignItems="center">
-            <TouchableOpacity
-              style={{
-                marginLeft: 10,
-                padding: 5,
-                borderRadius: 8,
-                backgroundColor: !!filterVisible ? COLOR_PRIMARY : "",
-                alignItems: "center",
-                justifyContent: "center",
-              }}
-              onPress={() => setFilterVisible(true)}
-            >
-              <Icon name="filter" fontFamily="Ionicons" fontSize={30} />
-            </TouchableOpacity>
+          <Div row m={5} alignItems="center">            
             <Div flex={1} mr={10}>
               <DatePickerInput
                 placeholder="Start Date"
@@ -192,6 +179,19 @@ const TargetScreen = () => {
                 }}
               />
             </Div>
+            <TouchableOpacity
+              style={{
+                marginLeft: 10,
+                padding: 5,
+                borderRadius: 8,
+                backgroundColor: !!filterVisible ? COLOR_PRIMARY : "",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+              onPress={() => setFilterVisible(true)}
+            >
+              <Icon name="filter" fontFamily="Ionicons" fontSize={30} />
+            </TouchableOpacity>
           </Div>
         ) : userData?.type === "DIRECTOR" ? (
           <Div row m={10} alignItems="center">
@@ -219,7 +219,7 @@ const TargetScreen = () => {
                 marginLeft: 10,
                 padding: 5,
                 borderRadius: 8,
-                backgroundColor: !!filterVisible ? "#17949D" : "",
+                backgroundColor: !!filterVisible ? COLOR_PRIMARY : "",
                 alignItems: "center",
                 justifyContent: "center",
               }}
@@ -1732,7 +1732,7 @@ const TargetScreen = () => {
         </>
       ) : (
         <>
-          <Div row p={20}>
+          {/* <Div row p={20}>
             <Button
               bg="white"
               onPress={() => setCompany("1")}
@@ -1752,7 +1752,7 @@ const TargetScreen = () => {
             >
               Dio Living
             </Button>
-          </Div>
+          </Div> */}
           <Div mx={20}>
             <SelectChannel
               value={channel}
