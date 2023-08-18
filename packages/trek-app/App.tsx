@@ -1,8 +1,8 @@
-import AppLoading from "expo-app-loading"
 import { useFonts } from "expo-font"
 import "intl"
 import "intl/locale-data/jsonp/id"
 import React from "react"
+import * as SplashScreen from 'expo-splash-screen'
 import { LogBox, TouchableOpacity } from "react-native"
 import { ThemeProvider } from "react-native-magnus"
 import { SafeAreaProvider } from "react-native-safe-area-context"
@@ -20,7 +20,8 @@ import { theme } from "helper/theme"
 
 import Root from "./src/Root"
 import { queryClient } from "./src/query"
-
+// Keep the splash screen visible while we fetch resources
+SplashScreen.preventAutoHideAsync()
 enableScreens()
 
 // Suppress timer warnings
@@ -47,8 +48,8 @@ export default () => {
     FontBold: require("./src/assets/font/Poppins-Bold.ttf"),
   })
 
-  if (!fontLoaded) {
-    return <AppLoading />
+  if (fontLoaded) {
+     SplashScreen.hideAsync()
   }
 
   return (
