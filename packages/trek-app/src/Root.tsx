@@ -9,7 +9,7 @@ import NetInfoHandler from "components/NetInfoHandler"
 import UpdateChecker from "components/UpdateChecker"
 
 import { Router } from "./Router"
-import { PushNotificationHandler } from "./notifications"
+// import { PushNotificationHandler } from "./notifications"
 
 export default () => {
   const navigationRef = useRef<NavigationContainerRef>(null)
@@ -32,7 +32,7 @@ export default () => {
       <NetInfoHandler />
       {/* <ForceUpdateHandler /> */}
       <UpdateChecker />
-      <PushNotificationHandler reset={reset} />
+      {/* <PushNotificationHandler reset={reset} /> */}
     </View>
   )
 }

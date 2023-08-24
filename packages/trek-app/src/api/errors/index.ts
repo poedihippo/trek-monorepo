@@ -1,5 +1,4 @@
 import axios, { AxiosError } from "axios"
-import Constants from "expo-constants"
 import { Platform } from "react-native"
 
 import Languages from "helper/languages"
@@ -16,21 +15,21 @@ const prodWebhookUrl =
 const prodNativeWebhookUrl =
   "https://discord.com/api/webhooks/847161295841263656/mAs1EZ0Rj69NbSzScaVPNAzdACPCpdIBJFkfOkd9uQVaCEYT0BakGdj37NEci8kXYaNy"
 
-const getWebhookUrl = (errorType: ErrorType) => {
-  if (
-    Constants?.manifest?.releaseChannel &&
-    Constants?.manifest?.releaseChannel?.indexOf("prod") !== -1
-  ) {
-    if (errorType === ErrorType.NATIVE) {
-      return prodNativeWebhookUrl
-    }
+// const getWebhookUrl = (errorType: ErrorType) => {
+//   if (
+//     Constants?.manifest?.releaseChannel &&
+//     Constants?.manifest?.releaseChannel?.indexOf("prod") !== -1
+//   ) {
+//     if (errorType === ErrorType.NATIVE) {
+//       return prodNativeWebhookUrl
+//     }
 
-    return prodWebhookUrl
-  }
+//     return prodWebhookUrl
+//   }
 
-  // Staging
-  return stagingWebhookUrl
-}
+//   // Staging
+//   return stagingWebhookUrl
+// }
 
 export type CustomAxiosErrorType = {
   axiosError: AxiosError
@@ -62,20 +61,20 @@ export const discordAlert = (
     })
   }
 
-  return axios.post(getWebhookUrl(errorType), {
-    content: `${new Date()}  BuildID: ${Constants.manifest.revisionId} ${
-      Constants.manifest.revisionId === undefined ? "(Probably Dev)" : ""
-    }`,
-    embeds: [
-      {
-        title: errorType.toString(),
-        description: errorTypeDescription,
-        timestamp: new Date().toISOString(),
-        color: 1752220,
-      },
-      ...messages,
-    ],
-  })
+  // return axios.post(getWebhookUrl(errorType), {
+  //   content: `${new Date()}  BuildID: ${Constants.manifest.revisionId} ${
+  //     Constants.manifest.revisionId === undefined ? "(Probably Dev)" : ""
+  //   }`,
+  //   embeds: [
+  //     {
+  //       title: errorType.toString(),
+  //       description: errorTypeDescription,
+  //       timestamp: new Date().toISOString(),
+  //       color: 1752220,
+  //     },
+  //     ...messages,
+  //   ],
+  // })
 }
 
 export const logError = (

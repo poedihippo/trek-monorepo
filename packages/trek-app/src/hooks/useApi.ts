@@ -1,5 +1,4 @@
 import axios from "axios"
-import Constants from "expo-constants"
 import { Platform } from "react-native"
 
 import { useAuth } from "providers/Auth"
@@ -10,12 +9,7 @@ import { V1Api } from "api/openapi"
 ///http://178.128.214.193
 //http://139.59.224.48
 let baseUrl = "https://trek.albatech.id"
-if (
-  Constants?.manifest?.releaseChannel &&
-  Constants?.manifest?.releaseChannel?.indexOf("prod") !== -1
-) {
-  baseUrl = "https://trek.albatech.id"
-}
+
 
 const getHeader = (loggedIn: boolean, jwt: string) => ({
   headers: {
