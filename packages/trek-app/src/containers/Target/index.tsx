@@ -10,7 +10,7 @@ import {
   Pressable,
   RefreshControl,
   ScrollView,
-  TouchableOpacity,
+  TouchableOpacity
 } from "react-native"
 import {
   Button,
@@ -19,23 +19,21 @@ import {
   Modal,
   Skeleton,
   Text,
-  Tooltip,
+  Tooltip
 } from "react-native-magnus"
 import * as Progress from "react-native-progress"
 import {
   heightPercentageToDP,
-  widthPercentageToDP,
+  widthPercentageToDP
 } from "react-native-responsive-screen"
 
 import BotSection from "containers/Dashboard/BotSection"
-import TopSection from "containers/Dashboard/TopSection"
 
 import DatePickerInput from "components/DatePickerInput"
 import SelectChannel from "components/SelectChannel"
 
 import useMultipleQueries from "hooks/useMultipleQueries"
 
-import { useAuth } from "providers/Auth"
 
 import useChannelDefault from "api/hooks/channel/useChannelDefault"
 import useTarget from "api/hooks/target/useTarget"
@@ -51,8 +49,6 @@ const TargetScreen = () => {
     tipLead = React.createRef(),
     tipActiveLead = React.createRef(),
     tipLeadStatus = React.createRef(),
-    tipID = React.createRef(),
-    tipSettlement = React.createRef(),
     tipQuotation = React.createRef(),
     tipEstimated = React.createRef()
   const [modalVisible, setModalVisible] = useState(false)
@@ -73,10 +69,9 @@ const TargetScreen = () => {
     : moment().endOf("month").format("YYYY-MM-DD")
 
   const {
-    queries: [{ data: channelData }, { data: topSalesData }, { data: target }],
+    queries: [{ data: topSalesData }, { data: target }],
     meta: { isLoading, isFetching, refetch },
   } = useMultipleQueries([
-    useChannelDefault(),
     useSuperstarList("target", "yahaha", defaultStart, defaultEnd),
     useTarget({
       start_date: !!start ? moment(start).format("YYYY-MM-DD") : "",
@@ -86,7 +81,6 @@ const TargetScreen = () => {
     }),
   ] as const)
   const data = target?.data
-  console.log(data)
   const navigation = useNavigation()
   const status = [
     {
@@ -107,32 +101,6 @@ const TargetScreen = () => {
   ]
 
   const scrollY = React.useRef(new Animated.Value(0)).current
-  const diffClamp = Animated.diffClamp(scrollY, 0, 100)
-
-  const translateY = diffClamp.interpolate({
-    inputRange: [0, 100],
-    outputRange: [0, -60],
-    extrapolate: "clamp",
-  })
-
-  const marginTop = diffClamp.interpolate({
-    inputRange: [0, 100],
-    outputRange: [0, -60],
-    extrapolate: "clamp",
-  })
-
-  const paddingTop = diffClamp.interpolate({
-    inputRange: [0, 100],
-    outputRange: [10, 110],
-    extrapolate: "clamp",
-  })
-
-  const opacity = diffClamp.interpolate({
-    inputRange: [0, 100],
-    outputRange: [1, 0],
-    extrapolate: "clamp",
-  })
-
   const FilterTarget = () => {
     return (
       <>
@@ -294,7 +262,9 @@ const TargetScreen = () => {
               >
                 <Div justifyContent="center">
                   <Progress.Circle
+                  
                     unfilledColor="white"
+                    fill="transparent"
                     borderWidth={0}
                     size={100}
                     progress={
@@ -307,7 +277,7 @@ const TargetScreen = () => {
                     animated={false}
                     thickness={8}
                     showsText={true}
-                    color={"#FF731D"}
+                    color={"white"}
                   />
                 </Div>
 
@@ -426,12 +396,10 @@ const TargetScreen = () => {
                     elevation: 3,
                   }}
                   rounded={4}
-                  p={10}
-                  w={widthPercentageToDP(31)}
-                  h={heightPercentageToDP(12)}
+                  p={5}
                   bg="#FF731D"
                 >
-                  <Div row>
+                  <Div row justifyContent='space-between'>
                     <Text allowFontScaling={false} fontSize={responsive(10)} color="white">
                       New Leads
                     </Text>
@@ -489,7 +457,7 @@ const TargetScreen = () => {
                     />
                   </Div>
                   <Div row>
-                    <Div>
+                    <Div >
                       <Progress.Bar
                         borderRadius={0}
                         color="#FFFFFF"
@@ -497,7 +465,7 @@ const TargetScreen = () => {
                         height={3}
                         useNativeDriver
                         unfilledColor="#c4c4c4"
-                        width={widthPercentageToDP(20)}
+                        width={widthPercentageToDP('28%')}
                         style={{ marginTop: 5 }}
                         progress={
                           data?.new_leads?.value /
@@ -513,24 +481,7 @@ const TargetScreen = () => {
                         }
                       />
                     </Div>
-                    {/* <Text
-                      fontSize={responsive(8)}
-                      color="#fff"
-                      ml={heightPercentageToDP(1)}
-                    >
-                      {`${Math.round(
-                        (data?.new_leads?.value /
-                          data?.new_leads?.target_leads) *
-                          100,
-                      )}%`}
-                    </Text> */}
-                    <Text
-                      fontSize={responsive(8)}
-                      color="#fff"
-                      ml={heightPercentageToDP(1)}
-                    >
-                     (0%)
-                    </Text>
+                   
                   </Div>
                   <Text
                     fontSize={responsive(10)}
@@ -1024,6 +975,8 @@ const TargetScreen = () => {
             >
               <Div justifyContent="center">
                 <Progress.Circle
+                                    fill="transparent"
+
                   unfilledColor="white"
                   borderWidth={0}
                   size={100}

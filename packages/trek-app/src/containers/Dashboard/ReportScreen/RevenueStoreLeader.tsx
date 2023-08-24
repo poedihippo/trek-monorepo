@@ -93,6 +93,8 @@ const RevenueStoreLeader = () => {
                 <Text>Target {item.target.format}</Text>
               </Div>
               <Progress.Circle
+                                  fill="transparent"
+
                 style={{
                   position: "absolute",
                   marginLeft: widthPercentageToDP(65),

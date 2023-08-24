@@ -1,16 +1,13 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { RouteProp, useNavigation, useRoute } from "@react-navigation/native"
-import { StackNavigationProp } from "@react-navigation/stack"
 import { LinearGradient } from "expo-linear-gradient"
 import moment from "moment"
 import React, { useEffect, useRef, useState } from "react"
-import { RefreshControl, ScrollView, Image } from "react-native"
+import { RefreshControl, ScrollView } from "react-native"
 import { TouchableOpacity } from "react-native-gesture-handler"
-import { Button, Div, Overlay, Text } from "react-native-magnus"
-import { widthPercentageToDP } from "react-native-responsive-screen"
+import { Div, Text } from "react-native-magnus"
 import { useQuery } from "react-query"
 
-import Loading from "components/Loading"
 import MonthPickerInput from "components/MonthPickerInput"
 
 import { useAxios } from "hooks/useApi"
