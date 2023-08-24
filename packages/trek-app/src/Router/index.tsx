@@ -16,6 +16,7 @@ import ActivityDetailScreen from "containers/ActivityDetail"
 import ActivityListScreen from "containers/ActivityList"
 import ActivityList from "containers/ActivityList"
 import AddActivityScreen from "containers/AddActivity"
+import UploadImageActivity from "containers/AddActivity/UploadImageActivity"
 import AddAddressScreen from "containers/AddAddress"
 import AddChatScreen from "containers/AddChat"
 import AddCustomerScreen from "containers/AddCustomer"
@@ -82,6 +83,7 @@ import ProductByCategory from "containers/ProductByCategory"
 import ProductDetailScreen from "containers/ProductDetail"
 import ProductSearchScreen from "containers/ProductSearch"
 import ProductUnitSearchScreen from "containers/ProductUnitSearch"
+import Stocks from "containers/ProductUnitSearch/stocks"
 import Profile from "containers/Profile"
 import PromoScreen from "containers/Promo"
 import PromoCategory from "containers/PromoCategory"
@@ -112,8 +114,6 @@ import { withLoggedInRedirectMiddleware } from "./LoggedInRedirectMiddleware"
 import { CustomerStackParamList, MainTabParamList } from "./MainTabParamList"
 import { withRequireLoginMiddleware } from "./RequireLoginMiddleware"
 import { withRequireSelectChannelMiddleware } from "./RequireSelectChannel"
-import UploadImageActivity from "containers/AddActivity/UploadImageActivity"
-import Stocks from "containers/ProductUnitSearch/stocks"
 
 const EntryStack = createStackNavigator<EntryStackParamList>()
 const MainTab = createBottomTabNavigator<MainTabParamList>()
@@ -347,7 +347,7 @@ const renderOptionsCustomer = (navigation): StackNavigationOptions => ({
     shadowOpacity: 0,
     backgroundColor: COLOR_PRIMARY,
   },
-  headerTitleAlign: "center", 
+  headerTitleAlign: "center",
   cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
   headerBackTitle: "Back",
 })
@@ -960,7 +960,7 @@ const CustomerStackScreen = () => {
         options={{ title: "Payment Proof" }}
         component={OrderPaymentProofScreen}
       ></Customer.Screen>
-    <Customer.Screen
+      <Customer.Screen
         name="ActivityImage"
         options={{
           title: "Add Activity",

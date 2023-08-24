@@ -1,17 +1,15 @@
 import { BottomTabNavigationProp } from "@react-navigation/bottom-tabs"
 import {
-  CompositeNavigationProp, useNavigation
+  CompositeNavigationProp,
+  useNavigation,
 } from "@react-navigation/native"
 import { StackNavigationProp } from "@react-navigation/stack"
 import React, { useState } from "react"
-import {
-  FlatList, TouchableOpacity,
-  useWindowDimensions
-} from "react-native"
+import { FlatList, TouchableOpacity, useWindowDimensions } from "react-native"
 import { Div } from "react-native-magnus"
 import {
   heightPercentageToDP,
-  widthPercentageToDP
+  widthPercentageToDP,
 } from "react-native-responsive-screen"
 import Carousel from "react-native-snap-carousel"
 
@@ -25,11 +23,11 @@ import useMultipleQueries from "hooks/useMultipleQueries"
 import useBrandList from "api/hooks/pos/productCategorization/useBrandList"
 
 import {
-  MainTabParamList, ProductStackParamList
+  MainTabParamList,
+  ProductStackParamList,
 } from "Router/MainTabParamList"
 
 import s from "helper/theme"
-
 
 import CafeButton from "./CafeButton"
 import NewArrival from "./NewArrival"
@@ -79,16 +77,27 @@ export default () => {
               underlayColor="none"
               renderItem={({ item: image }) => (
                 <Image
-                  width={widthPercentageToDP(50)} 
-                  // height={'50%'}                    
-                  scalable                  
+                  width={widthPercentageToDP(50)}
+                  // height={'50%'}
+                  scalable
                   source={require("assets/TrekLogo.png")}
-                  style={{marginTop: heightPercentageToDP(2), justifyContent: 'center', alignSelf: 'center'}}
+                  style={{
+                    marginTop: heightPercentageToDP(2),
+                    justifyContent: "center",
+                    alignSelf: "center",
+                  }}
                 />
               )}
             />
 
-            <Div flex={1} px={20} mb={10} mt={10} row justifyContent="space-between">
+            <Div
+              flex={1}
+              px={20}
+              mb={10}
+              mt={10}
+              row
+              justifyContent="space-between"
+            >
               {/* <ScanQR navigate={() => navigation.navigate("ProductSearch")} /> */}
               <CafeButton
                 navigate={() => navigation.navigate("ProductUnitSearch")}
@@ -151,7 +160,7 @@ const BrandCard = ({ item }: any) => {
         />
         <Text
           maxW={0.4 * screenWidth}
-          fontWeight='normal'
+          fontWeight="normal"
           textAlign="center"
           numberOfLines={1}
           fontSize={14}

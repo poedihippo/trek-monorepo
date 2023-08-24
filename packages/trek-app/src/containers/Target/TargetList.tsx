@@ -60,7 +60,7 @@ const TargetList = ({ type }: PropTypes) => {
       name: search,
     }),
   ] as const)
-  console.log(targetData, 'check targetData')
+  console.log(targetData, "check targetData")
   const [show, setShow] = useState(69)
   const renderStatus = ({ data }) => (
     <Pressable
@@ -237,88 +237,80 @@ const TargetList = ({ type }: PropTypes) => {
                 Target {formatCurrency(item?.deals?.target_deals)}
               </Text>
             </Div>
-            
           </Pressable>
           <Pressable
-                  onPress={() =>
-                    navigation.navigate("SalesNewLeads", {
-                      type: type,
-                      id: item?.id,
-                      name: item?.name,
-                      startDate: !!start ? start : moment().startOf("month"),
-                      endDate: !!end ? end : moment().endOf("month"),
-                      isActive: 0,
-                    })
-                  }
+            onPress={() =>
+              navigation.navigate("SalesNewLeads", {
+                type: type,
+                id: item?.id,
+                name: item?.name,
+                startDate: !!start ? start : moment().startOf("month"),
+                endDate: !!end ? end : moment().endOf("month"),
+                isActive: 0,
+              })
+            }
+          >
+            <Div
+              w={widthPercentageToDP(30)}
+              rounded={4}
+              px={10}
+              h={heightPercentageToDP(7)}
+              bg="white"
+            >
+              <Text allowFontScaling={false} fontSize={10}>
+                New Leads
+              </Text>
+              <Div row mb={5}>
+                <Text
+                  allowFontScaling={false}
+                  fontSize={responsive(8)}
+                  color="#17949D"
+                  fontWeight="bold"
                 >
-                  <Div
-                    w={widthPercentageToDP(30)}
-                    rounded={4}
-                    px={10}
-                    h={heightPercentageToDP(7)}
-                    bg="white"
-                  >
-                    <Text allowFontScaling={false} fontSize={10}>
-                      New Leads
-                    </Text>
-                    <Div row mb={5}>
-                      <Text
-                        allowFontScaling={false}
-                        fontSize={responsive(8)}
-                        color="#17949D"
-                        fontWeight="bold"
-                      >
-                        {item?.new_leads?.value}
-                      </Text>
-                      <Icon
-                        ml={3}
-                        name={
-                          item?.new_leads?.value < item?.new_leads?.compare
-                            ? "caretdown"
-                            : "caretup"
-                        }
-                        fontFamily="AntDesign"
-                        fontSize={8}
-                        color={
-                          item?.new_leads?.value < item?.new_leads?.compare
-                            ? "#F44336"
-                            : "#2DCC70"
-                        }
-                      />
-                    </Div>
-                    <Progress.Bar
-                      borderRadius={0}
-                      progress={
-                        item?.new_leads?.value /
-                          item?.new_leads?.target_leads ===
-                          Infinity ||
-                        isNaN(
-                          item?.new_leads?.value /
-                            item?.new_leads?.target_leads,
-                        )
-                          ? 0
-                          : item?.new_leads?.value /
-                            item?.new_leads?.target_leads
-                      }
-                      color="#17949D"
-                      borderWidth={0}
-                      height={3}
-                      useNativeDriver
-                      unfilledColor="#c4c4c4"
-                      width={widthPercentageToDP(35)}
-                      style={{ marginBottom: 5 }}
-                    />
-                    <Text color="#c4c4c4" fontSize={10}>
-                      Target {item?.new_leads?.target_leads}{" "}
-                      {`(${Math.round(
-                        (item?.new_leads?.value /
-                          item?.new_leads?.target_leads) *
-                          100,
-                      )}%)`}{" "}
-                    </Text>
-                  </Div>
-                </Pressable>
-         
+                  {item?.new_leads?.value}
+                </Text>
+                <Icon
+                  ml={3}
+                  name={
+                    item?.new_leads?.value < item?.new_leads?.compare
+                      ? "caretdown"
+                      : "caretup"
+                  }
+                  fontFamily="AntDesign"
+                  fontSize={8}
+                  color={
+                    item?.new_leads?.value < item?.new_leads?.compare
+                      ? "#F44336"
+                      : "#2DCC70"
+                  }
+                />
+              </Div>
+              <Progress.Bar
+                borderRadius={0}
+                progress={
+                  item?.new_leads?.value / item?.new_leads?.target_leads ===
+                    Infinity ||
+                  isNaN(item?.new_leads?.value / item?.new_leads?.target_leads)
+                    ? 0
+                    : item?.new_leads?.value / item?.new_leads?.target_leads
+                }
+                color="#17949D"
+                borderWidth={0}
+                height={3}
+                useNativeDriver
+                unfilledColor="#c4c4c4"
+                width={widthPercentageToDP(35)}
+                style={{ marginBottom: 5 }}
+              />
+              <Text color="#c4c4c4" fontSize={10}>
+                Target {item?.new_leads?.target_leads}{" "}
+                {`(${Math.round(
+                  (item?.new_leads?.value / item?.new_leads?.target_leads) *
+                    100,
+                )}%)`}{" "}
+              </Text>
+            </Div>
+          </Pressable>
         </Div>
         {show === index ? (
           <Div mx={5}>
@@ -426,7 +418,7 @@ const TargetList = ({ type }: PropTypes) => {
             {/* Quotation n Deals */}
             <Div row mt={10} justifyContent="center">
               <Div>
-              <Div
+                <Div
                   w={widthPercentageToDP(28)}
                   rounded={4}
                   px={15}

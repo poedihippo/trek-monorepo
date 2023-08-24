@@ -94,8 +94,7 @@ const RevenueScreen = () => {
                 <Text>Target {item.target.format}</Text>
               </Div>
               <Progress.Circle
-                                  fill="transparent"
-
+                fill="transparent"
                 style={{
                   position: "absolute",
                   marginLeft: widthPercentageToDP(65),

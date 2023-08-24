@@ -116,7 +116,11 @@ const QuotationInside = () => {
           borderWidth={1}
           opacity={0.5}
         >
-          <Text fontSize={responsive(8)} color={COLOR_PRIMARY} fontWeight='bold'> 
+          <Text
+            fontSize={responsive(8)}
+            color={COLOR_PRIMARY}
+            fontWeight="bold"
+          >
             {item?.name}
           </Text>
         </Button>
@@ -204,12 +208,7 @@ const QuotationInside = () => {
       <TopSection />
       {route.params.invoice_type === "retail" ? null : (
         <Div>
-          <Div
-            p={10}
-            bg={'#c4c4c4'}
-            opacity={0.5}
-            mb={heightPercentageToDP(1)}
-          >
+          <Div p={10} bg={"#c4c4c4"} opacity={0.5} mb={heightPercentageToDP(1)}>
             <Div row>
               <Icon
                 name="info"

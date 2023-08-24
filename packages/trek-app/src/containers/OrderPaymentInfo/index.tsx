@@ -1,7 +1,9 @@
 import { BottomTabNavigationProp } from "@react-navigation/bottom-tabs"
 import {
-  CompositeNavigationProp, RouteProp, useNavigation,
-  useRoute
+  CompositeNavigationProp,
+  RouteProp,
+  useNavigation,
+  useRoute,
 } from "@react-navigation/native"
 import { StackNavigationProp } from "@react-navigation/stack"
 import * as FileSystem from "expo-file-system"
@@ -27,7 +29,7 @@ import usePaymentList from "api/hooks/payment/usePaymentList"
 import { EntryStackParamList } from "Router/EntryStackParamList"
 import {
   CustomerStackParamList,
-  MainTabParamList
+  MainTabParamList,
 } from "Router/MainTabParamList"
 
 import { formatCurrency } from "helper"
@@ -36,7 +38,6 @@ import { dataFromPaginated } from "helper/pagination"
 import s, { COLOR_DISABLED, COLOR_PRIMARY } from "helper/theme"
 
 import { Payment, paymentStatusConfig } from "types/Payment/Payment"
-
 
 type CurrentScreenRouteProp = RouteProp<
   CustomerStackParamList,

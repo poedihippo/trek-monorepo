@@ -146,7 +146,6 @@ export default () => {
                 fontSize={responsive(8)}
                 // w={widthPercentageToDP(20)}
                 // h={heightPercentageToDP(5)}
-                
               >
                 + Cart
               </Button>

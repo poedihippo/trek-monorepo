@@ -8,9 +8,19 @@ import {
 import { StackNavigationProp } from "@react-navigation/stack"
 import Case from "case"
 import React, { useEffect, useState } from "react"
-import { FlatList, ImageBackground, Keyboard, Modal, Pressable, RefreshControl } from "react-native"
+import {
+  FlatList,
+  ImageBackground,
+  Keyboard,
+  Modal,
+  Pressable,
+  RefreshControl,
+} from "react-native"
 import { Div, Icon, Image as ImageMagnus } from "react-native-magnus"
-import { heightPercentageToDP, widthPercentageToDP } from "react-native-responsive-screen"
+import {
+  heightPercentageToDP,
+  widthPercentageToDP,
+} from "react-native-responsive-screen"
 
 import FooterLoading from "components/CommonList/FooterLoading"
 import CustomKeyboardAvoidingView from "components/CustomKeyboardAvoidingView"
@@ -49,6 +59,7 @@ import { activityStatusConfig } from "types/Activity"
 import { ActivityComment } from "types/ActivityComment"
 import { getFullName } from "types/Customer"
 import { leadStatusConfig } from "types/Lead"
+
 import ActivityCommentItem from "./ActivityCommentItem"
 
 type CurrentScreenRouteProp = RouteProp<
@@ -69,7 +80,7 @@ export default () => {
   const [modalVisible, setModalVisible] = useState({
     visible: false,
     imageURL: null,
-  });
+  })
 
   const activityId = route?.params?.id ?? -1
   if (activityId === -1) {
@@ -140,7 +151,7 @@ export default () => {
       enabled: !!activityData?.order?.id,
     }),
   ] as const)
-  console.log(activityData, 'check isi activity data')
+  console.log(activityData, "check isi activity data")
   const {
     followUpDatetime,
     followUpMethod,
@@ -305,30 +316,51 @@ export default () => {
         <Text fontSize={14} fontWeight="bold">
           Picture
         </Text>
-        <Div row> 
-        <FlatList 
-          data={activityData?.images}
-          numColumns={2}
-          renderItem={({item}:any) => {
-            return(
-              <Pressable onPress={() => setModalVisible({
-                visible: true,
-                imageURL: item?.url
-              })}>
+        <Div row>
+          <FlatList
+            data={activityData?.images}
+            numColumns={2}
+            renderItem={({ item }: any) => {
+              return (
+                <Pressable
+                  onPress={() =>
+                    setModalVisible({
+                      visible: true,
+                      imageURL: item?.url,
+                    })
+                  }
+                >
                   <ImageBackground
                     resizeMode="contain"
-                    source={{uri: item?.url}}
-                    style={{width: widthPercentageToDP(30), marginRight:widthPercentageToDP(5), marginLeft: widthPercentageToDP(5), justifyContent: 'space-around', marginTop: heightPercentageToDP(2)}}
+                    source={{ uri: item?.url }}
+                    style={{
+                      width: widthPercentageToDP(30),
+                      marginRight: widthPercentageToDP(5),
+                      marginLeft: widthPercentageToDP(5),
+                      justifyContent: "space-around",
+                      marginTop: heightPercentageToDP(2),
+                    }}
                   >
-                    <Div bg="rgba(52, 52, 52, 0.8)" w={widthPercentageToDP(30)} h={heightPercentageToDP(28)}/>
-                    <Div position="absolute" bottom={20} justifyContent='center' alignSelf="center">
-                      <Text fontSize={12} color="#fff" fontWeight="500">See Detail</Text>
+                    <Div
+                      bg="rgba(52, 52, 52, 0.8)"
+                      w={widthPercentageToDP(30)}
+                      h={heightPercentageToDP(28)}
+                    />
+                    <Div
+                      position="absolute"
+                      bottom={20}
+                      justifyContent="center"
+                      alignSelf="center"
+                    >
+                      <Text fontSize={12} color="#fff" fontWeight="500">
+                        See Detail
+                      </Text>
                     </Div>
-                  </ImageBackground> 
-              </Pressable>                     
-            )
-          }}
-        />
+                  </ImageBackground>
+                </Pressable>
+              )
+            }}
+          />
         </Div>
       </Div>
 
@@ -338,16 +370,35 @@ export default () => {
         visible={modalVisible.visible}
       >
         <Div flex={1} bg="rgba(52,52,52,0.5)">
-          <Div bg="#fff" alignSelf="center" h={heightPercentageToDP(80)} justifyContent='center' mt={heightPercentageToDP(10)} rounded={12} w={widthPercentageToDP(80)}>
-            <Pressable onPress={() => setModalVisible({visible: false, imageURL: null})}>
-              <Icon name="closecircle" fontFamily="AntDesign" fontSize={24} color="#000" alignSelf="flex-end" mr={widthPercentageToDP(2)} />
+          <Div
+            bg="#fff"
+            alignSelf="center"
+            h={heightPercentageToDP(80)}
+            justifyContent="center"
+            mt={heightPercentageToDP(10)}
+            rounded={12}
+            w={widthPercentageToDP(80)}
+          >
+            <Pressable
+              onPress={() =>
+                setModalVisible({ visible: false, imageURL: null })
+              }
+            >
+              <Icon
+                name="closecircle"
+                fontFamily="AntDesign"
+                fontSize={24}
+                color="#000"
+                alignSelf="flex-end"
+                mr={widthPercentageToDP(2)}
+              />
             </Pressable>
-            <ImageMagnus 
+            <ImageMagnus
               // source={require('../../../assets/SplashPempek.jpg')}
-              source={{uri: modalVisible.imageURL}}
+              source={{ uri: modalVisible.imageURL }}
               w={widthPercentageToDP(70)}
               h={heightPercentageToDP(70)}
-              resizeMode='contain'
+              resizeMode="contain"
               alignSelf="center"
             />
           </Div>

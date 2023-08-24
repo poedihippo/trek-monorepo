@@ -10,7 +10,7 @@ import {
   Pressable,
   RefreshControl,
   ScrollView,
-  TouchableOpacity
+  TouchableOpacity,
 } from "react-native"
 import {
   Button,
@@ -19,12 +19,12 @@ import {
   Modal,
   Skeleton,
   Text,
-  Tooltip
+  Tooltip,
 } from "react-native-magnus"
 import * as Progress from "react-native-progress"
 import {
   heightPercentageToDP,
-  widthPercentageToDP
+  widthPercentageToDP,
 } from "react-native-responsive-screen"
 
 import BotSection from "containers/Dashboard/BotSection"
@@ -33,7 +33,6 @@ import DatePickerInput from "components/DatePickerInput"
 import SelectChannel from "components/SelectChannel"
 
 import useMultipleQueries from "hooks/useMultipleQueries"
-
 
 import useChannelDefault from "api/hooks/channel/useChannelDefault"
 import useTarget from "api/hooks/target/useTarget"
@@ -127,7 +126,7 @@ const TargetScreen = () => {
             </Div>
           </Div>
         ) : userData?.type === "SUPERVISOR" ? (
-          <Div row m={5} alignItems="center">            
+          <Div row m={5} alignItems="center">
             <Div flex={1} mr={10}>
               <DatePickerInput
                 placeholder="Start Date"
@@ -216,7 +215,7 @@ const TargetScreen = () => {
         </Text>
       </Div>
       <Text allowFontScaling={false} color="text">
-        {!!item.total ? item.total : '0'}
+        {!!item.total ? item.total : "0"}
       </Text>
     </Div>
   )
@@ -262,7 +261,6 @@ const TargetScreen = () => {
               >
                 <Div justifyContent="center">
                   <Progress.Circle
-                  
                     unfilledColor="white"
                     fill="transparent"
                     borderWidth={0}
@@ -283,7 +281,11 @@ const TargetScreen = () => {
 
                 <Div ml={heightPercentageToDP(3)}>
                   <Div row alignItems="center" mt={10}>
-                    <Text allowFontScaling={false} fontSize={responsive(10)} color="white">
+                    <Text
+                      allowFontScaling={false}
+                      fontSize={responsive(10)}
+                      color="white"
+                    >
                       Deals
                     </Text>
                     <TouchableOpacity
@@ -320,7 +322,7 @@ const TargetScreen = () => {
                           h={heightPercentageToDP(3)}
                         />
                       ) : (
-                        formatCurrency(data?.deals?.value) 
+                        formatCurrency(data?.deals?.value)
                       )}
                     </Text>
                     <Icon
@@ -358,8 +360,10 @@ const TargetScreen = () => {
                         h={heightPercentageToDP(1)}
                         w={widthPercentageToDP(40)}
                       />
+                    ) : !!data?.deals?.target_deals ? (
+                      formatCurrency(data?.deals?.target_deals)
                     ) : (
-                      !!data?.deals?.target_deals ? formatCurrency(data?.deals?.target_deals) : formatCurrency(0)
+                      formatCurrency(0)
                     )}
                   </Text>
                 </Div>
@@ -399,8 +403,12 @@ const TargetScreen = () => {
                   p={5}
                   bg="#FF731D"
                 >
-                  <Div row justifyContent='space-between'>
-                    <Text allowFontScaling={false} fontSize={responsive(10)} color="white">
+                  <Div row justifyContent="space-between">
+                    <Text
+                      allowFontScaling={false}
+                      fontSize={responsive(10)}
+                      color="white"
+                    >
                       New Leads
                     </Text>
                     <TouchableOpacity
@@ -436,8 +444,10 @@ const TargetScreen = () => {
                           h={heightPercentageToDP(2.5)}
                           w={widthPercentageToDP(10)}
                         />
+                      ) : !!data?.new_leads?.value ? (
+                        data?.new_leads?.value
                       ) : (
-                        !!data?.new_leads?.value ? data?.new_leads?.value : '0'
+                        "0"
                       )}
                     </Text>
                     <Icon
@@ -457,7 +467,7 @@ const TargetScreen = () => {
                     />
                   </Div>
                   <Div row>
-                    <Div >
+                    <Div>
                       <Progress.Bar
                         borderRadius={0}
                         color="#FFFFFF"
@@ -465,7 +475,7 @@ const TargetScreen = () => {
                         height={3}
                         useNativeDriver
                         unfilledColor="#c4c4c4"
-                        width={widthPercentageToDP('28%')}
+                        width={widthPercentageToDP("28%")}
                         style={{ marginTop: 5 }}
                         progress={
                           data?.new_leads?.value /
@@ -481,14 +491,16 @@ const TargetScreen = () => {
                         }
                       />
                     </Div>
-                   
                   </Div>
                   <Text
                     fontSize={responsive(10)}
                     color="white"
                     allowFontScaling={false}
                   >
-                    Target {!!data?.new_leads?.target_leads ? data?.new_leads?.target_leads : '0'}
+                    Target{" "}
+                    {!!data?.new_leads?.target_leads
+                      ? data?.new_leads?.target_leads
+                      : "0"}
                   </Text>
                 </Div>
               </Pressable>
@@ -560,7 +572,9 @@ const TargetScreen = () => {
                       fontWeight="bold"
                       color="#5F9DF7"
                     >
-                      {!!data?.active_leads?.value ? data?.active_leads?.value : '0'}
+                      {!!data?.active_leads?.value
+                        ? data?.active_leads?.value
+                        : "0"}
                     </Text>
                   </Div>
                 </Div>
@@ -625,8 +639,10 @@ const TargetScreen = () => {
                       h={heightPercentageToDP(2.5)}
                       w={widthPercentageToDP(10)}
                     />
+                  ) : !!data?.follow_up?.total_activities?.value ? (
+                    data?.follow_up?.total_activities?.value
                   ) : (
-                    !!data?.follow_up?.total_activities?.value ? data?.follow_up?.total_activities?.value : "0"
+                    "0"
                   )}
                 </Text>
                 <Icon
@@ -677,7 +693,11 @@ const TargetScreen = () => {
                 )}%)`}
               </Text> */}
               <Text my={5} fontSize={responsive(8)} color="#c4c4c4">
-                Target { !!data?.follow_up?.total_activities?.target_activities ? data?.follow_up?.total_activities?.target_activities : '0'} (0%)
+                Target{" "}
+                {!!data?.follow_up?.total_activities?.target_activities
+                  ? data?.follow_up?.total_activities?.target_activities
+                  : "0"}{" "}
+                (0%)
               </Text>
             </Div>
           </Div>
@@ -769,7 +789,11 @@ const TargetScreen = () => {
                 justifyContent="center"
               >
                 <Div row>
-                  <Text allowFontScaling={false} fontSize={responsive(10)} color="white">
+                  <Text
+                    allowFontScaling={false}
+                    fontSize={responsive(10)}
+                    color="white"
+                  >
                     Quotation
                   </Text>
                   <TouchableOpacity
@@ -805,8 +829,10 @@ const TargetScreen = () => {
                         h={heightPercentageToDP(2.5)}
                         w={widthPercentageToDP(40)}
                       />
+                    ) : !!data?.quotation?.value ? (
+                      formatCurrency(data?.quotation?.value)
                     ) : (
-                      !!data?.quotation?.value ? formatCurrency(data?.quotation?.value) : formatCurrency(0)
+                      formatCurrency(0)
                     )}
                   </Text>
                   <Icon
@@ -874,7 +900,11 @@ const TargetScreen = () => {
                 justifyContent="center"
               >
                 <Div row>
-                  <Text allowFontScaling={false} fontSize={responsive(10)} color="white">
+                  <Text
+                    allowFontScaling={false}
+                    fontSize={responsive(10)}
+                    color="white"
+                  >
                     Pipelines
                   </Text>
                   <TouchableOpacity
@@ -910,8 +940,10 @@ const TargetScreen = () => {
                         h={heightPercentageToDP(2.5)}
                         w={widthPercentageToDP(40)}
                       />
+                    ) : !!data?.estimation?.value ? (
+                      formatCurrency(data?.estimation?.value)
                     ) : (
-                      !!data?.estimation?.value ? formatCurrency(data?.estimation?.value) : formatCurrency(0)
+                      formatCurrency(0)
                     )}
                   </Text>
                   <Icon
@@ -975,8 +1007,7 @@ const TargetScreen = () => {
             >
               <Div justifyContent="center">
                 <Progress.Circle
-                                    fill="transparent"
-
+                  fill="transparent"
                   unfilledColor="white"
                   borderWidth={0}
                   size={100}
@@ -996,7 +1027,11 @@ const TargetScreen = () => {
 
               <Div ml={heightPercentageToDP(2)}>
                 <Div row alignItems="center" mt={10}>
-                  <Text allowFontScaling={false} fontSize={responsive(10)} color="white">
+                  <Text
+                    allowFontScaling={false}
+                    fontSize={responsive(10)}
+                    color="white"
+                  >
                     Deals
                   </Text>
                   <TouchableOpacity
@@ -1071,8 +1106,10 @@ const TargetScreen = () => {
                       h={heightPercentageToDP(1)}
                       w={widthPercentageToDP(40)}
                     />
+                  ) : !!data?.deals?.target_deals ? (
+                    formatCurrency(data?.deals?.target_deals)
                   ) : (
-                    !!data?.deals?.target_deals ? formatCurrency(data?.deals?.target_deals) : formatCurrency(0)
+                    formatCurrency(0)
                   )}
                 </Text>
               </Div>
@@ -1101,7 +1138,11 @@ const TargetScreen = () => {
                 bg="#FF731D"
               >
                 <Div row>
-                  <Text allowFontScaling={false} fontSize={responsive(10)} color="white">
+                  <Text
+                    allowFontScaling={false}
+                    fontSize={responsive(10)}
+                    color="white"
+                  >
                     New Leads
                   </Text>
                   <TouchableOpacity
@@ -1137,8 +1178,10 @@ const TargetScreen = () => {
                         h={heightPercentageToDP(2.5)}
                         w={widthPercentageToDP(10)}
                       />
+                    ) : !!data?.new_leads?.value ? (
+                      data?.new_leads?.value
                     ) : (
-                      !!data?.new_leads?.value ? data?.new_leads?.value : '0'
+                      "0"
                     )}
                   </Text>
                   <Icon
@@ -1205,7 +1248,10 @@ const TargetScreen = () => {
                   color="white"
                   allowFontScaling={false}
                 >
-                  Target {!!data?.new_leads?.target_leads ? data?.new_leads?.target_leads : '0'}
+                  Target{" "}
+                  {!!data?.new_leads?.target_leads
+                    ? data?.new_leads?.target_leads
+                    : "0"}
                 </Text>
               </Div>
               <Div
@@ -1264,7 +1310,9 @@ const TargetScreen = () => {
                     fontWeight="bold"
                     color="#5F9DF7"
                   >
-                    {!!data?.active_leads?.value ? data?.active_leads?.value : '0'}
+                    {!!data?.active_leads?.value
+                      ? data?.active_leads?.value
+                      : "0"}
                   </Text>
                 </Div>
               </Div>
@@ -1328,8 +1376,10 @@ const TargetScreen = () => {
                       h={heightPercentageToDP(2.5)}
                       w={widthPercentageToDP(10)}
                     />
+                  ) : !!data?.follow_up?.total_activities?.value ? (
+                    data?.follow_up?.total_activities?.value
                   ) : (
-                    !!data?.follow_up?.total_activities?.value ? data?.follow_up?.total_activities?.value : '0'
+                    "0"
                   )}
                 </Text>
                 <Icon
@@ -1380,7 +1430,11 @@ const TargetScreen = () => {
                 )}%)`}
               </Text> */}
               <Text my={5} fontSize={responsive(8)} color="#c4c4c4">
-                Target {!!data?.follow_up?.total_activities?.target_activities ? data?.follow_up?.total_activities?.target_activities : '0'} (0%)
+                Target{" "}
+                {!!data?.follow_up?.total_activities?.target_activities
+                  ? data?.follow_up?.total_activities?.target_activities
+                  : "0"}{" "}
+                (0%)
               </Text>
             </Div>
           </Div>
@@ -1459,7 +1513,11 @@ const TargetScreen = () => {
               justifyContent="center"
             >
               <Div row>
-                <Text allowFontScaling={false} fontSize={responsive(10)} color="white">
+                <Text
+                  allowFontScaling={false}
+                  fontSize={responsive(10)}
+                  color="white"
+                >
                   Quotation
                 </Text>
                 <TouchableOpacity
@@ -1495,8 +1553,10 @@ const TargetScreen = () => {
                       h={heightPercentageToDP(2.5)}
                       w={widthPercentageToDP(40)}
                     />
+                  ) : !!data?.quotation?.value ? (
+                    formatCurrency(data?.quotation?.value)
                   ) : (
-                    !!data?.quotation?.value ? formatCurrency(data?.quotation?.value) : formatCurrency(0)
+                    formatCurrency(0)
                   )}
                 </Text>
                 <Icon
@@ -1551,7 +1611,11 @@ const TargetScreen = () => {
               justifyContent="center"
             >
               <Div row>
-                <Text allowFontScaling={false} fontSize={responsive(10)} color="white">
+                <Text
+                  allowFontScaling={false}
+                  fontSize={responsive(10)}
+                  color="white"
+                >
                   Pipelines
                 </Text>
                 <TouchableOpacity
@@ -1587,8 +1651,10 @@ const TargetScreen = () => {
                       h={heightPercentageToDP(2.5)}
                       w={widthPercentageToDP(40)}
                     />
+                  ) : !!data?.estimation?.value ? (
+                    formatCurrency(data?.estimation?.value)
                   ) : (
-                    !!data?.estimation?.value ? formatCurrency(data?.estimation?.value) : formatCurrency(0)
+                    formatCurrency(0)
                   )}
                 </Text>
                 <Icon
@@ -1873,7 +1939,9 @@ const TargetScreen = () => {
           mr={heightPercentageToDP(1)}
           fontSize={responsive(10)}
         >
-          {!!data?.deals?.compare ? formatCurrency(data?.deals?.compare) : formatCurrency(0)}
+          {!!data?.deals?.compare
+            ? formatCurrency(data?.deals?.compare)
+            : formatCurrency(0)}
         </Text>
         <Text
           allowFontScaling={false}
@@ -1882,7 +1950,9 @@ const TargetScreen = () => {
           mr={heightPercentageToDP(1)}
           fontSize={responsive(10)}
         >
-          {!!data?.deals?.value ?  formatCurrency(data?.deals?.value) : formatCurrency(0)}
+          {!!data?.deals?.value
+            ? formatCurrency(data?.deals?.value)
+            : formatCurrency(0)}
         </Text>
       </Div>
       <Div
@@ -1926,7 +1996,7 @@ const TargetScreen = () => {
           mr={heightPercentageToDP(1)}
           fontSize={responsive(10)}
         >
-          {!!data?.new_leads?.compare ? data?.new_leads?.compare : '0'}
+          {!!data?.new_leads?.compare ? data?.new_leads?.compare : "0"}
         </Text>
         <Text
           allowFontScaling={false}
@@ -1935,7 +2005,7 @@ const TargetScreen = () => {
           mr={heightPercentageToDP(1)}
           fontSize={responsive(10)}
         >
-          {!!data?.new_leads?.value ? data?.new_leads?.value : '0'}
+          {!!data?.new_leads?.value ? data?.new_leads?.value : "0"}
         </Text>
       </Div>
       <Div
@@ -1981,7 +2051,9 @@ const TargetScreen = () => {
           mr={heightPercentageToDP(1)}
           fontSize={responsive(10)}
         >
-          {!!data?.follow_up?.total_activities?.compare ? data?.follow_up?.total_activities?.compare : '0'}
+          {!!data?.follow_up?.total_activities?.compare
+            ? data?.follow_up?.total_activities?.compare
+            : "0"}
         </Text>
         <Text
           allowFontScaling={false}
@@ -1990,7 +2062,9 @@ const TargetScreen = () => {
           mr={heightPercentageToDP(1)}
           fontSize={responsive(10)}
         >
-          {!!data?.follow_up?.total_activities?.value ? data?.follow_up?.total_activities?.value : '0'}
+          {!!data?.follow_up?.total_activities?.value
+            ? data?.follow_up?.total_activities?.value
+            : "0"}
         </Text>
       </Div>
       <Div
@@ -2034,7 +2108,9 @@ const TargetScreen = () => {
           mr={heightPercentageToDP(1)}
           fontSize={responsive(10)}
         >
-          {!!data?.quotation?.compare ? formatCurrency(data?.quotation?.compare) : formatCurrency(0)}
+          {!!data?.quotation?.compare
+            ? formatCurrency(data?.quotation?.compare)
+            : formatCurrency(0)}
         </Text>
         <Text
           allowFontScaling={false}
@@ -2043,7 +2119,9 @@ const TargetScreen = () => {
           mr={heightPercentageToDP(1)}
           fontSize={responsive(10)}
         >
-          {!!data?.quotation?.value ? formatCurrency(data?.quotation?.value) : formatCurrency(0)}
+          {!!data?.quotation?.value
+            ? formatCurrency(data?.quotation?.value)
+            : formatCurrency(0)}
         </Text>
       </Div>
       <Div
@@ -2087,7 +2165,9 @@ const TargetScreen = () => {
           mr={heightPercentageToDP(1)}
           fontSize={responsive(10)}
         >
-          {!!data?.estimation?.compare ? formatCurrency(data?.estimation?.compare) : formatCurrency(0)}
+          {!!data?.estimation?.compare
+            ? formatCurrency(data?.estimation?.compare)
+            : formatCurrency(0)}
         </Text>
         <Text
           allowFontScaling={false}
@@ -2096,7 +2176,9 @@ const TargetScreen = () => {
           mr={heightPercentageToDP(1)}
           fontSize={responsive(10)}
         >
-          {!!data?.estimation?.value ? formatCurrency(data?.estimation?.value) : formatCurrency(0) }
+          {!!data?.estimation?.value
+            ? formatCurrency(data?.estimation?.value)
+            : formatCurrency(0)}
         </Text>
       </Div>
     </Modal>

@@ -82,7 +82,7 @@ export const mapActivity = (
     updatedAt: new Date(apiObj.updated_at),
     createdAt: new Date(apiObj.created_at),
     activityBrandValues: apiObj.activity_brand_values,
-    images: apiObj.images
+    images: apiObj.images,
   }
 }
 

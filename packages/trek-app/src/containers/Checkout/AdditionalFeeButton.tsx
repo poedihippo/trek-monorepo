@@ -49,7 +49,10 @@ export default ({
               )}
               {!!additionalDiscount && (
                 <Text my={5}>
-                  Additional Discount {type === 0 ? formatCurrency(additionalDiscount) : `${additionalDiscount}%`}
+                  Additional Discount{" "}
+                  {type === 0
+                    ? formatCurrency(additionalDiscount)
+                    : `${additionalDiscount}%`}
                 </Text>
               )}
             </Div>

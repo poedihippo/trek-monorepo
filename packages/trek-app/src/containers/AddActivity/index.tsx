@@ -74,8 +74,8 @@ export default () => {
               },
               (x) =>
                 x.then((res) => {
-                  console.log(res,'aktifi')
-                  navigation.navigate("ActivityImage",{id: res.data.data.id})
+                  console.log(res, "aktifi")
+                  navigation.navigate("ActivityImage", { id: res.data.data.id })
                   if (data.status === "HOT") {
                     toast(
                       "Harap untuk segera membuat dan mengirimkan quotation kepada customer",

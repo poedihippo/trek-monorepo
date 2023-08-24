@@ -10,7 +10,6 @@ import { V1Api } from "api/openapi"
 //http://139.59.224.48
 let baseUrl = "https://trek.albatech.id"
 
-
 const getHeader = (loggedIn: boolean, jwt: string) => ({
   headers: {
     ...(loggedIn

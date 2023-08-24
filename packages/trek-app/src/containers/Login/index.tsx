@@ -54,9 +54,11 @@ export default () => {
             source={require("assets/TrekLogo.png")}
             resizeMode="contain"
             scalable
-            style={{marginBottom: heightPercentageToDP(10), marginTop: heightPercentageToDP(20)}}
+            style={{
+              marginBottom: heightPercentageToDP(10),
+              marginTop: heightPercentageToDP(20),
+            }}
           />
-
 
           {/* <Image
             // style={[{ marginVertical: responsive(60) }]}
@@ -73,7 +75,7 @@ export default () => {
             Enter your ID to login
           </Text> */}
 
-          <LoginForm          
+          <LoginForm
             onSubmit={(values) => {
               return login(
                 { email: values.email, password: values.password },

@@ -66,7 +66,5 @@ export type CustomerStackParamList = {
   OrderPaymentProof: {
     paymentId: number
   }
-  ActivityImage:{
-
-  }
+  ActivityImage: {}
 }

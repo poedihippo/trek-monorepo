@@ -80,7 +80,7 @@ export default (
           },
         })
         .then((res) => {
-          console.log(res,'test')
+          console.log(res, "test")
           const data: Order = mapOrder(res.data.data)
           return data
         })

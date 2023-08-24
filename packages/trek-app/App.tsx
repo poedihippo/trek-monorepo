@@ -1,8 +1,8 @@
 import { useFonts } from "expo-font"
+import * as SplashScreen from "expo-splash-screen"
 import "intl"
 import "intl/locale-data/jsonp/id"
 import React from "react"
-import * as SplashScreen from 'expo-splash-screen'
 import { LogBox, TouchableOpacity } from "react-native"
 import { ThemeProvider } from "react-native-magnus"
 import { SafeAreaProvider } from "react-native-safe-area-context"
@@ -20,6 +20,7 @@ import { theme } from "helper/theme"
 
 import Root from "./src/Root"
 import { queryClient } from "./src/query"
+
 // Keep the splash screen visible while we fetch resources
 SplashScreen.preventAutoHideAsync()
 enableScreens()
@@ -49,7 +50,7 @@ export default () => {
   })
 
   if (fontLoaded) {
-     SplashScreen.hideAsync()
+    SplashScreen.hideAsync()
   }
 
   return (

@@ -18,7 +18,7 @@ export default (requestObject?: V1ApiDiscountIndexRequest, perPage = 10) => {
       return api
         .discountIndex({ perPage, page: pageParam, ...requestObject })
         .then((res) => {
-          console.log(res,'res')
+          console.log(res, "res")
           const items: Discount[] = res.data.data.map(mapDiscount)
           return { ...res.data, data: items }
         })

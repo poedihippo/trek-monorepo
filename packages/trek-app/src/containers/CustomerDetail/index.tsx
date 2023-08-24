@@ -130,7 +130,7 @@ export default () => {
   //   [detailScene, activityScreen, dealScreen, voucherScreen],
   // )
 
-    const routes = [
+  const routes = [
     { key: "detail", title: "Detail" },
     { key: "activity", title: "Activity" },
     { key: "deals", title: "Deals" },

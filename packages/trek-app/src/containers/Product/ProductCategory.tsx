@@ -1,11 +1,13 @@
 import { BottomTabNavigationProp } from "@react-navigation/bottom-tabs"
 import {
-  CompositeNavigationProp, useNavigation
+  CompositeNavigationProp,
+  useNavigation,
 } from "@react-navigation/native"
 import { StackNavigationProp } from "@react-navigation/stack"
 import React from "react"
 import { FlatList } from "react-native"
 import { Div } from "react-native-magnus"
+
 import Error from "components/Error"
 import Loading from "components/Loading"
 import ProductCategoriesCard from "components/ProductCategoriesCard"
@@ -17,11 +19,10 @@ import useProductCategories from "api/hooks/pos/product/useProductCategories"
 
 import {
   MainTabParamList,
-  ProductStackParamList
+  ProductStackParamList,
 } from "Router/MainTabParamList"
 
 import s from "helper/theme"
-
 
 type CurrentScreenNavigationProp = CompositeNavigationProp<
   StackNavigationProp<ProductStackParamList, "Product">,
@@ -49,7 +50,7 @@ export default (props: PropTypes) => {
   }
 
   return (
-    <Div borderTopWidth={10}  borderBottomWidth={10}  borderColor='#f0f3fa'>
+    <Div borderTopWidth={10} borderBottomWidth={10} borderColor="#f0f3fa">
       <Text fontSize={14} fontWeight="bold" ml={20} my={10}>
         Product Category
       </Text>

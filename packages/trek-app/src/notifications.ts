@@ -90,18 +90,17 @@ export function PushNotificationHandler({
 export async function registerForPushNotificationsAsync() {
   let token
 
-    const { status: existingStatus } = await Notifications.getPermissionsAsync()
-    let finalStatus = existingStatus
-    if (existingStatus !== "granted") {
-      const { status } = await Notifications.requestPermissionsAsync()
-      finalStatus = status
-    }
-    if (finalStatus !== "granted") {
-      alert("Failed to get push token for push notification!")
-      throw new Error("Failed to get push token for push notification!")
-    }
-    token = (await Notifications.getExpoPushTokenAsync()).data
-
+  const { status: existingStatus } = await Notifications.getPermissionsAsync()
+  let finalStatus = existingStatus
+  if (existingStatus !== "granted") {
+    const { status } = await Notifications.requestPermissionsAsync()
+    finalStatus = status
+  }
+  if (finalStatus !== "granted") {
+    alert("Failed to get push token for push notification!")
+    throw new Error("Failed to get push token for push notification!")
+  }
+  token = (await Notifications.getExpoPushTokenAsync()).data
 
   if (Platform.OS === "android") {
     Notifications.setNotificationChannelAsync("default", {

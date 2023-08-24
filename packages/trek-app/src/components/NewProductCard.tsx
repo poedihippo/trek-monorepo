@@ -84,7 +84,7 @@ export default ({
           }}
         />
         <Div p={8} overflow="hidden">
-          <Text  mb={5} fontSize={14} numberOfLines={2}>
+          <Text mb={5} fontSize={14} numberOfLines={2}>
             {productModel.name}
           </Text>
           <Text fontSize={10} fontWeight="bold" mb={10}>{`${formatCurrency(

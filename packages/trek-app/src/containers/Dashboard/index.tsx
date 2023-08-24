@@ -307,19 +307,19 @@ export default () => {
 
   const dataTop = [
     {
-      number: '1',
-      name: 'Michael',
-      percentage: '50%',
+      number: "1",
+      name: "Michael",
+      percentage: "50%",
     },
     {
-      number: '2',
-      name: 'William',
-      percentage: '30%',
+      number: "2",
+      name: "William",
+      percentage: "30%",
     },
     {
-      number: '3',
-      name: 'Cindy',
-      percentage: '20%',
+      number: "3",
+      name: "Cindy",
+      percentage: "20%",
     },
   ]
 

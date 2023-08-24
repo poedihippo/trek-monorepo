@@ -54,46 +54,48 @@ export default ({
 
   return (
     <Div w={100}>
-    <Pressable  onPress={() => !!isOrder ? pickImage(ImagePicker.launchImageLibraryAsync) : null}>
-      <Div
-        mt={10}
-        borderColor="gray400"
-        borderWidth={1}
-        justifyContent="center"
-        alignItems="center"
-        style={{
-          width: 100,
-          height: 100,
-        }}
+      <Pressable
+        onPress={() =>
+          !!isOrder ? pickImage(ImagePicker.launchImageLibraryAsync) : null
+        }
       >
-   
-        <ImageBackground
-          source={require("assets/icon_verifikasi.png")}
-          style={[
-            {
-              width: iconDimension,
-              height: iconDimension,
-              position: "absolute",
-              alignSelf: "center",
-            },
-          ]}
-        />
-        {value && (
-          <Image
-            source={{ uri: value.uri }}
-            style={{
+        <Div
+          mt={10}
+          borderColor="gray400"
+          borderWidth={1}
+          justifyContent="center"
+          alignItems="center"
+          style={{
+            width: 100,
+            height: 100,
+          }}
+        >
+          <ImageBackground
+            source={require("assets/icon_verifikasi.png")}
+            style={[
+              {
+                width: iconDimension,
+                height: iconDimension,
+                position: "absolute",
+                alignSelf: "center",
+              },
+            ]}
+          />
+          {value && (
+            <Image
+              source={{ uri: value.uri }}
+              style={{
                 width: 100,
                 height: 100,
-            }}
-          />
-        )}
-        {!value && (
-          <Text textAlign="center" pt={100}>
-            {text}
-          </Text>
-        )}
-     
-      </Div>
+              }}
+            />
+          )}
+          {!value && (
+            <Text textAlign="center" pt={100}>
+              {text}
+            </Text>
+          )}
+        </Div>
       </Pressable>
     </Div>
   )

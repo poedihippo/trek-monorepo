@@ -2,7 +2,6 @@ import DateTimePicker from "@react-native-community/datetimepicker"
 import { format, sub, startOfDay, isValid } from "date-fns"
 import React, { useEffect, useState } from "react"
 import { Platform, Appearance } from "react-native"
-
 import { Button, Div, Icon } from "react-native-magnus"
 import Modal from "react-native-modal"
 

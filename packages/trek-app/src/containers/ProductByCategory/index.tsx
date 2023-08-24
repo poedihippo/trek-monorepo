@@ -3,35 +3,39 @@ import {
   CompositeNavigationProp,
   RouteProp,
   useNavigation,
-  useRoute
+  useRoute,
 } from "@react-navigation/native"
 import { StackNavigationProp } from "@react-navigation/stack"
 import Case from "case"
 import React, { useEffect, useState } from "react"
 import { FlatList, Pressable, useWindowDimensions } from "react-native"
 import { Button, Div } from "react-native-magnus"
-import { heightPercentageToDP, widthPercentageToDP } from "react-native-responsive-screen"
-import Image from "components/Image"
+import {
+  heightPercentageToDP,
+  widthPercentageToDP,
+} from "react-native-responsive-screen"
 
 import Error from "components/Error"
+import Image from "components/Image"
 import Loading from "components/Loading"
 import NewProductCard from "components/NewProductCard"
 import Text from "components/Text"
 
 import useMultipleQueries from "hooks/useMultipleQueries"
 
+import { useCart } from "providers/Cart"
+
+import useProductbyCategory from "api/hooks/pos/product/useProductbyCategory"
 
 import { EntryStackParamList } from "Router/EntryStackParamList"
 import {
-  MainTabParamList, ProductStackParamList
+  MainTabParamList,
+  ProductStackParamList,
 } from "Router/MainTabParamList"
 
+import { formatCurrency, responsive } from "helper"
 import Languages from "helper/languages"
 import s, { COLOR_PRIMARY } from "helper/theme"
-
-import useProductbyCategory from "api/hooks/pos/product/useProductbyCategory"
-import { useCart } from "providers/Cart"
-import { formatCurrency, responsive } from "helper"
 
 type CurrentScreenRouteProp = RouteProp<ProductStackParamList, "ProductByBrand">
 type CurrentScreenNavigationProp = CompositeNavigationProp<
@@ -82,8 +86,8 @@ export default () => {
     },
   } = useMultipleQueries([
     useProductbyCategory({
-      "filter[product_category_id]": brandId.toString()
-    })
+      "filter[product_category_id]": brandId.toString(),
+    }),
   ] as const)
   if (isError) {
     return <Error refreshing={isFetching} onRefresh={refetch} />
@@ -149,7 +153,7 @@ export default () => {
     </>
   )
 }
-const RenderCard = ({productModel, key}) => {
+const RenderCard = ({ productModel, key }) => {
   const { addItem } = useCart()
   const navigation = useNavigation()
   const onAddToCard = (item) => {
@@ -164,10 +168,7 @@ const RenderCard = ({productModel, key}) => {
   }
 
   return (
-    <Pressable
-      
-      style={[{ alignItems: "center" }]}
-    >
+    <Pressable style={[{ alignItems: "center" }]}>
       <Div
         bg={"white"}
         style={{
@@ -204,7 +205,7 @@ const RenderCard = ({productModel, key}) => {
           }}
         />
         <Div p={8} overflow="hidden">
-          <Text  mb={5} fontSize={14} numberOfLines={2}>
+          <Text mb={5} fontSize={14} numberOfLines={2}>
             {productModel.name}
           </Text>
           <Text fontSize={10} fontWeight="bold" mb={10}>{`${formatCurrency(

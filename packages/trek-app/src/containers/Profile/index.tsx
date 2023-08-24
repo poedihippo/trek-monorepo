@@ -161,7 +161,7 @@ const Profile = () => {
           <Text color="white">Company</Text>
           <Text color="white">{userData.company.name.toUpperCase()}</Text>
         </Div> */}
-      </Div>  
+      </Div>
       <Div>
         <FlatList
           scrollEnabled={false}

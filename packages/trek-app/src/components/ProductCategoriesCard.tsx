@@ -3,7 +3,7 @@ import { Dimensions, Pressable } from "react-native"
 import { Div } from "react-native-magnus"
 import {
   heightPercentageToDP,
-  widthPercentageToDP
+  widthPercentageToDP,
 } from "react-native-responsive-screen"
 
 import Image from "components/Image"
@@ -44,7 +44,6 @@ export default ({
 
           elevation: 6,
         }}
-  
         mb={heightPercentageToDP(2)}
         mx={heightPercentageToDP(0.1)}
         h={heightPercentageToDP(23)}

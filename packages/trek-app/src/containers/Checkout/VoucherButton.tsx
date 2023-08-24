@@ -148,7 +148,14 @@ export default ({ activeVoucher, setVoucher, disabled, leadId }) => {
               return (
                 <>
                   {item?.is_used == true ? null : (
-                    <Div mx={20} mt={20} rounded={8} bg="white" shadow="sm" mb={heightPercentageToDP(2)}>
+                    <Div
+                      mx={20}
+                      mt={20}
+                      rounded={8}
+                      bg="white"
+                      shadow="sm"
+                      mb={heightPercentageToDP(2)}
+                    >
                       <Div
                         px={20}
                         py={10}

@@ -1,6 +1,7 @@
 import { RouteProp, useNavigation, useRoute } from "@react-navigation/native"
 import { StackNavigationProp } from "@react-navigation/stack"
 import { add } from "date-fns"
+import moment from "moment"
 import React, { useState, useEffect } from "react"
 import { FlatList, TouchableOpacity } from "react-native"
 import { Button, Checkbox, Div, Input } from "react-native-magnus"
@@ -29,6 +30,8 @@ import { EntryStackParamList } from "Router/EntryStackParamList"
 import { formatCurrency } from "helper"
 import Languages from "helper/languages"
 
+import { Discount } from "types/Discount"
+
 import AddProductModal from "./AddProductModal"
 import AdditionalFeeButton from "./AdditionalFeeButton"
 import AdditionalFeeModal from "./AdditionalFeeModal"
@@ -37,8 +40,6 @@ import DiscountButton from "./DiscountButton"
 import DiscountModal from "./DiscountModal"
 import NewProduct from "./NewProduct"
 import VoucherButton from "./VoucherButton"
-import moment from "moment"
-import { Discount } from "types/Discount"
 
 type CurrentScreenRouteProp = RouteProp<EntryStackParamList, "Checkout">
 
@@ -234,7 +235,9 @@ export default () => {
             {!!orderPreviewData?.totalDiscount && (
               <Div row justifyContent="space-between" mb={5}>
                 <Text>Discount</Text>
-                <Text>{formatCurrency(-1 * orderPreviewData?.totalDiscount)}</Text>
+                <Text>
+                  {formatCurrency(-1 * orderPreviewData?.totalDiscount)}
+                </Text>
               </Div>
             )}
             {!!orderPreviewData?.totalVoucher && (
@@ -263,7 +266,11 @@ export default () => {
           <Div p={20} bg="white" borderTopWidth={0.8} borderTopColor="grey">
             <Div row justifyContent="space-between">
               <Text fontWeight="bold">Sub Total</Text>
-              <Text fontWeight="bold">{!!expectedPrice ? formatCurrency(expectedPrice) : formatCurrency(0)}</Text>
+              <Text fontWeight="bold">
+                {!!expectedPrice
+                  ? formatCurrency(expectedPrice)
+                  : formatCurrency(0)}
+              </Text>
             </Div>
           </Div>
           {/* <Div mt={5} p={20} bg="white">
@@ -283,8 +290,6 @@ export default () => {
               />
             </Div>
           </Div> */}
-      
-    
         </>
       )}
 
@@ -296,7 +301,7 @@ export default () => {
         borderBottomColor="grey"
       >
         <Text fontSize={14} fontWeight="bold">
-          Note (optional) 
+          Note (optional)
         </Text>
       </Div>
       <Div px={20} py={10} bg="white">
@@ -358,9 +363,7 @@ export default () => {
           w={"100%"}
           loading={createOrderLoading}
           disabled={
-            !leadId ||
-            !shippingId ||
-            !billingId 
+            !leadId || !shippingId || !billingId
             // ||
             // filteredCartDataBySelected.length === 0
           }

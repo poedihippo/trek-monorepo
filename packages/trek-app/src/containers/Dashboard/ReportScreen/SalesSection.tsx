@@ -76,8 +76,7 @@ const SalesSection = ({ data, userData, date, startDate, endDate, filter }) => {
                   </Text>
                 </Div>
                 <Progress.Circle
-                                    fill="transparent"
-
+                  fill="transparent"
                   style={{
                     position: "absolute",
                     marginLeft: widthPercentageToDP(65),
@@ -111,8 +110,7 @@ const SalesSection = ({ data, userData, date, startDate, endDate, filter }) => {
                 </Text>
               </Div>
               <Progress.Circle
-                                  fill="transparent"
-
+                fill="transparent"
                 style={{
                   position: "absolute",
                   marginLeft: widthPercentageToDP(65),
