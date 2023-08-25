@@ -4,17 +4,16 @@ import {
   NavigationContainerRef,
 } from "@react-navigation/native"
 import {
-  createStackNavigator,
   CardStyleInterpolators,
+  createStackNavigator,
 } from "@react-navigation/stack"
 import { StackNavigationOptions } from "@react-navigation/stack/lib/typescript/src/types"
 import React from "react"
 import { Platform, Pressable } from "react-native"
-import { Div, Icon, Image } from "react-native-magnus"
+import { Div, Icon, Image, Text } from "react-native-magnus"
 
 import ActivityDetailScreen from "containers/ActivityDetail"
 import ActivityListScreen from "containers/ActivityList"
-import ActivityList from "containers/ActivityList"
 import AddActivityScreen from "containers/AddActivity"
 import UploadImageActivity from "containers/AddActivity/UploadImageActivity"
 import AddAddressScreen from "containers/AddAddress"
@@ -31,7 +30,6 @@ import NewProductScreen from "containers/Checkout/NewProductScreen"
 import CustomerScreen from "containers/Costumer"
 import CustomDetailScreen from "containers/CustomerDetail"
 import DashboardScreen from "containers/Dashboard"
-import InteriorDesign from "containers/Dashboard/InteriorDesign"
 import ActivityTotal from "containers/Dashboard/ReportScreen/ActivityTotal"
 import BrandDetail from "containers/Dashboard/ReportScreen/BrandDetail"
 import EstimatedScreen from "containers/Dashboard/ReportScreen/EstimatedScreen"
@@ -105,9 +103,12 @@ import SalesNewLeads from "containers/Target/componentsInside/SalesNewLeads"
 import SettlementInside from "containers/Target/componentsInside/Settlement"
 import UserSelectChannel from "containers/UserSelectChannel"
 
+import { useCart } from "providers/Cart"
+
 import useUserLoggedInData from "api/hooks/user/useUserLoggedInData"
 
-import s, { COLOR_PRIMARY, COLOR_DISABLED } from "helper/theme"
+import { responsive } from "helper"
+import s, { COLOR_DISABLED, COLOR_PRIMARY } from "helper/theme"
 
 import { EntryStackParamList } from "./EntryStackParamList"
 import { withLoggedInRedirectMiddleware } from "./LoggedInRedirectMiddleware"
@@ -292,7 +293,8 @@ export const MainNavigator = () => {
 
 const HeaderRight = ({ toCart, toDiscountApproval }) => {
   const { data } = useUserLoggedInData()
-
+  const { cartData } = useCart()
+  console.log(cartData, "ini check isi cart")
   return (
     <Div flex={1} row px={20} alignItems="center">
       {data.type === "SALES" ? (
@@ -300,16 +302,28 @@ const HeaderRight = ({ toCart, toDiscountApproval }) => {
           <Icon
             name="cart-outline"
             color="#FFF"
-            fontSize={16}
+            fontSize={20}
             fontFamily="Ionicons"
           />
+          <Div
+            bg="red"
+            rounded={20}
+            h={10}
+            w={10}
+            position="absolute"
+            right={0}
+          >
+            <Text color="#fff" fontSize={responsive(6)} textAlign="center">
+              {cartData.length}
+            </Text>
+          </Div>
         </Pressable>
       ) : (
         <Pressable onPress={toDiscountApproval}>
           <Icon
             name="clock-check-outline"
             color="#FFF"
-            fontSize={16}
+            fontSize={20}
             fontFamily="MaterialCommunityIcons"
           />
         </Pressable>
