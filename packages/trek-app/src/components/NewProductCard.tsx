@@ -1,7 +1,7 @@
 import { useNavigation } from "@react-navigation/native"
 import React from "react"
 import { TouchableOpacity, Dimensions, Pressable } from "react-native"
-import { Button, Div } from "react-native-magnus"
+import { Button, Div, Icon } from "react-native-magnus"
 import {
   heightPercentageToDP,
   widthPercentageToDP,
@@ -63,7 +63,7 @@ export default ({
         }}
         mb={heightPercentageToDP(2)}
         mx={heightPercentageToDP(0.5)}
-        h={heightPercentageToDP(35)}
+        h={heightPercentageToDP(37)}
         rounded={6}
         w={widthPercentageToDP(40)}
         alignSelf="center"
@@ -84,23 +84,46 @@ export default ({
           }}
         />
         <Div p={8} overflow="hidden">
-          <Text  mb={5} fontSize={14} numberOfLines={2}>
+          <Text mb={5} fontSize={14} numberOfLines={2}>
             {productModel.name}
           </Text>
           <Text fontSize={10} fontWeight="bold" mb={10}>{`${formatCurrency(
             productModel.price,
           )}`}</Text>
-          <Button
-            onPress={() => onAddToCard(productModel)}
-            // h={heightPercentageToDP(4)}
-            bg="primary"
-            w={widthPercentageToDP(30)}
-            alignSelf="center"
-            textAlign="center"
-            fontSize={responsive(8)}
-          >
-            Add to cart
-          </Button>
+          <Div row justifyContent="space-between">
+            <Button
+              onPress={() => onAddToCard(productModel)}
+              // h={heightPercentageToDP(4)}
+              bg="primary"
+              w={widthPercentageToDP(15)}
+              alignSelf="center"
+              textAlign="center"
+              // fontSize={responsive(8)}
+            >
+              <Icon
+                name="cart-plus"
+                fontFamily="FontAwesome5"
+                fontSize={16}
+                color="#fff"
+              />
+            </Button>
+            <Button
+              onPress={() => onAddToCard(productModel)}
+              // h={heightPercentageToDP(4)}
+              bg="primary"
+              w={widthPercentageToDP(15)}
+              alignSelf="center"
+              textAlign="center"
+              // fontSize={responsive(8)}
+            >
+              <Icon
+                name="arrow-right"
+                fontFamily="FontAwesome5"
+                fontSize={16}
+                color="#fff"
+              />
+            </Button>
+          </Div>
         </Div>
       </Div>
     </Pressable>
