@@ -144,7 +144,7 @@ export default () => {
                 rounded={4}
                 bg={COLOR_PRIMARY}
                 fontSize={responsive(8)}
-                // w={widthPercentageToDP(20)}
+                w={widthPercentageToDP(20)}
                 // h={heightPercentageToDP(5)}
               >
                 + Cart
@@ -157,7 +157,7 @@ export default () => {
                 borderWidth={1}
                 mt={heightPercentageToDP(0.5)}
                 fontSize={responsive(8)}
-                // w={widthPercentageToDP(20)}
+                w={widthPercentageToDP(20)}
                 // h={heightPercentageToDP(5)}
               >
                 Stocks

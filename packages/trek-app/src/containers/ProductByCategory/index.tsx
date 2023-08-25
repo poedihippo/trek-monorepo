@@ -9,7 +9,7 @@ import { StackNavigationProp } from "@react-navigation/stack"
 import Case from "case"
 import React, { useEffect, useState } from "react"
 import { FlatList, Pressable, useWindowDimensions } from "react-native"
-import { Button, Div } from "react-native-magnus"
+import { Button, Div, Text } from "react-native-magnus"
 import {
   heightPercentageToDP,
   widthPercentageToDP,
@@ -19,7 +19,8 @@ import Error from "components/Error"
 import Image from "components/Image"
 import Loading from "components/Loading"
 import NewProductCard from "components/NewProductCard"
-import Text from "components/Text"
+
+// import Text from "components/Text"
 
 import useMultipleQueries from "hooks/useMultipleQueries"
 
@@ -119,7 +120,7 @@ export default () => {
           bounces={false}
           numColumns={2}
           columnWrapperStyle={[
-            s.pX20,
+            // s.pX20,
             // s.pY20,
             { justifyContent: "space-between" },
           ]}
@@ -137,16 +138,19 @@ export default () => {
           //   data.length > 0 &&
           //   (isFetchingNextPage ? <FooterLoading /> : <EndOfList />)
           // }
-          renderItem={({ item: productModel, index }) => (
-            <NewProductCard
-              key={`model_${productModel.id}`}
-              productModel={productModel}
-              onPress={() =>
-                // navigation.navigate("ProductDetail", { id: productModel.id })
-                null
-              }
-              imageWidth={0.4 * screenWidth}
-            />
+          // renderItem={({ item: productModel, index }) => (
+          //   <NewProductCard
+          //     key={`model_${productModel.id}`}
+          //     productModel={productModel}
+          //     onPress={() =>
+          //       // navigation.navigate("ProductDetail", { id: productModel.id })
+          //       null
+          //     }
+          //     imageWidth={0.4 * screenWidth}
+          //   />
+          // )}
+          renderItem={({ item, index }) => (
+            <RenderCard productModel={item} key={`model_${item.id}`} />
           )}
         />
       )}
@@ -182,11 +186,12 @@ const RenderCard = ({ productModel, key }) => {
 
           elevation: 6,
         }}
-        mb={heightPercentageToDP(2)}
+        // mb={heightPercentageToDP(2)}
+        my={heightPercentageToDP(0.5)}
         mx={heightPercentageToDP(0.5)}
         h={heightPercentageToDP(35)}
         rounded={6}
-        w={widthPercentageToDP(40)}
+        w={widthPercentageToDP(48)}
         alignSelf="center"
       >
         <Image
@@ -199,15 +204,22 @@ const RenderCard = ({ productModel, key }) => {
           style={{
             borderTopLeftRadius: 6,
             borderTopRightRadius: 6,
-            width: widthPercentageToDP(40),
+            width: widthPercentageToDP(48),
             height: heightPercentageToDP(18),
             resizeMode: "contain",
           }}
         />
         <Div p={8} overflow="hidden">
-          <Text mb={5} fontSize={14} numberOfLines={2}>
-            {productModel.name}
-          </Text>
+          <Div h={heightPercentageToDP(6)}>
+            <Text
+              mb={5}
+              fontSize={14}
+              numberOfLines={2}
+              w={widthPercentageToDP(30)}
+            >
+              {productModel.name}
+            </Text>
+          </Div>
           <Text fontSize={10} fontWeight="bold" mb={10}>{`${formatCurrency(
             productModel.price,
           )}`}</Text>
