@@ -9,18 +9,24 @@ import { StackNavigationProp } from "@react-navigation/stack"
 import Case from "case"
 import React, { useEffect, useState } from "react"
 import { FlatList, Pressable, useWindowDimensions } from "react-native"
-import { Button, Div, Input } from "react-native-magnus"
-import { heightPercentageToDP, widthPercentageToDP } from "react-native-responsive-screen"
+import { Button, Div, Icon, Input } from "react-native-magnus"
+import {
+  heightPercentageToDP,
+  widthPercentageToDP,
+} from "react-native-responsive-screen"
 
 import EndOfList from "components/CommonList/EndOfList"
 import FooterLoading from "components/CommonList/FooterLoading"
 import Error from "components/Error"
+import Image from "components/Image"
 import Loading from "components/Loading"
 import NewProductCard from "components/NewProductCard"
 import ProductCard from "components/ProductCard"
 import Text from "components/Text"
 
 import useMultipleQueries from "hooks/useMultipleQueries"
+
+import { useCart } from "providers/Cart"
 
 import useProductList from "api/hooks/pos/product/useProductList"
 import useProductModelList from "api/hooks/pos/product/useProductModelList"
@@ -31,14 +37,12 @@ import {
   MainTabParamList,
 } from "Router/MainTabParamList"
 
+import { formatCurrency, responsive } from "helper"
 import Languages from "helper/languages"
 import { dataFromPaginated } from "helper/pagination"
 import s, { COLOR_PRIMARY } from "helper/theme"
 
 import { ProductModel } from "types/POS/Product/ProductModel"
-import { formatCurrency, responsive } from "helper"
-import Image from "components/Image"
-import { useCart } from "providers/Cart"
 
 type CurrentScreenRouteProp = RouteProp<ProductStackParamList, "ProductByBrand">
 type CurrentScreenNavigationProp = CompositeNavigationProp<
@@ -170,15 +174,26 @@ export default () => {
 const RenderCard = ({ productModel, key }) => {
   const { addItem } = useCart()
   const navigation = useNavigation()
-  const onAddToCard = (item) => {
-    addItem([
-      {
-        productUnitId: item.id,
-        quantity: 1,
-        productUnitData: item,
-      },
-    ])
-    navigation.navigate("Cart")
+  const onAddToCard = (item, type) => {
+    if (type === 1) {
+      addItem([
+        {
+          productUnitId: item.id,
+          quantity: 1,
+          productUnitData: item,
+        },
+      ])
+      toast("Barang berhasil ditambahkan ke keranjang")
+    } else {
+      addItem([
+        {
+          productUnitId: item.id,
+          quantity: 1,
+          productUnitData: item,
+        },
+      ])
+      navigation.navigate("Cart")
+    }
   }
 
   return (
@@ -233,17 +248,40 @@ const RenderCard = ({ productModel, key }) => {
           <Text fontSize={10} fontWeight="bold" mb={10}>{`${formatCurrency(
             productModel.price,
           )}`}</Text>
-          <Button
-            onPress={() => onAddToCard(productModel)}
-            // h={heightPercentageToDP(4)}
-            bg="primary"
-            w={widthPercentageToDP(30)}
-            alignSelf="center"
-            textAlign="center"
-            fontSize={responsive(8)}
-          >
-            Add to cart
-          </Button>
+          <Div row justifyContent="space-between">
+            <Button
+              onPress={() => onAddToCard(productModel, 1)}
+              h={heightPercentageToDP(5)}
+              bg="primary"
+              w={widthPercentageToDP(20)}
+              alignSelf="center"
+              textAlign="center"
+              fontSize={responsive(8)}
+            >
+              <Icon
+                name="cart-plus"
+                fontFamily="FontAwesome5"
+                fontSize={16}
+                color="#fff"
+              />
+            </Button>
+            <Button
+              onPress={() => onAddToCard(productModel, 2)}
+              h={heightPercentageToDP(5)}
+              bg="primary"
+              w={widthPercentageToDP(20)}
+              alignSelf="center"
+              textAlign="center"
+              fontSize={responsive(8)}
+            >
+              <Icon
+                name="arrow-right"
+                fontFamily="FontAwesome5"
+                fontSize={16}
+                color="#fff"
+              />
+            </Button>
+          </Div>
         </Div>
       </Div>
     </Pressable>

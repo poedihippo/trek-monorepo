@@ -1,7 +1,7 @@
 import { useNavigation } from "@react-navigation/native"
 import React from "react"
-import { TouchableOpacity, Dimensions, Pressable } from "react-native"
-import { Button, Div } from "react-native-magnus"
+import { Dimensions, Pressable } from "react-native"
+import { Button, Div, Icon } from "react-native-magnus"
 import {
   heightPercentageToDP,
   widthPercentageToDP,
@@ -13,7 +13,7 @@ import Text from "components/Text"
 import { useCart } from "providers/Cart"
 
 import { formatCurrency, responsive } from "helper"
-import s, { COLOR_BLUE, COLOR_PRIMARY } from "helper/theme"
+import { COLOR_PRIMARY } from "helper/theme"
 
 import { ProductModel } from "types/POS/Product/ProductModel"
 
@@ -32,15 +32,26 @@ export default ({
 }: PropTypes) => {
   const { addItem } = useCart()
   const navigation = useNavigation()
-  const onAddToCard = (item) => {
-    addItem([
-      {
-        productUnitId: item.id,
-        quantity: 1,
-        productUnitData: item,
-      },
-    ])
-    navigation.navigate("Cart")
+  const onAddToCard = (item, type) => {
+    if (type === 1) {
+      addItem([
+        {
+          productUnitId: item.id,
+          quantity: 1,
+          productUnitData: item,
+        },
+      ])
+      toast("Barang berhasil ditambahkan ke keranjang")
+    } else {
+      addItem([
+        {
+          productUnitId: item.id,
+          quantity: 1,
+          productUnitData: item,
+        },
+      ])
+      navigation.navigate("Cart")
+    }
   }
 
   return (
@@ -84,23 +95,51 @@ export default ({
           }}
         />
         <Div p={8} overflow="hidden">
-          <Text mb={5} fontSize={14} numberOfLines={2}>
+          <Text
+            mb={5}
+            fontSize={14}
+            h={heightPercentageToDP(5)}
+            numberOfLines={2}
+          >
             {productModel.name}
           </Text>
           <Text fontSize={10} fontWeight="bold" mb={10}>{`${formatCurrency(
             productModel.price,
           )}`}</Text>
-          <Button
-            onPress={() => onAddToCard(productModel)}
-            // h={heightPercentageToDP(4)}
-            bg="primary"
-            w={widthPercentageToDP(30)}
-            alignSelf="center"
-            textAlign="center"
-            fontSize={responsive(8)}
-          >
-            Add to cart
-          </Button>
+          <Div row justifyContent="space-between">
+            <Button
+              onPress={() => onAddToCard(productModel, 1)}
+              h={heightPercentageToDP(5)}
+              bg="primary"
+              w={widthPercentageToDP(15)}
+              alignSelf="center"
+              textAlign="center"
+              fontSize={responsive(8)}
+            >
+              <Icon
+                name="cart-plus"
+                fontFamily="FontAwesome5"
+                fontSize={16}
+                color="#fff"
+              />
+            </Button>
+            <Button
+              onPress={() => onAddToCard(productModel, 2)}
+              h={heightPercentageToDP(5)}
+              bg="primary"
+              w={widthPercentageToDP(15)}
+              alignSelf="center"
+              textAlign="center"
+              fontSize={responsive(8)}
+            >
+              <Icon
+                name="arrow-right"
+                fontFamily="FontAwesome5"
+                fontSize={16}
+                color="#fff"
+              />
+            </Button>
+          </Div>
         </Div>
       </Div>
     </Pressable>
