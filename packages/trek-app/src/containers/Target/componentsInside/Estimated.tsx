@@ -126,7 +126,7 @@ const EstimatedInside = () => {
     return (
       <Div row justifyContent="space-between" bg="primary" p={20}>
         <Div>
-          <Text
+          {/* <Text
             w={widthPercentageToDP(50)}
             allowFontScaling={false}
             fontWeight="bold"
@@ -138,7 +138,7 @@ const EstimatedInside = () => {
               : route.params.company_id === "2"
               ? "Dio Living"
               : route.params.name}
-          </Text>
+          </Text> */}
         </Div>
         <Div>
           <Text

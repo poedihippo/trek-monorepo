@@ -1,15 +1,12 @@
 import { useNavigation } from "@react-navigation/native"
 import Case from "case"
-import { LinearGradient } from "expo-linear-gradient"
 import React, { useEffect } from "react"
 import { FlatList, Pressable, TouchableOpacity } from "react-native"
 import { Button, Div, Icon, ScrollDiv, Text } from "react-native-magnus"
 import {
-  heightPercentageToDP,
-  widthPercentageToDP,
+  heightPercentageToDP
 } from "react-native-responsive-screen"
 
-import InfoBlock from "components/InfoBlock"
 import Loading from "components/Loading"
 
 import useMultipleQueries from "hooks/useMultipleQueries"
@@ -26,7 +23,7 @@ import {
   responsive,
 } from "helper"
 import { dataFromPaginated } from "helper/pagination"
-import s from "helper/theme"
+import s, { COLOR_PRIMARY } from "helper/theme"
 
 import { Activity } from "types/Activity"
 import { getFullName } from "types/Customer"
@@ -162,6 +159,21 @@ const Profile = () => {
           <Text color="white">{userData.company.name.toUpperCase()}</Text>
         </Div> */}
       </Div>
+      {userData.type === "SALES" ? null : (
+        <Button
+          mx={10}
+          mt={heightPercentageToDP(1)}
+          block
+          color="#fff"
+          bg={COLOR_PRIMARY}
+          fontWeight="500"
+          fontSize={responsive(10)}
+          mr={10}
+          onPress={() => navigation.navigate("DiscountApproval")}
+        >
+          Discount Approval
+        </Button>
+      )}
       <Div>
         <FlatList
           scrollEnabled={false}
