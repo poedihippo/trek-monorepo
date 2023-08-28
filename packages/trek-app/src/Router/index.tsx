@@ -294,7 +294,6 @@ export const MainNavigator = () => {
 const HeaderRight = ({ toCart, toDiscountApproval }) => {
   const { data } = useUserLoggedInData()
   const { cartData } = useCart()
-  console.log(cartData, "ini check isi cart")
   return (
     <Div flex={1} row px={20} alignItems="center">
       {data.type === "SALES" ? (

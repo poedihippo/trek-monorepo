@@ -18,7 +18,7 @@ type PropTypes = {
 
 export default ({ productModel, onProductSelect }: PropTypes) => {
   const { width: screenWidth } = useWindowDimensions()
-
+  
   return (
     <>
       <Carousel
@@ -29,7 +29,7 @@ export default ({ productModel, onProductSelect }: PropTypes) => {
         showsHorizontalScrollIndicator={false}
         loop
         autoplay
-        autoplayInterval={8000}
+        autoplayInterval={10000}
         underlayColor="none"
         renderItem={({ item: image }) => (
           <Image width={screenWidth} scalable source={{ uri: image.url }} />
@@ -43,26 +43,9 @@ export default ({ productModel, onProductSelect }: PropTypes) => {
               {productModel.name}
             </Text>
             <Text>
-              {formatCurrency(productModel.priceMin)} -{" "}
-              {formatCurrency(productModel.priceMax)}
+              {formatCurrency(productModel.price)}
             </Text>
           </Div>
-          <TouchableOpacity onPress={onProductSelect}>
-            <LinearGradient
-              style={{
-                paddingVertical: 10,
-                paddingHorizontal: 20,
-                justifyContent: "center",
-                borderRadius: 4,
-              }}
-              locations={[0.5, 1.0]}
-              colors={["#20B5C0", "#17949D"]}
-            >
-              <Text color="white" fontSize={14} textAlign="center">
-                Product
-              </Text>
-            </LinearGradient>
-          </TouchableOpacity>
         </Div>
       </Div>
     </>

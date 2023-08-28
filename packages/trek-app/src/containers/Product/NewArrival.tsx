@@ -73,8 +73,8 @@ export default (props: PropTypes) => {
             key={`product_${productModel.id}`}
             productModel={productModel}
             onPress={() =>
-              // navigation.navigate("ProductDetail", { id: productModel.id })
-              undefined
+              navigation.navigate("ProductDetail", productModel)
+              
             }
             containerStyle={[s.mR10]}
           />

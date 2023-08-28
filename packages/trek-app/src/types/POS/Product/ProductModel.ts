@@ -10,6 +10,7 @@ export type ProductModel = {
   images: Nullable<ImageType[]>
   priceMin: Nullable<number>
   priceMax: Nullable<number>
+  price:Nullable<number>
 }
 
 export const mapProductModel = (

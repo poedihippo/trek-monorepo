@@ -132,22 +132,6 @@ export default () => {
           onEndReached={() => {
             if (hasNextPage) fetchNextPage()
           }}
-          // ListFooterComponent={() =>
-          //   !!data &&
-          //   data.length > 0 &&
-          //   (isFetchingNextPage ? <FooterLoading /> : <EndOfList />)
-          // }
-          // renderItem={({ item: productModel, index }) => (
-          //   <NewProductCard
-          //     key={`model_${productModel.id}`}
-          //     productModel={productModel}
-          //     onPress={() =>
-          //       // navigation.navigate("ProductDetail", { id: productModel.id })
-          //       null
-          //     }
-          //     imageWidth={0.4 * screenWidth}
-          //   />
-          // )}
           renderItem={({ item, index }) => (
             <RenderCard productModel={item} key={`model_${item.id}`} />
           )}
@@ -182,7 +166,7 @@ const RenderCard = ({ productModel, key }) => {
   }
 
   return (
-    <Pressable style={[{ alignItems: "center" }]}>
+    <Pressable style={[{ alignItems: "center" }]} onPress={() => navigation.navigate("ProductDetail", productModel)}>
       <Div
         bg={"white"}
         style={{
@@ -235,7 +219,7 @@ const RenderCard = ({ productModel, key }) => {
           )}`}</Text>
           <Div row justifyContent="space-between">
             <Button
-
+ py={8}
               onPress={() => onAddToCard(productModel, 2)}
               bg="white"
               color="primary"
@@ -250,6 +234,7 @@ const RenderCard = ({ productModel, key }) => {
           Buy now
             </Button>
             <Button
+             py={8}
               onPress={() => onAddToCard(productModel, 1)}
               bg="primary"
               borderWidth={1}

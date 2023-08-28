@@ -3,7 +3,7 @@ import {
   CompositeNavigationProp,
   RouteProp,
   useNavigation,
-  useRoute,
+  useRoute
 } from "@react-navigation/native"
 import { StackNavigationProp } from "@react-navigation/stack"
 import Case from "case"
@@ -12,7 +12,7 @@ import { FlatList, Pressable, useWindowDimensions } from "react-native"
 import { Button, Div, Icon, Input, ScrollDiv } from "react-native-magnus"
 import {
   heightPercentageToDP,
-  widthPercentageToDP,
+  widthPercentageToDP
 } from "react-native-responsive-screen"
 
 import EndOfList from "components/CommonList/EndOfList"
@@ -20,8 +20,6 @@ import FooterLoading from "components/CommonList/FooterLoading"
 import Error from "components/Error"
 import Image from "components/Image"
 import Loading from "components/Loading"
-import NewProductCard from "components/NewProductCard"
-import ProductCard from "components/ProductCard"
 import Text from "components/Text"
 
 import useMultipleQueries from "hooks/useMultipleQueries"
@@ -29,20 +27,17 @@ import useMultipleQueries from "hooks/useMultipleQueries"
 import { useCart } from "providers/Cart"
 
 import useProductList from "api/hooks/pos/product/useProductList"
-import useProductModelList from "api/hooks/pos/product/useProductModelList"
 
 import { EntryStackParamList } from "Router/EntryStackParamList"
 import {
-  ProductStackParamList,
-  MainTabParamList,
+  MainTabParamList, ProductStackParamList
 } from "Router/MainTabParamList"
 
-import { formatCurrency, responsive } from "helper"
+import { formatCurrency } from "helper"
 import Languages from "helper/languages"
 import { dataFromPaginated } from "helper/pagination"
 import s, { COLOR_PRIMARY } from "helper/theme"
 
-import { ProductModel } from "types/POS/Product/ProductModel"
 
 type CurrentScreenRouteProp = RouteProp<ProductStackParamList, "ProductByBrand">
 type CurrentScreenNavigationProp = CompositeNavigationProp<
@@ -233,7 +228,7 @@ const RenderCard = ({ productModel, key }) => {
           )}`}</Text>
           <Div row justifyContent="space-between">
             <Button
-
+ py={8}
               onPress={() => onAddToCard(productModel, 2)}
               bg="white"
               color="primary"
@@ -248,6 +243,7 @@ const RenderCard = ({ productModel, key }) => {
           Buy now
             </Button>
             <Button
+             py={8}
               onPress={() => onAddToCard(productModel, 1)}
               bg="primary"
               borderWidth={1}

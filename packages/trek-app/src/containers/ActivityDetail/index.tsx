@@ -3,7 +3,7 @@ import {
   CompositeNavigationProp,
   RouteProp,
   useNavigation,
-  useRoute,
+  useRoute
 } from "@react-navigation/native"
 import { StackNavigationProp } from "@react-navigation/stack"
 import Case from "case"
@@ -14,12 +14,12 @@ import {
   Keyboard,
   Modal,
   Pressable,
-  RefreshControl,
+  RefreshControl
 } from "react-native"
 import { Div, Icon, Image as ImageMagnus } from "react-native-magnus"
 import {
   heightPercentageToDP,
-  widthPercentageToDP,
+  widthPercentageToDP
 } from "react-native-responsive-screen"
 
 import FooterLoading from "components/CommonList/FooterLoading"
@@ -28,7 +28,6 @@ import Error from "components/Error"
 import Image from "components/Image"
 import InfoBlock from "components/InfoBlock"
 import Loading from "components/Loading"
-import OrderDemand from "components/Order/OrderDemand"
 import OrderDetail from "components/Order/OrderDetail"
 import Tag from "components/Tag"
 import Text from "components/Text"
@@ -46,14 +45,13 @@ import useOrderById from "api/hooks/order/useOrderById"
 import { EntryStackParamList } from "Router/EntryStackParamList"
 import {
   CustomerStackParamList,
-  MainTabParamList,
+  MainTabParamList
 } from "Router/MainTabParamList"
 
 import { formatCurrency, formatDate } from "helper"
 import Languages from "helper/languages"
 import { dataFromPaginated } from "helper/pagination"
-import { COLOR_PRIMARY } from "helper/theme"
-import s, { COLOR_DISABLED } from "helper/theme"
+import { COLOR_DISABLED, COLOR_PRIMARY } from "helper/theme"
 
 import { activityStatusConfig } from "types/Activity"
 import { ActivityComment } from "types/ActivityComment"
@@ -161,11 +159,8 @@ export default () => {
     channel,
     status,
     lead,
-    brands,
-    createdAt,
     estimatedValue,
     feedback,
-    activityBrandValues,
     reminderDateTime,
     reminderNote,
   } = activityData || {}
@@ -187,7 +182,7 @@ export default () => {
           Recent Activity
         </Text>
         <InfoBlock
-          title="Orlan Number"
+          title="Order Number"
           data={activityData?.order?.orlanNumber}
         />
         <InfoBlock title="Created" data={formatDate(followUpDatetime)} />
@@ -446,7 +441,7 @@ export default () => {
               (activityIsFetchingNextPage ? <FooterLoading /> : null)}
           </Div>
         }
-        renderItem={({ item, index }) => <ActivityCommentItem comment={item} />}
+        renderItem={({ item }) => <ActivityCommentItem comment={item} />}
       />
       <MessageForm
         onSubmit={async (data, { resetForm }) => {

@@ -1,16 +1,13 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { RouteProp, useNavigation, useRoute } from "@react-navigation/native"
 import { StackNavigationProp } from "@react-navigation/stack"
-import { add } from "date-fns"
-import moment from "moment"
-import React, { useState, useEffect } from "react"
-import { FlatList, TouchableOpacity } from "react-native"
-import { Button, Checkbox, Div, Input } from "react-native-magnus"
+import React, { useEffect, useState } from "react"
+import { FlatList } from "react-native"
+import { Button, Div, Input } from "react-native-magnus"
 
 import AddressSelectorInput from "components/AddressSelectorInput"
 import CustomKeyboardAvoidingView from "components/CustomKeyboardAvoidingView"
-import DateTimePickerInput from "components/DateTimePickerInput"
 import Loading from "components/Loading"
-import SelectInteriorDesign from "components/SelectInteriorDesign"
 import Text from "components/Text"
 
 import { useAxios } from "hooks/useApi"
@@ -32,14 +29,13 @@ import Languages from "helper/languages"
 
 import { Discount } from "types/Discount"
 
-import AddProductModal from "./AddProductModal"
 import AdditionalFeeButton from "./AdditionalFeeButton"
 import AdditionalFeeModal from "./AdditionalFeeModal"
+import AddProductModal from "./AddProductModal"
 import CheckoutItem from "./CheckoutItem"
 import DiscountButton from "./DiscountButton"
 import DiscountModal from "./DiscountModal"
 import NewProduct from "./NewProduct"
-import VoucherButton from "./VoucherButton"
 
 type CurrentScreenRouteProp = RouteProp<EntryStackParamList, "Checkout">
 
@@ -180,14 +176,14 @@ export default () => {
   )
   const Footer = (
     <>
-      <NewProduct
+      {/* <NewProduct
         data={newProduct}
         setIndex={setIndex}
         setVisible={setModalProduct}
         onRemove={() => {
           getProductList()
         }}
-      />
+      /> */}
       {/* <VoucherButton
         leadId={leadId}
         activeVoucher={activeVoucher}
