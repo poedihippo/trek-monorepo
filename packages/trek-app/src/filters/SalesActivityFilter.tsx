@@ -103,21 +103,8 @@ export default function SalesActivityFilter({
     >
       {({ setFilter, values }) => (
         <>
-          <Text mt={20} mb={10}>
-            Company
-          </Text>
-          <Div mb={10}>
-            <CompanyDropdownInput
-              value={selectedCompanyId}
-              onSelect={(val) => {
-                setSelectedCompanyId(val)
-                setSelectedReportableId([])
-                setSelectedSubReportableId([])
-              }}
-            />
-          </Div>
           <Div flexDir="row" mb={10}>
-            {!!selectedCompanyId && (
+            {(
               <Div flex={1}>
                 <ReportableTypeDropdownInput
                   value={selectedReportableType}

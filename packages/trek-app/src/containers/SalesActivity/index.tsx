@@ -48,9 +48,7 @@ type CurrentScreenNavigationProp = CompositeNavigationProp<
 
 export default () => {
   const navigation = useNavigation<CurrentScreenNavigationProp>()
-
   const [filters, setFilter] = useState<ActivityFilterType>({})
-
   const {
     queries: [{ data: userData }, { data: activityPaginatedData }],
     meta: {

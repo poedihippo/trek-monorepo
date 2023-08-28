@@ -9,7 +9,7 @@ import { StackNavigationProp } from "@react-navigation/stack"
 import Case from "case"
 import React, { useEffect, useState } from "react"
 import { FlatList, Pressable, useWindowDimensions } from "react-native"
-import { Button, Div, Icon, Input } from "react-native-magnus"
+import { Button, Div, Icon, Input, ScrollDiv } from "react-native-magnus"
 import {
   heightPercentageToDP,
   widthPercentageToDP,
@@ -106,20 +106,14 @@ export default () => {
     return <Error refreshing={isFetching} onRefresh={refetch} />
   }
 
-  // if (isLoading) {
-  //   return <Loading />
-  // }
-
   return (
-    <>
+    <ScrollDiv>
       <Div bg="#fff">
         <Input
+          rounded={0}
           placeholder="Search.."
           value={productName}
           onChangeText={(val) => setProductName(val)}
-          mt={heightPercentageToDP(2)}
-          ml={heightPercentageToDP(2)}
-          mr={heightPercentageToDP(2)}
         />
       </Div>
       {isLoading ? (
@@ -151,23 +145,12 @@ export default () => {
             data.length > 0 &&
             (isFetchingNextPage ? <FooterLoading /> : <EndOfList />)
           }
-          // renderItem={({ item: productModel, index }) => (
-          //   <NewProductCard
-          //     key={`model_${productModel.id}`}
-          //     productModel={productModel}
-          //     // onPress={() =>
-          //     //   navigation.navigate("ProductDetail", { id: productModel.id })
-          //     // }
-          //     onPress={() => console.log()}
-          //     imageWidth={0.4 * screenWidth}
-          //   />
-          // )}
           renderItem={({ item, index }) => (
             <RenderCard productModel={item} key={`model_${item.id}`} />
           )}
         />
       )}
-    </>
+    </ScrollDiv>
   )
 }
 
@@ -250,35 +233,36 @@ const RenderCard = ({ productModel, key }) => {
           )}`}</Text>
           <Div row justifyContent="space-between">
             <Button
-              onPress={() => onAddToCard(productModel, 1)}
-              h={heightPercentageToDP(5)}
-              bg="primary"
-              w={widthPercentageToDP(20)}
+
+              onPress={() => onAddToCard(productModel, 2)}
+              bg="white"
+              color="primary"
+              w={widthPercentageToDP(30)}
+              borderWidth={1}
+              borderColor='primary'
               alignSelf="center"
               textAlign="center"
-              fontSize={responsive(8)}
+              fontWeight='500'
+              fontSize={12}
             >
-              <Icon
-                name="cart-plus"
-                fontFamily="FontAwesome5"
-                fontSize={16}
-                color="#fff"
-              />
+          Buy now
             </Button>
             <Button
-              onPress={() => onAddToCard(productModel, 2)}
-              h={heightPercentageToDP(5)}
+              onPress={() => onAddToCard(productModel, 1)}
               bg="primary"
-              w={widthPercentageToDP(20)}
+              borderWidth={1}
+              borderColor='primary'
+              w={widthPercentageToDP(12)}
               alignSelf="center"
               textAlign="center"
-              fontSize={responsive(8)}
+              fontWeight='500'
+              fontSize={12}
             >
-              <Icon
-                name="arrow-right"
+               <Icon
+                name="cart-plus"
                 fontFamily="FontAwesome5"
-                fontSize={16}
-                color="#fff"
+                fontSize={12}
+                color="white"
               />
             </Button>
           </Div>

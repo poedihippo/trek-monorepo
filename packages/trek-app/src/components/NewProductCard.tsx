@@ -104,42 +104,8 @@ export default ({
             {productModel.name}
           </Text>
           <Text fontSize={10} fontWeight="bold" mb={10}>{`${formatCurrency(
-            productModel.price,
+            productModel?.price,
           )}`}</Text>
-          <Div row justifyContent="space-between">
-            <Button
-              onPress={() => onAddToCard(productModel, 1)}
-              h={heightPercentageToDP(5)}
-              bg="primary"
-              w={widthPercentageToDP(15)}
-              alignSelf="center"
-              textAlign="center"
-              fontSize={responsive(8)}
-            >
-              <Icon
-                name="cart-plus"
-                fontFamily="FontAwesome5"
-                fontSize={16}
-                color="#fff"
-              />
-            </Button>
-            <Button
-              onPress={() => onAddToCard(productModel, 2)}
-              h={heightPercentageToDP(5)}
-              bg="primary"
-              w={widthPercentageToDP(15)}
-              alignSelf="center"
-              textAlign="center"
-              fontSize={responsive(8)}
-            >
-              <Icon
-                name="arrow-right"
-                fontFamily="FontAwesome5"
-                fontSize={16}
-                color="#fff"
-              />
-            </Button>
-          </Div>
         </Div>
       </Div>
     </Pressable>

@@ -1,9 +1,9 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useRoute } from "@react-navigation/native"
 import moment from "moment"
-import React, { useEffect, useState } from "react"
-import { FlatList, Pressable, StyleSheet, View } from "react-native"
-import { Button, Div, Icon, ScrollDiv, Text } from "react-native-magnus"
+import React, { useState } from "react"
+import { Pressable } from "react-native"
+import { Div, Icon, ScrollDiv, Text } from "react-native-magnus"
 import { useQuery } from "react-query"
 
 import Loading from "components/Loading"

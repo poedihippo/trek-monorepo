@@ -56,16 +56,15 @@ export default () => {
   const brandName = route?.params?.brandName ?? "Brand"
 
   const brandId = route?.params?.id ?? -1
-  if (brandId === -1) {
-    if (navigation.canGoBack()) {
-      navigation.goBack()
-    } else {
-      navigation.navigate("Dashboard")
-    }
-    toast(Languages.PageNotFound)
-    return null
-  }
-  console.warn(route.params)
+  // if (brandId === -1) {
+  //   if (navigation.canGoBack()) {
+  //     navigation.goBack()
+  //   } else {
+  //     navigation.navigate("Dashboard")
+  //   }
+  //   toast(Languages.PageNotFound)
+  //   return null
+  // }
   useEffect(() => {
     if (brandName) {
       navigation.setOptions({
@@ -236,35 +235,36 @@ const RenderCard = ({ productModel, key }) => {
           )}`}</Text>
           <Div row justifyContent="space-between">
             <Button
-              onPress={() => onAddToCard(productModel, 1)}
-              h={heightPercentageToDP(5)}
-              bg="primary"
-              w={widthPercentageToDP(20)}
+
+              onPress={() => onAddToCard(productModel, 2)}
+              bg="white"
+              color="primary"
+              w={widthPercentageToDP(30)}
+              borderWidth={1}
+              borderColor='primary'
               alignSelf="center"
               textAlign="center"
-              fontSize={responsive(8)}
+              fontWeight='500'
+              fontSize={12}
             >
-              <Icon
-                name="cart-plus"
-                fontFamily="FontAwesome5"
-                fontSize={16}
-                color="#fff"
-              />
+          Buy now
             </Button>
             <Button
-              onPress={() => onAddToCard(productModel, 2)}
-              h={heightPercentageToDP(5)}
+              onPress={() => onAddToCard(productModel, 1)}
               bg="primary"
-              w={widthPercentageToDP(20)}
+              borderWidth={1}
+              borderColor='primary'
+              w={widthPercentageToDP(12)}
               alignSelf="center"
               textAlign="center"
-              fontSize={responsive(8)}
+              fontWeight='500'
+              fontSize={12}
             >
-              <Icon
-                name="arrow-right"
+               <Icon
+                name="cart-plus"
                 fontFamily="FontAwesome5"
-                fontSize={16}
-                color="#fff"
+                fontSize={12}
+                color="white"
               />
             </Button>
           </Div>
