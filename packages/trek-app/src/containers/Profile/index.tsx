@@ -3,9 +3,7 @@ import Case from "case"
 import React, { useEffect } from "react"
 import { FlatList, Pressable, TouchableOpacity } from "react-native"
 import { Button, Div, Icon, ScrollDiv, Text } from "react-native-magnus"
-import {
-  heightPercentageToDP
-} from "react-native-responsive-screen"
+import { heightPercentageToDP } from "react-native-responsive-screen"
 
 import Loading from "components/Loading"
 
@@ -142,23 +140,33 @@ const Profile = () => {
             {userData.initial}
           </Text>
         </Div>
-        <Text fontSize={responsive(12)} my={5}>
+        <Text fontSize={responsive(12)} my={3}>
           {userData.name}
         </Text>
+        <Div bg="#FF731D" rounded={5}>
+          <Text
+            fontSize={10}            
+            p={5}
+            color={"#fff"}
+            fontWeight="500"
+          >
+            {userData.type}
+          </Text>
+        </Div>
         <Text fontSize={responsive(10)} color="#c4c4c4">
           {userData.email}
         </Text>
       </Div>
-      <Div bg="primary" mx={10} rounded={9} mt={heightPercentageToDP(3)}>
+      {/* <Div bg="primary" mx={10} rounded={9} mt={heightPercentageToDP(3)}>
         <Div justifyContent="space-between" row p={10}>
           <Text color="white">Roles</Text>
           <Text color="white">{userData.type}</Text>
         </Div>
-        {/* <Div justifyContent="space-between" row p={10}>
+        <Div justifyContent="space-between" row p={10}>
           <Text color="white">Company</Text>
           <Text color="white">{userData.company.name.toUpperCase()}</Text>
-        </Div> */}
-      </Div>
+        </Div>
+      </Div> */}
       {userData.type === "SALES" ? null : (
         <Button
           mx={10}
