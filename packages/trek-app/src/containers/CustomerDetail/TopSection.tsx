@@ -87,7 +87,7 @@ export default function TopSection({ customer }: PropTypes) {
                   fontFamily="FontAwesome5"
                 />
               </Pressable>
-              <Pressable onPress={() => setModalVisible(true)}>
+              {/* <Pressable onPress={() => setModalVisible(true)}>
                 <Icon
                   bg="primary"
                   p={5}
@@ -96,7 +96,7 @@ export default function TopSection({ customer }: PropTypes) {
                   fontSize={16}
                   fontFamily="FontAwesome5"
                 />
-              </Pressable>
+              </Pressable> */}
             </Div>
           )}
         </Div>

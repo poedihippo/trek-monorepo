@@ -23,7 +23,7 @@ import useMultipleQueries from "hooks/useMultipleQueries"
 import useInvoiceTarget from "api/hooks/target/useInvoiceTarget"
 
 import { formatCurrency, responsive } from "helper"
-import { COLOR_PRIMARY } from "helper/theme"
+import { COLOR_PRIMARY, COLOR_SECONDARY } from "helper/theme"
 
 const dataLabel = [
   {
@@ -101,11 +101,11 @@ const QuotationInside = () => {
       <Div mx={3}>
         <Button
           w={widthPercentageToDP(30)}
-          h={heightPercentageToDP(5)}
           onPress={() => {
             setIndexCategory(index)
             setPayment(item.payment)
           }}
+          py={8}
           bg={
             item?.id === indexCategory + 1 ? "rgba(29, 64, 118, 0.5)" : "#fff"
           }
@@ -247,18 +247,14 @@ const QuotationInside = () => {
           onChangeText={(val) => setKey(val)}
           suffix={
             <Div row>
-              <TouchableOpacity
+              <Button
+                bg="white"
                 onPress={() => setVisible(!visible)}
-                style={{
-                  borderWidth: 1,
-                  marginRight: 5,
-                  padding: 8,
-                  borderRadius: 4,
-                  borderColor: COLOR_PRIMARY,
-                }}
+                py={6}
+                color={COLOR_SECONDARY}
               >
-                <Text color={COLOR_PRIMARY}>{filterType}</Text>
-              </TouchableOpacity>
+                {filterType}
+              </Button>
               <Icon
                 name="search"
                 fontSize={responsive(12)}

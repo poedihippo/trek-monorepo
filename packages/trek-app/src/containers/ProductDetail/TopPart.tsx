@@ -35,7 +35,6 @@ export default ({ productModel, onProductSelect }: PropTypes) => {
           <Image width={screenWidth} scalable source={{ uri: image.url }} />
         )}
       />
-
       <Div bg="white" pt={20} px={20}>
         <Div row justifyContent="space-between" mb={20}>
           <Div>

@@ -3,6 +3,7 @@ import { ThemeType } from "react-native-magnus"
 import { RFValue } from "react-native-responsive-fontsize"
 
 export const COLOR_PRIMARY = "#1d4076"
+export const COLOR_SECONDARY = "#f1c40f"
 export const COLOR_DISABLED = "#C4C4C4"
 export const COLOR_PLACEHOLDER = "#CFCFD380"
 export const COLOR_RED = "#FC5C5D"

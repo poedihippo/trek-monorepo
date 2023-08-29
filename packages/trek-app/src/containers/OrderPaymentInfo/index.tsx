@@ -90,7 +90,7 @@ export default () => {
   const GetData = () => {
     setLoading(true)
     FileSystem.downloadAsync(
-      `https://app.melandas-indonesia.com/api/v1/orders/export-quotation?type=sales_confirmation&order_id=${orderId}`,
+      `https://trek.albatech.id/api/v1/orders/export-quotation?type=sales_confirmation&order_id=${orderId}`,
       FileSystem.documentDirectory + `${orderData.invoiceNumber}.pdf`,
       {
         headers: {
@@ -101,7 +101,7 @@ export default () => {
     )
       .then(async ({ uri }) => {
         Sharing.shareAsync(uri).then((res) => {
-          // console.log(res, "quotation")
+          console.log(res, "quotation")
         })
       })
       .catch((err) => {
