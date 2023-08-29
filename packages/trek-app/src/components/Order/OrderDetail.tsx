@@ -7,9 +7,8 @@ import Spinner from "react-native-loading-spinner-overlay"
 import { Button, Checkbox, Div, Modal, Overlay } from "react-native-magnus"
 import {
   heightPercentageToDP,
-  widthPercentageToDP,
+  widthPercentageToDP
 } from "react-native-responsive-screen"
-import { useMutation, useQuery } from "react-query"
 
 import DiscountButton from "containers/Checkout/DiscountButton"
 import DiscountModal from "containers/Checkout/DiscountModal"
@@ -20,7 +19,6 @@ import UploadPicture from "components/UploadPicture"
 
 import { useAxios } from "hooks/useApi"
 import useMultipleQueries from "hooks/useMultipleQueries"
-import useMutationComponent from "hooks/useMutation"
 
 import { useAuth } from "providers/Auth"
 import { useCart } from "providers/Cart"
@@ -31,15 +29,14 @@ import { formatCurrency, formatDateOnly } from "helper"
 import { formDataIncludePicture } from "helper/pictures"
 import { COLOR_DISABLED } from "helper/theme"
 
-import { Discount } from "types/Discount"
 import {
   Order,
   orderApprovalStatusConfig,
-  orderPaymentStatusConfig,
+  orderPaymentStatusConfig
 } from "types/Order"
 
+import { queryClient } from "../../query"
 import OrderPaymentDetail from "./OrderPaymentDetail"
-import QuotationButton from "./QuotationButton"
 
 type PropTypes = {
   orderData: Order
@@ -102,7 +99,8 @@ export default function OrderDetail({
         },
       })
       .then((res) => {
-        // console.log(res)
+        queryClient.invalidateQueries("order")
+
       })
       .catch((err) => {
         if (err) {
@@ -747,8 +745,6 @@ export default function OrderDetail({
       />
       <Overlay
         visible={overlayVisible}
-        h={450}
-        w={300}
         onBackdropPress={() => setOverlayVisible(false)}
       >
         <UploadPicture
@@ -766,14 +762,12 @@ export default function OrderDetail({
             setOverlayVisible(false)
           }}
         >
-          Upload Photo New Product
+          Upload Photo Product
         </Button>
       </Overlay>
       {/* for non existing product */}
       <Overlay
         visible={overlayProduct}
-        h={450}
-        w={300}
         onBackdropPress={() => setOverlayProduct(false)}
       >
         <UploadPicture

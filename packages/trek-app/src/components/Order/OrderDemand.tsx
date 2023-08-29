@@ -232,8 +232,6 @@ export default function OrderDetail({
           </Div>
           <Overlay
             visible={overlayVisible}
-            h={450}
-            w={300}
             onBackdropPress={() => setOverlayVisible(false)}
           >
             <UploadPicture

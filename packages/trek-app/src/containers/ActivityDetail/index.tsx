@@ -149,7 +149,6 @@ export default () => {
       enabled: !!activityData?.order?.id,
     }),
   ] as const)
-  console.log(activityData, "check isi activity data")
   const {
     followUpDatetime,
     followUpMethod,

@@ -2260,9 +2260,10 @@ const TargetScreen = () => {
           <Div row justifyContent="space-between" mx={10}>
             <Button
               onPress={() => setModalVisible(true)}
-              my={8}
+              my={5}
               color="primary"
-              fontWeight="bold"
+              py={9}
+              fontWeight='700'
               bg="white"
               borderWidth={1}
               borderColor="primary"
@@ -2283,8 +2284,9 @@ const TargetScreen = () => {
                 })
               }
               my={5}
+              py={9}
               color="primary"
-              fontWeight="bold"
+              fontWeight="700"
               bg="white"
               borderWidth={1}
               borderColor="primary"
