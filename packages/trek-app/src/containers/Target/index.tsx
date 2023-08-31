@@ -219,6 +219,51 @@ const TargetScreen = () => {
       </Text>
     </Div>
   )
+
+  const newRenderStatus = ({ item }) => (
+    <Div
+      alignItems="center"
+      // borderWidth={1}
+      // borderColor="red"
+      w={widthPercentageToDP(25)}
+      justifyContent="space-between"
+      mx={9}
+      bg="#fff"
+      rounded={8}
+    >
+      <Div justifyContent="center" alignItems="center" my={10}>
+        <Icon
+          name={
+            item.status === "Hot"
+              ? "fire"
+              : item.status === "Warm"
+              ? "air"
+              : item.status === "Cold"
+              ? "snowflake"
+              : null
+          }
+          fontFamily={
+            item.status === "Hot"
+              ? "FontAwesome5"
+              : item.status === "Warm"
+              ? "Entypo"
+              : item.status === "Cold"
+              ? "FontAwesome5"
+              : null
+          }
+          color={item.color}
+          fontSize={16}
+        />
+        {/* <Div mx={8} h={8} w={8} rounded={8 / 2} bg={item.color} /> */}
+        <Text allowFontScaling={false} color="text">
+          {item.status}
+        </Text>
+        <Text allowFontScaling={false} color="text">
+          {!!item.total ? item.total : "0"}
+        </Text>
+      </Div>
+    </Div>
+  )
   const Header = () => (
     <>
       {userData?.type === "SALES" ? (
@@ -706,7 +751,7 @@ const TargetScreen = () => {
             mx={10}
             p={8}
             mt={5}
-            bg="white"
+            bg="#3F82D9"
             rounded={6}
             style={{
               shadowColor: "#000",
@@ -725,7 +770,7 @@ const TargetScreen = () => {
                 <Text
                   allowFontScaling={false}
                   fontSize={responsive(10)}
-                  color="text"
+                  color="#fff"
                 >
                   Lead Status
                 </Text>
@@ -750,7 +795,7 @@ const TargetScreen = () => {
                   text={`Jumlah Leads berdasarkan status COLD, WARM, dan HOT`}
                 />
               </Div>
-              <FlatList data={status} renderItem={renderStatus} />
+              <FlatList data={status} horizontal renderItem={newRenderStatus} />
             </Div>
           </Div>
 
@@ -1443,7 +1488,7 @@ const TargetScreen = () => {
             mx={10}
             p={8}
             mt={5}
-            bg="white"
+            bg="#3F82D9"
             rounded={6}
             style={{
               shadowColor: "#000",
@@ -1457,12 +1502,12 @@ const TargetScreen = () => {
               elevation: 3,
             }}
           >
-            <Div>
+            <Div >
               <Div row>
                 <Text
                   allowFontScaling={false}
                   fontSize={responsive(10)}
-                  color="text"
+                  color="#fff"
                 >
                   Lead Status
                 </Text>
@@ -1487,7 +1532,7 @@ const TargetScreen = () => {
                   text={`Jumlah Leads berdasarkan status COLD, WARM, dan HOT`}
                 />
               </Div>
-              <FlatList data={status} renderItem={renderStatus} />
+              <FlatList data={status} horizontal renderItem={newRenderStatus} />
             </Div>
           </Div>
 
@@ -2263,7 +2308,7 @@ const TargetScreen = () => {
               my={5}
               color="primary"
               py={9}
-              fontWeight='700'
+              fontWeight="700"
               bg="white"
               borderWidth={1}
               borderColor="primary"
