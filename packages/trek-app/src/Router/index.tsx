@@ -317,16 +317,16 @@ const HeaderRight = ({ toCart, toDiscountApproval }) => {
             </Text>
           </Div>
         </Pressable>
-      ) : (
-        <Pressable onPress={toDiscountApproval}>
-          <Icon
-            name="clock-check-outline"
-            color="#FFF"
-            fontSize={20}
-            fontFamily="MaterialCommunityIcons"
-          />
-        </Pressable>
-      )}
+      ) : null
+      // <Pressable onPress={toDiscountApproval}>
+      //   <Icon
+      //     name="clock-check-outline"
+      //     color="#FFF"
+      //     fontSize={20}
+      //     fontFamily="MaterialCommunityIcons"
+      //   />
+      // </Pressable>
+      }
     </Div>
   )
 }
@@ -492,12 +492,12 @@ const DashboardStackScreen = () => {
         }}
         component={InvoiceScreen}
       ></Dashboard.Screen>
-      <Dashboard.Screen
+      {/* <Dashboard.Screen
         name="DiscountApproval"
         options={{ title: "Discount Approval" }}
       >
         {withRequireLoginMiddleware(DiscountApprovalScreen)}
-      </Dashboard.Screen>
+      </Dashboard.Screen> */}
       <Dashboard.Screen
         name="ActivityTotal"
         options={{
@@ -748,6 +748,12 @@ const PromoStackScreen = () => {
         }}
         component={ProductDetailScreen}
       />
+      <Promo.Screen
+        name="DiscountApproval"
+        options={{ title: "Discount Approval" }}
+      >
+        {withRequireLoginMiddleware(DiscountApprovalScreen)}
+      </Promo.Screen>
     </Promo.Navigator>
   )
 }
