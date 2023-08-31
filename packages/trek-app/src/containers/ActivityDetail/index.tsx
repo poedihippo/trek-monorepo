@@ -9,9 +9,7 @@ import { StackNavigationProp } from "@react-navigation/stack"
 import Case from "case"
 import React, { useEffect, useState } from "react"
 import {
-  FlatList,
-  ImageBackground,
-  Keyboard,
+  FlatList, Keyboard,
   Modal,
   Pressable,
   RefreshControl
@@ -250,7 +248,7 @@ export default () => {
                         {brand?.name}
                       </Text>
                       <Text ml={5} color="#c4c4c4" textAlign="right">
-                        {formatCurrency(brand?.estimated_value)}
+                        {formatCurrency(brand?.order_value)}
                       </Text>
                     </Div>
                   </Div>
@@ -271,7 +269,6 @@ export default () => {
             <OrderDetail
               orderData={orderData}
               isDeals={isDeals}
-              refetch={refetch}
             />
             {/* <OrderDemand orderData={orderData} isDeals={isDeals}/> */}
           </Div>
@@ -305,59 +302,6 @@ export default () => {
           </>
         )}
       </Div>
-
-      <Div mt={10} bg="white" px={20} pt={30} pb={20}>
-        <Text fontSize={14} fontWeight="bold">
-          Picture
-        </Text>
-        <Div row>
-          <FlatList
-            data={activityData?.images}
-            numColumns={2}
-            renderItem={({ item }: any) => {
-              return (
-                <Pressable
-                  onPress={() =>
-                    setModalVisible({
-                      visible: true,
-                      imageURL: item?.url,
-                    })
-                  }
-                >
-                  <ImageBackground
-                    resizeMode="contain"
-                    source={{ uri: item?.url }}
-                    style={{
-                      width: widthPercentageToDP(30),
-                      marginRight: widthPercentageToDP(5),
-                      marginLeft: widthPercentageToDP(5),
-                      justifyContent: "space-around",
-                      marginTop: heightPercentageToDP(2),
-                    }}
-                  >
-                    <Div
-                      bg="rgba(52, 52, 52, 0.8)"
-                      w={widthPercentageToDP(30)}
-                      h={heightPercentageToDP(28)}
-                    />
-                    <Div
-                      position="absolute"
-                      bottom={20}
-                      justifyContent="center"
-                      alignSelf="center"
-                    >
-                      <Text fontSize={12} color="#fff" fontWeight="500">
-                        See Detail
-                      </Text>
-                    </Div>
-                  </ImageBackground>
-                </Pressable>
-              )
-            }}
-          />
-        </Div>
-      </Div>
-
       <Modal
         animationType="fade"
         transparent={true}

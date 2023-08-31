@@ -1,24 +1,19 @@
 import { useNavigation, useRoute } from "@react-navigation/native"
 import moment from "moment"
-import React, { useRef, useState } from "react"
+import React, { useState } from "react"
 import {
-  Dimensions,
-  FlatList,
-  ScrollView,
-  TouchableOpacity,
+  FlatList, TouchableOpacity
 } from "react-native"
 import {
   Button,
   Div,
   Dropdown,
   Icon,
-  Input,
-  ScrollDiv,
-  Text,
+  Input, Text
 } from "react-native-magnus"
 import {
   heightPercentageToDP,
-  widthPercentageToDP,
+  widthPercentageToDP
 } from "react-native-responsive-screen"
 
 import Loading from "components/Loading"
@@ -73,10 +68,10 @@ const SalesNewLeads = () => {
         </Div>
 
         <Button
-          h={heightPercentageToDP(5)}
-          w={widthPercentageToDP(25)}
+          w={widthPercentageToDP(23)}
           fontSize={responsive(9)}
           borderColor="#000"
+          py={8}
           borderWidth={1}
           suffix={
             <Icon

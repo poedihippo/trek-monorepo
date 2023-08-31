@@ -1,24 +1,24 @@
 import { useQuery } from "react-query"
 
-import { useAxios } from "hooks/useApi"
+import useApi, { useAxios } from "hooks/useApi"
 
-import { standardExtraQueryParam } from "helper/pagination"
+import { Paginated, standardExtraQueryParam } from "helper/pagination"
 
-import standardErrorHandling from "../../errors"
+import standardErrorHandling from "../../../errors"
 
 export default (requestObject, perPage = 20) => {
   const axios = useAxios()
   const queryData = useQuery<any>(
-    ["userList", requestObject, perPage],
+    ["dashboardQuotations", requestObject, perPage],
     ({ pageParam = 1 }) => {
       return axios
-        .get(`new-reports/invoice`, {
+        .get(`new-reports/quotation`, {
           params: {
             ...requestObject,
           },
         })
         .then((res) => {
-          return { data: res.data.data }
+          return { data: res.data }
         })
         .catch(standardErrorHandling)
     },

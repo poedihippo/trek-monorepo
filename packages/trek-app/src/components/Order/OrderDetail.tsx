@@ -12,7 +12,6 @@ import {
 
 import DiscountButton from "containers/Checkout/DiscountButton"
 import DiscountModal from "containers/Checkout/DiscountModal"
-
 import Image from "components/Image"
 import Text from "components/Text"
 import UploadPicture from "components/UploadPicture"
@@ -42,14 +41,12 @@ type PropTypes = {
   orderData: Order
   isDeals: boolean
   showQuotation?: boolean
-  refetch?: any
 }
 
 export default function OrderDetail({
   orderData,
   isDeals,
   showQuotation = true,
-  refetch,
 }: PropTypes) {
   const navigation = useNavigation()
   const { width: screenWidth } = useWindowDimensions()
@@ -64,8 +61,9 @@ export default function OrderDetail({
   const [editModalShown, setEditModalShown] = useState(false)
   const [discModalVisible, setDiscModalVisible] = useState(false)
   const [discountDetail, setDiscountDetail] = useState<[]>([])
-  const [activeDiscount, setActiveDiscount] = useState<[]>([])
-  const [shipping, setShipping] = useState<number>(0)
+  const [activeDiscount, setActiveDiscount] = useState<any>()
+  const [shipping, setShipping] = useState<number>(orderData.additionalDiscount)
+  console.log(orderData)
   const onHideModal = () => {
     setEditModalShown(false)
     setToggle(0)
@@ -73,19 +71,7 @@ export default function OrderDetail({
   const { addItem, resetCart } = useCart()
   const [modalCancel, setModalCancel] = useState(false)
   const [toggle, setToggle] = useState(0)
-  const {
-    queries: [{ data: userData }],
-    meta: {
-      isError,
-      isLoading,
-      isFetching,
-      isManualRefetching,
-      manualRefetch,
-      isFetchingNextPage,
-      hasNextPage,
-      fetchNextPage,
-    },
-  } = useMultipleQueries([useUserLoggedInData()] as const)
+  const {userData} = useAuth() 
   const handleSubmit = () => {
     setSpinner(true)
     var formData = new FormData()
@@ -162,7 +148,6 @@ export default function OrderDetail({
         navigation.goBack()
       })
   }
-  // console.log(orderData)
   const onAddToCart = useCallback(() => {
     addItem(
       orderData.orderDetails.map((selection) => ({
@@ -216,7 +201,7 @@ export default function OrderDetail({
         `orders/${orderData.id}`,
         {
           additional_discount: shipping,
-          discount_ids: activeDiscount,
+          discount_id: activeDiscount?.id,
           discount_type: toggle,
         },
         {
@@ -236,7 +221,7 @@ export default function OrderDetail({
       .finally(() => {
         setSpinner(false)
         setEditModalShown(false)
-        refetch()
+        queryClient.invalidateQueries("order")
         setShipping(0)
         setActiveDiscount([])
       })
@@ -324,24 +309,6 @@ export default function OrderDetail({
         }
         ListFooterComponent={
           <>
-            {/* {userData.type === "DIRECTOR" && userData.app_show_hpp === true ? (
-              <Div px={8} mx={15} mb={10} row justifyContent="space-between">
-                <Text color="#17949D" fontWeight="bold">
-                  Total Hpp:
-                </Text>
-                <Text color="#17949D" fontWeight="bold">
-                  {formatCurrency(
-                    orderData.orderDetails.reduce(
-                      (
-                        n: any,
-                        val: { productUnit: { production_cost: any } },
-                      ) => val.productUnit.production_cost + n,
-                      0,
-                    ),
-                  )}
-                </Text>
-              </Div>
-            ) : null} */}
             <Div px={20} mb={10} row justifyContent="space-between">
               <Text>Packing Fee:</Text>
               <Text>{formatCurrency(orderData.packingFee)}</Text>
@@ -350,10 +317,7 @@ export default function OrderDetail({
               <Text>Shipping Fee:</Text>
               <Text>{formatCurrency(orderData.shippingFee)}</Text>
             </Div>
-            <Div px={20} mb={10} row justifyContent="space-between">
-              <Text>Voucher:</Text>
-              <Text>{formatCurrency(orderData.totalVoucher)}</Text>
-            </Div>
+            
             <Div px={20} mb={10} row justifyContent="space-between">
               <Text>Discount:</Text>
               <Text>{formatCurrency(orderData.totalDiscount)}</Text>
@@ -595,11 +559,6 @@ export default function OrderDetail({
                   setVisible={setDiscModalVisible}
                   disabled={false}
                 />
-                {/* <DiscountModal
-                  visible={discModalVisible}
-                  setVisible={setDiscModalVisible}
-                  setActiveDiscount={setActiveDiscount}
-                /> */}
                 <DiscountModal
                   activeDiscount={activeDiscount}
                   visible={discModalVisible}

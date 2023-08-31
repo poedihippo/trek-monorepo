@@ -10,7 +10,7 @@ import {
   Pressable,
   RefreshControl,
   ScrollView,
-  TouchableOpacity,
+  TouchableOpacity
 } from "react-native"
 import {
   Button,
@@ -19,12 +19,12 @@ import {
   Modal,
   Skeleton,
   Text,
-  Tooltip,
+  Tooltip
 } from "react-native-magnus"
 import * as Progress from "react-native-progress"
 import {
   heightPercentageToDP,
-  widthPercentageToDP,
+  widthPercentageToDP
 } from "react-native-responsive-screen"
 
 import BotSection from "containers/Dashboard/BotSection"
@@ -34,13 +34,14 @@ import SelectChannel from "components/SelectChannel"
 
 import useMultipleQueries from "hooks/useMultipleQueries"
 
-import useChannelDefault from "api/hooks/channel/useChannelDefault"
 import useTarget from "api/hooks/target/useTarget"
 import useSuperstarList from "api/hooks/topSales/useSuperstarList"
 import useUserLoggedInData from "api/hooks/user/useUserLoggedInData"
 
 import { formatCurrency, responsive } from "helper"
 import { COLOR_PRIMARY } from "helper/theme"
+import DealComponent from "./sub/DealComponent"
+import QuotationComponent from "./sub/QuotationComponent"
 
 const TargetScreen = () => {
   const tooltipRef = React.createRef(),
@@ -224,153 +225,7 @@ const TargetScreen = () => {
       {userData?.type === "SALES" ? (
         <>
           {/* Deals */}
-          <Div>
-            <Pressable
-              onPress={() =>
-                navigation.navigate("QuotationInside", {
-                  type: userData?.type,
-                  id: userData?.id,
-                  name: userData?.name,
-                  invoice_type: "deals",
-                  startDate: !!start ? start : moment().startOf("month"),
-                  endDate: !!end ? end : moment().endOf("month"),
-                })
-              }
-            >
-              <Div
-                style={{
-                  shadowColor: "#000",
-                  shadowOffset: {
-                    width: 0,
-                    height: 1,
-                  },
-                  shadowOpacity: 0.22,
-                  shadowRadius: 2.22,
-
-                  elevation: 3,
-                }}
-                row
-                // justifyContent="space-between"
-                // ml={heightPercentageToDP(3)}
-                rounded={4}
-                // w={widthPercentageToDP(95)}
-                p={8}
-                mx={10}
-                h={heightPercentageToDP(18.5)}
-                bg="#1746A2"
-              >
-                <Div justifyContent="center">
-                  <Progress.Circle
-                    unfilledColor="white"
-                    fill="transparent"
-                    borderWidth={0}
-                    size={100}
-                    progress={
-                      data?.deals?.value / data?.deals?.target_deals ===
-                        Infinity ||
-                      isNaN(data?.deals?.value / data?.deals?.target_deals)
-                        ? 0
-                        : data?.deals?.value / data?.deals?.target_deals
-                    }
-                    animated={false}
-                    thickness={8}
-                    showsText={true}
-                    color={"white"}
-                  />
-                </Div>
-
-                <Div ml={heightPercentageToDP(3)}>
-                  <Div row alignItems="center" mt={10}>
-                    <Text
-                      allowFontScaling={false}
-                      fontSize={responsive(10)}
-                      color="white"
-                    >
-                      Deals
-                    </Text>
-                    <TouchableOpacity
-                      onPress={() => {
-                        if (tipDeal.current) {
-                          tipDeal.current.show()
-                        }
-                      }}
-                    >
-                      <Icon
-                        ml={5}
-                        name="info"
-                        color="grey"
-                        fontFamily="Feather"
-                        fontSize={12}
-                      />
-                    </TouchableOpacity>
-                    <Tooltip
-                      ref={tipDeal}
-                      mr={widthPercentageToDP(10)}
-                      text={`Jumlah total pencapaian anda`}
-                    />
-                  </Div>
-                  <Div row>
-                    <Text
-                      allowFontScaling={false}
-                      fontSize={responsive(12)}
-                      fontWeight="bold"
-                      color="white"
-                    >
-                      {isLoading === true ? (
-                        <Skeleton.Box
-                          w={widthPercentageToDP(20)}
-                          h={heightPercentageToDP(3)}
-                        />
-                      ) : (
-                        formatCurrency(data?.deals?.value)
-                      )}
-                    </Text>
-                    <Icon
-                      ml={3}
-                      name={
-                        data?.deals?.value < data?.deals?.compare
-                          ? "caretdown"
-                          : "caretup"
-                      }
-                      fontFamily="AntDesign"
-                      fontSize={8}
-                      color={
-                        data?.deals?.value < data?.deals?.compare
-                          ? "#F44336"
-                          : "#2DCC70"
-                      }
-                    />
-                  </Div>
-                  <Text
-                    allowFontScaling={false}
-                    fontSize={responsive(10)}
-                    // my={7}
-                    color="#c4c4c4"
-                  >
-                    Target
-                  </Text>
-                  <Text
-                    allowFontScaling={false}
-                    fontSize={responsive(10)}
-                    // my={7}
-                    color="#c4c4c4"
-                  >
-                    {isLoading === true ? (
-                      <Skeleton.Box
-                        h={heightPercentageToDP(1)}
-                        w={widthPercentageToDP(40)}
-                      />
-                    ) : !!data?.deals?.target_deals ? (
-                      formatCurrency(data?.deals?.target_deals)
-                    ) : (
-                      formatCurrency(0)
-                    )}
-                  </Text>
-                </Div>
-              </Div>
-            </Pressable>
-          </Div>
-
+          <DealComponent userData={userData} start={start} end={end} data={data} tipDeal={tipDeal} isLoading={isLoading}/>
           {/* Leads */}
           {/* Sales */}
           <Div row mx={10} mt={8} justifyContent="space-around">
@@ -1492,104 +1347,8 @@ const TargetScreen = () => {
           </Div>
 
           <Div row mx={15} mt={10} justifyContent="center">
-            <Div
-              style={{
-                shadowColor: "#000",
-                shadowOffset: {
-                  width: 0,
-                  height: 1,
-                },
-                shadowOpacity: 0.22,
-                shadowRadius: 2.22,
-
-                elevation: 3,
-              }}
-              w={widthPercentageToDP(46)}
-              rounded={4}
-              px={5}
-              mx={5}
-              h={heightPercentageToDP(11)}
-              bg="#17519D"
-              justifyContent="center"
-            >
-              <Div row>
-                <Text
-                  allowFontScaling={false}
-                  fontSize={responsive(10)}
-                  color="white"
-                >
-                  Quotation
-                </Text>
-                <TouchableOpacity
-                  onPress={() => {
-                    if (tipQuotation.current) {
-                      tipQuotation.current.show()
-                    }
-                  }}
-                >
-                  <Icon
-                    ml={5}
-                    name="info"
-                    color="grey"
-                    fontFamily="Feather"
-                    fontSize={12}
-                  />
-                </TouchableOpacity>
-                <Tooltip
-                  ref={tipQuotation}
-                  mr={widthPercentageToDP(10)}
-                  text={`Jumlah nominal quotation yang sudah dibuat`}
-                />
-              </Div>
-              <Div row>
-                <Text
-                  allowFontScaling={false}
-                  fontSize={responsive(10)}
-                  fontWeight="bold"
-                  color="white"
-                >
-                  {isLoading === true ? (
-                    <Skeleton.Box
-                      h={heightPercentageToDP(2.5)}
-                      w={widthPercentageToDP(40)}
-                    />
-                  ) : !!data?.quotation?.value ? (
-                    formatCurrency(data?.quotation?.value)
-                  ) : (
-                    formatCurrency(0)
-                  )}
-                </Text>
-                <Icon
-                  ml={3}
-                  name={
-                    data?.quotation?.value < data?.quotation?.compare
-                      ? "caretdown"
-                      : "caretup"
-                  }
-                  fontFamily="AntDesign"
-                  fontSize={8}
-                  color={
-                    data?.quotation?.value < data?.quotation?.compare
-                      ? "#F44336"
-                      : "#2DCC70"
-                  }
-                />
-              </Div>
-              {/* <Progress.Bar
-                borderRadius={0}
-                progress={0.6}
-                color="#FFFFFF"
-                borderWidth={0}
-                height={3}
-                useNativeDriver
-                unfilledColor="#c4c4c4"
-                width={widthPercentageToDP(40)}
-                style={{ marginBottom: 5 }}
-              />
-              <Text fontSize={10} color="white">
-                Target {formatCurrency(950000)}
-              </Text> */}
-            </Div>
+            <QuotationComponent start={start} end={end} data={data} tipQuotation={tipQuotation}/>
+        
             <Div
               style={{
                 shadowColor: "#000",
@@ -1693,8 +1452,7 @@ const TargetScreen = () => {
       )}
     </>
   )
-  const [tempCompany, setTempCompany] = useState<any>("")
-  const [tempChannel, setTempChannel] = useState<any>("")
+  const [tempCompany, ] = useState<any>("")
   const FilterBase = () => (
     <Modal
       isVisible={filterVisible}
@@ -1751,27 +1509,6 @@ const TargetScreen = () => {
         </>
       ) : (
         <>
-          {/* <Div row p={20}>
-            <Button
-              bg="white"
-              onPress={() => setCompany("1")}
-              borderWidth={1}
-              borderColor={company === "1" ? "#17949D" : "grey"}
-              color={company === "1" ? "#17949D" : "grey"}
-              mr={10}
-            >
-              Melandas
-            </Button>
-            <Button
-              bg="white"
-              onPress={() => setCompany("2")}
-              borderWidth={1}
-              borderColor={company === "2" ? "#17949D" : "grey"}
-              color={company === "2" ? "#17949D" : "grey"}
-            >
-              Dio Living
-            </Button>
-          </Div> */}
           <Div mx={20}>
             <SelectChannel
               value={channel}
@@ -2240,7 +1977,7 @@ const TargetScreen = () => {
         <>
           <TouchableOpacity
             style={{
-              padding: 10,
+              padding: 8,
               borderRadius: 8,
               backgroundColor: COLOR_PRIMARY,
               marginHorizontal: widthPercentageToDP(2),

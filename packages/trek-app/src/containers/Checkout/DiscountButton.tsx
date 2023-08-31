@@ -8,9 +8,9 @@ import Text from "components/Text"
 import { responsive } from "helper"
 import { COLOR_PRIMARY } from "helper/theme"
 
-export default ({ activeDiscount, setVisible, disabled }) => {
+export default ({ activeDiscount, setVisible, disabled,discountDetail}:any) => {
   const { width: screenWidth } = useWindowDimensions()
-
+  console.log(discountDetail,'details')
   return (
     <Div mt={5} px={20} pt={20} bg="white">
       {!!activeDiscount ? (

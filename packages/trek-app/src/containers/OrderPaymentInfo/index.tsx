@@ -124,7 +124,6 @@ export default () => {
   if (isLoading) {
     return <Loading />
   }
-  console.log(orderData)
 
   return (
     <FlatList
