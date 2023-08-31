@@ -23,6 +23,7 @@ import { useAxios } from "hooks/useApi"
 import { useAuth } from "providers/Auth"
 
 import { formatCurrency } from "helper"
+import { COLOR_PRIMARY } from "helper/theme"
 
 const TopSales = () => {
   const { loggedIn } = useAuth()
@@ -241,8 +242,8 @@ const TopSales = () => {
             bg="white"
             borderWidth={2}
             mx={5}
-            borderColor={categorySales === "value" ? "#17949D" : "grey"}
-            color={categorySales === "value" ? "#17949D" : "grey"}
+            borderColor={categorySales === "value" ? COLOR_PRIMARY : "grey"}
+            color={categorySales === "value" ? COLOR_PRIMARY : "grey"}
             underlayColor="red100"
           >
             Value
@@ -251,8 +252,8 @@ const TopSales = () => {
             onPress={() => setCategorySales("target")}
             bg="white"
             borderWidth={2}
-            borderColor={categorySales === "value" ? "grey" : "#17949D"}
-            color={categorySales === "value" ? "grey" : "#17949D"}
+            borderColor={categorySales === "value" ? "grey" : COLOR_PRIMARY}
+            color={categorySales === "value" ? "grey" : COLOR_PRIMARY}
             underlayColor="red100"
           >
             Target
@@ -265,7 +266,7 @@ const TopSales = () => {
           data={dummyData}
           ListHeaderComponent={
             categorySales === "target" ? (
-              <Div py={14} row bg="#17949D">
+              <Div py={14} row bg={COLOR_PRIMARY}>
                 <Div flex={1.5}>
                   <Text color="white" fontWeight="bold" textAlign="center">
                     No.
@@ -288,7 +289,7 @@ const TopSales = () => {
                 </Div>
               </Div>
             ) : (
-              <Div py={14} row bg="#17949D">
+              <Div py={14} row bg={COLOR_PRIMARY}>
                 <Div flex={1}>
                   <Text color="white" fontWeight="bold" textAlign="center">
                     No.
