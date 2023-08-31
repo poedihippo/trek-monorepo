@@ -277,7 +277,7 @@ const ApprovalSection = ({
     <>
       <Div h="100%" px={20} pt={20}>
         <OrderDetail orderData={order} isDeals={false} showQuotation={false} />
-        <Div row justifyContent="space-between">
+        <Div row justifyContent="space-between" my={10}>
           <Button
             bg="white"
             ml={20}

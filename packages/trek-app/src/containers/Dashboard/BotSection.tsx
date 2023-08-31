@@ -112,14 +112,13 @@ const BotSection = ({ data, startDate, endDate, userData }) => {
         {userData.type === "DIRECTOR" ? (
           <>
             <TouchableOpacity
-
-            // onPress={() =>
-            //   navigation.navigate("TopSales", {
-            //     startDate: startDate,
-            //     endDate: endDate,
-            //     type: "supervisor",
-            //   })
-            // }
+              onPress={() =>
+                navigation.navigate("TopSales", {
+                  startDate: startDate,
+                  endDate: endDate,
+                  type: "supervisor",
+                })
+              }
             >
               <FlatList
                 style={{ padding: 10, width: windowWidth }}
@@ -130,13 +129,13 @@ const BotSection = ({ data, startDate, endDate, userData }) => {
               />
             </TouchableOpacity>
             <TouchableOpacity
-            // onPress={() =>
-            //   navigation.navigate("TopSales", {
-            //     startDate: startDate,
-            //     endDate: endDate,
-            //     type: "channel",
-            //   })
-            // }
+              onPress={() =>
+                navigation.navigate("TopSales", {
+                  startDate: startDate,
+                  endDate: endDate,
+                  type: "channel",
+                })
+              }
             >
               <FlatList
                 style={{ padding: 20, width: windowWidth }}
@@ -147,13 +146,13 @@ const BotSection = ({ data, startDate, endDate, userData }) => {
               />
             </TouchableOpacity>
             <TouchableOpacity
-            // onPress={() =>
-            //   navigation.navigate("TopSales", {
-            //     startDate: startDate,
-            //     endDate: endDate,
-            //     type: "sales",
-            //   })
-            // }
+              onPress={() =>
+                navigation.navigate("TopSales", {
+                  startDate: startDate,
+                  endDate: endDate,
+                  type: "sales",
+                })
+              }
             >
               <FlatList
                 style={{ padding: 20, width: windowWidth }}
@@ -167,13 +166,13 @@ const BotSection = ({ data, startDate, endDate, userData }) => {
         ) : userData.type === "SUPERVISOR" ? (
           <>
             <TouchableOpacity
-            // onPress={() =>
-            //   navigation.navigate("TopSales", {
-            //     startDate: startDate,
-            //     endDate: endDate,
-            //     type: "channel",
-            //   })
-            // }
+              onPress={() =>
+                navigation.navigate("TopSales", {
+                  startDate: startDate,
+                  endDate: endDate,
+                  type: "channel",
+                })
+              }
             >
               <FlatList
                 style={{ padding: 20, width: windowWidth }}
@@ -184,13 +183,13 @@ const BotSection = ({ data, startDate, endDate, userData }) => {
               />
             </TouchableOpacity>
             <TouchableOpacity
-            // onPress={() =>
-            //   navigation.navigate("TopSales", {
-            //     startDate: startDate,
-            //     endDate: endDate,
-            //     type: "sales",
-            //   })
-            // }
+              onPress={() =>
+                navigation.navigate("TopSales", {
+                  startDate: startDate,
+                  endDate: endDate,
+                  type: "sales",
+                })
+              }
             >
               <FlatList
                 style={{ padding: 20, width: windowWidth }}
@@ -203,13 +202,13 @@ const BotSection = ({ data, startDate, endDate, userData }) => {
           </>
         ) : (
           <TouchableOpacity
-          // onPress={() =>
-          //   navigation.navigate("TopSales", {
-          //     startDate: startDate,
-          //     endDate: endDate,
-          //     type: "sales",
-          //   })
-          // }
+            onPress={() =>
+              navigation.navigate("TopSales", {
+                startDate: startDate,
+                endDate: endDate,
+                type: "sales",
+              })
+            }
           >
             <FlatList
               style={{ padding: 20, width: windowWidth }}
