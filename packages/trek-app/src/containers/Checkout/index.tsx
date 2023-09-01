@@ -29,9 +29,9 @@ import Languages from "helper/languages"
 
 import { Discount } from "types/Discount"
 
+import AddProductModal from "./AddProductModal"
 import AdditionalFeeButton from "./AdditionalFeeButton"
 import AdditionalFeeModal from "./AdditionalFeeModal"
-import AddProductModal from "./AddProductModal"
 import CheckoutItem from "./CheckoutItem"
 import DiscountButton from "./DiscountButton"
 import DiscountModal from "./DiscountModal"

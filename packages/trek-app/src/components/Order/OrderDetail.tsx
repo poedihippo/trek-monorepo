@@ -7,11 +7,12 @@ import Spinner from "react-native-loading-spinner-overlay"
 import { Button, Checkbox, Div, Modal, Overlay } from "react-native-magnus"
 import {
   heightPercentageToDP,
-  widthPercentageToDP
+  widthPercentageToDP,
 } from "react-native-responsive-screen"
 
 import DiscountButton from "containers/Checkout/DiscountButton"
 import DiscountModal from "containers/Checkout/DiscountModal"
+
 import Image from "components/Image"
 import Text from "components/Text"
 import UploadPicture from "components/UploadPicture"
@@ -31,7 +32,7 @@ import { COLOR_DISABLED } from "helper/theme"
 import {
   Order,
   orderApprovalStatusConfig,
-  orderPaymentStatusConfig
+  orderPaymentStatusConfig,
 } from "types/Order"
 
 import { queryClient } from "../../query"
@@ -71,7 +72,7 @@ export default function OrderDetail({
   const { addItem, resetCart } = useCart()
   const [modalCancel, setModalCancel] = useState(false)
   const [toggle, setToggle] = useState(0)
-  const {userData} = useAuth() 
+  const { userData } = useAuth()
   const handleSubmit = () => {
     setSpinner(true)
     var formData = new FormData()
@@ -86,7 +87,6 @@ export default function OrderDetail({
       })
       .then((res) => {
         queryClient.invalidateQueries("order")
-
       })
       .catch((err) => {
         if (err) {
@@ -317,7 +317,7 @@ export default function OrderDetail({
               <Text>Shipping Fee:</Text>
               <Text>{formatCurrency(orderData.shippingFee)}</Text>
             </Div>
-            
+
             <Div px={20} mb={10} row justifyContent="space-between">
               <Text>Discount:</Text>
               <Text>{formatCurrency(orderData.totalDiscount)}</Text>

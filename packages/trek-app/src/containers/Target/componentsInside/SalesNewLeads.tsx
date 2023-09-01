@@ -1,19 +1,11 @@
 import { useNavigation, useRoute } from "@react-navigation/native"
 import moment from "moment"
 import React, { useState } from "react"
-import {
-  FlatList, TouchableOpacity
-} from "react-native"
-import {
-  Button,
-  Div,
-  Dropdown,
-  Icon,
-  Input, Text
-} from "react-native-magnus"
+import { FlatList, TouchableOpacity } from "react-native"
+import { Button, Div, Dropdown, Icon, Input, Text } from "react-native-magnus"
 import {
   heightPercentageToDP,
-  widthPercentageToDP
+  widthPercentageToDP,
 } from "react-native-responsive-screen"
 
 import Loading from "components/Loading"

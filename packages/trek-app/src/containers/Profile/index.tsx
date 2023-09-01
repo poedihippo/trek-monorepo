@@ -34,7 +34,7 @@ const Profile = () => {
   const navigation = useNavigation()
   const { onLogout } = useAuth()
   const Activity: Activity[] = dataFromPaginated(activityPaginatedData)
-  console.log(userData,'data')
+  console.log(userData, "data")
   useEffect(() => {
     navigation.setOptions({
       headerRight: () => (
@@ -136,12 +136,20 @@ const Profile = () => {
           alignItems="center"
           justifyContent="center"
         >
-           <Icon
-                name={userData.type === 'DIRECTOR' ? "chess-queen" : userData.supervisorTypeId === 1 ? 'chess-knight' : userData.supervisorTypeId === 2 ? "chess-rook" : "chess-pawn"}
-                fontSize={25}
-                color="white"
-                fontFamily="FontAwesome5"
-              />
+          <Icon
+            name={
+              userData.type === "DIRECTOR"
+                ? "chess-queen"
+                : userData.supervisorTypeId === 1
+                ? "chess-knight"
+                : userData.supervisorTypeId === 2
+                ? "chess-rook"
+                : "chess-pawn"
+            }
+            fontSize={25}
+            color="white"
+            fontFamily="FontAwesome5"
+          />
         </Div>
         <Text fontSize={responsive(12)} my={3}>
           {userData.name}

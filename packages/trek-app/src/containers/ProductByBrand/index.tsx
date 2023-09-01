@@ -3,7 +3,7 @@ import {
   CompositeNavigationProp,
   RouteProp,
   useNavigation,
-  useRoute
+  useRoute,
 } from "@react-navigation/native"
 import { StackNavigationProp } from "@react-navigation/stack"
 import Case from "case"
@@ -12,7 +12,7 @@ import { FlatList, Pressable, useWindowDimensions } from "react-native"
 import { Button, Div, Icon, Input, ScrollDiv } from "react-native-magnus"
 import {
   heightPercentageToDP,
-  widthPercentageToDP
+  widthPercentageToDP,
 } from "react-native-responsive-screen"
 
 import EndOfList from "components/CommonList/EndOfList"
@@ -30,14 +30,14 @@ import useProductList from "api/hooks/pos/product/useProductList"
 
 import { EntryStackParamList } from "Router/EntryStackParamList"
 import {
-  MainTabParamList, ProductStackParamList
+  MainTabParamList,
+  ProductStackParamList,
 } from "Router/MainTabParamList"
 
 import { formatCurrency } from "helper"
 import Languages from "helper/languages"
 import { dataFromPaginated } from "helper/pagination"
 import s, { COLOR_PRIMARY } from "helper/theme"
-
 
 type CurrentScreenRouteProp = RouteProp<ProductStackParamList, "ProductByBrand">
 type CurrentScreenNavigationProp = CompositeNavigationProp<
@@ -228,33 +228,33 @@ const RenderCard = ({ productModel, key }) => {
           )}`}</Text>
           <Div row justifyContent="space-between">
             <Button
- py={8}
+              py={8}
               onPress={() => onAddToCard(productModel, 2)}
               bg="white"
               color="primary"
               w={widthPercentageToDP(30)}
               borderWidth={1}
-              borderColor='primary'
+              borderColor="primary"
               alignSelf="center"
               textAlign="center"
-              fontWeight='500'
+              fontWeight="500"
               fontSize={12}
             >
-          Buy now
+              Buy now
             </Button>
             <Button
-             py={8}
+              py={8}
               onPress={() => onAddToCard(productModel, 1)}
               bg="primary"
               borderWidth={1}
-              borderColor='primary'
+              borderColor="primary"
               w={widthPercentageToDP(12)}
               alignSelf="center"
               textAlign="center"
-              fontWeight='500'
+              fontWeight="500"
               fontSize={12}
             >
-               <Icon
+              <Icon
                 name="cart-plus"
                 fontFamily="FontAwesome5"
                 fontSize={12}

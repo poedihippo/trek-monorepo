@@ -166,7 +166,10 @@ const RenderCard = ({ productModel, key }) => {
   }
 
   return (
-    <Pressable style={[{ alignItems: "center" }]} onPress={() => navigation.navigate("ProductDetail", productModel)}>
+    <Pressable
+      style={[{ alignItems: "center" }]}
+      onPress={() => navigation.navigate("ProductDetail", productModel)}
+    >
       <Div
         bg={"white"}
         style={{
@@ -219,33 +222,33 @@ const RenderCard = ({ productModel, key }) => {
           )}`}</Text>
           <Div row justifyContent="space-between">
             <Button
- py={8}
+              py={8}
               onPress={() => onAddToCard(productModel, 2)}
               bg="white"
               color="primary"
               w={widthPercentageToDP(30)}
               borderWidth={1}
-              borderColor='primary'
+              borderColor="primary"
               alignSelf="center"
               textAlign="center"
-              fontWeight='500'
+              fontWeight="500"
               fontSize={12}
             >
-          Buy now
+              Buy now
             </Button>
             <Button
-             py={8}
+              py={8}
               onPress={() => onAddToCard(productModel, 1)}
               bg="primary"
               borderWidth={1}
-              borderColor='primary'
+              borderColor="primary"
               w={widthPercentageToDP(12)}
               alignSelf="center"
               textAlign="center"
-              fontWeight='500'
+              fontWeight="500"
               fontSize={12}
             >
-               <Icon
+              <Icon
                 name="cart-plus"
                 fontFamily="FontAwesome5"
                 fontSize={12}

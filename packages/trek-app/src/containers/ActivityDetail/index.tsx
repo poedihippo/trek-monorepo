@@ -3,21 +3,22 @@ import {
   CompositeNavigationProp,
   RouteProp,
   useNavigation,
-  useRoute
+  useRoute,
 } from "@react-navigation/native"
 import { StackNavigationProp } from "@react-navigation/stack"
 import Case from "case"
 import React, { useEffect, useState } from "react"
 import {
-  FlatList, Keyboard,
+  FlatList,
+  Keyboard,
   Modal,
   Pressable,
-  RefreshControl
+  RefreshControl,
 } from "react-native"
 import { Div, Icon, Image as ImageMagnus } from "react-native-magnus"
 import {
   heightPercentageToDP,
-  widthPercentageToDP
+  widthPercentageToDP,
 } from "react-native-responsive-screen"
 
 import FooterLoading from "components/CommonList/FooterLoading"
@@ -43,7 +44,7 @@ import useOrderById from "api/hooks/order/useOrderById"
 import { EntryStackParamList } from "Router/EntryStackParamList"
 import {
   CustomerStackParamList,
-  MainTabParamList
+  MainTabParamList,
 } from "Router/MainTabParamList"
 
 import { formatCurrency, formatDate } from "helper"
@@ -266,10 +267,7 @@ export default () => {
 
         {!!orderData && (
           <Div mb={20} borderBottomWidth={0.8} borderBottomColor="grey">
-            <OrderDetail
-              orderData={orderData}
-              isDeals={isDeals}
-            />
+            <OrderDetail orderData={orderData} isDeals={isDeals} />
             {/* <OrderDemand orderData={orderData} isDeals={isDeals}/> */}
           </Div>
         )}

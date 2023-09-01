@@ -18,7 +18,7 @@ type PropTypes = {
 
 export default ({ productModel, onProductSelect }: PropTypes) => {
   const { width: screenWidth } = useWindowDimensions()
-  
+
   return (
     <>
       <Carousel
@@ -41,9 +41,7 @@ export default ({ productModel, onProductSelect }: PropTypes) => {
             <Text fontSize={14} fontWeight="bold" mb={5} w={200}>
               {productModel.name}
             </Text>
-            <Text>
-              {formatCurrency(productModel.price)}
-            </Text>
+            <Text>{formatCurrency(productModel.price)}</Text>
           </Div>
         </Div>
       </Div>

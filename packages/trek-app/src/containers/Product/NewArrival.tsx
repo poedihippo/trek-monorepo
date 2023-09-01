@@ -72,10 +72,7 @@ export default (props: PropTypes) => {
           <NewProductCard
             key={`product_${productModel.id}`}
             productModel={productModel}
-            onPress={() =>
-              navigation.navigate("ProductDetail", productModel)
-              
-            }
+            onPress={() => navigation.navigate("ProductDetail", productModel)}
             containerStyle={[s.mR10]}
           />
         )}

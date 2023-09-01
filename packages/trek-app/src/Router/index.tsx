@@ -296,36 +296,37 @@ const HeaderRight = ({ toCart, toDiscountApproval }) => {
   const { cartData } = useCart()
   return (
     <Div flex={1} row px={20} alignItems="center">
-      {data.type === "SALES" ? (
-        <Pressable onPress={toCart}>
-          <Icon
-            name="cart-outline"
-            color="#FFF"
-            fontSize={20}
-            fontFamily="Ionicons"
-          />
-          <Div
-            bg="red"
-            rounded={20}
-            h={10}
-            w={10}
-            position="absolute"
-            right={0}
-          >
-            <Text color="#fff" fontSize={responsive(6)} textAlign="center">
-              {cartData.length}
-            </Text>
-          </Div>
-        </Pressable>
-      ) : null
-      // <Pressable onPress={toDiscountApproval}>
-      //   <Icon
-      //     name="clock-check-outline"
-      //     color="#FFF"
-      //     fontSize={20}
-      //     fontFamily="MaterialCommunityIcons"
-      //   />
-      // </Pressable>
+      {
+        data.type === "SALES" ? (
+          <Pressable onPress={toCart}>
+            <Icon
+              name="cart-outline"
+              color="#FFF"
+              fontSize={20}
+              fontFamily="Ionicons"
+            />
+            <Div
+              bg="red"
+              rounded={20}
+              h={10}
+              w={10}
+              position="absolute"
+              right={0}
+            >
+              <Text color="#fff" fontSize={responsive(6)} textAlign="center">
+                {cartData.length}
+              </Text>
+            </Div>
+          </Pressable>
+        ) : null
+        // <Pressable onPress={toDiscountApproval}>
+        //   <Icon
+        //     name="clock-check-outline"
+        //     color="#FFF"
+        //     fontSize={20}
+        //     fontFamily="MaterialCommunityIcons"
+        //   />
+        // </Pressable>
       }
     </Div>
   )

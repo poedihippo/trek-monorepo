@@ -10,7 +10,7 @@ import {
   Pressable,
   RefreshControl,
   ScrollView,
-  TouchableOpacity
+  TouchableOpacity,
 } from "react-native"
 import {
   Button,
@@ -19,12 +19,12 @@ import {
   Modal,
   Skeleton,
   Text,
-  Tooltip
+  Tooltip,
 } from "react-native-magnus"
 import * as Progress from "react-native-progress"
 import {
   heightPercentageToDP,
-  widthPercentageToDP
+  widthPercentageToDP,
 } from "react-native-responsive-screen"
 
 import BotSection from "containers/Dashboard/BotSection"
@@ -40,9 +40,10 @@ import useUserLoggedInData from "api/hooks/user/useUserLoggedInData"
 
 import { formatCurrency, responsive } from "helper"
 import { COLOR_PRIMARY } from "helper/theme"
+
 import DealComponent from "./sub/DealComponent"
-import QuotationComponent from "./sub/QuotationComponent"
 import LeadComponent from "./sub/LeadComponent"
+import QuotationComponent from "./sub/QuotationComponent"
 
 const TargetScreen = () => {
   const tooltipRef = React.createRef(),
@@ -231,14 +232,14 @@ const TargetScreen = () => {
       mx={7}
       style={{
         shadowColor: "#000",
-shadowOffset: {
-	width: 0,
-	height: 1,
-},
-shadowOpacity: 0.20,
-shadowRadius: 1.41,
+        shadowOffset: {
+          width: 0,
+          height: 1,
+        },
+        shadowOpacity: 0.2,
+        shadowRadius: 1.41,
 
-elevation: 2,
+        elevation: 2,
       }}
     >
       <Div justifyContent="center" alignItems="center" my={10}>
@@ -265,10 +266,15 @@ elevation: 2,
           fontSize={16}
         />
         {/* <Div mx={8} h={8} w={8} rounded={8 / 2} bg={item.color} /> */}
-        <Text allowFontScaling={false} fontSize={12} color='text'>
+        <Text allowFontScaling={false} fontSize={12} color="text">
           {item.status}
         </Text>
-        <Text allowFontScaling={false} fontSize={12} color='text' fontWeight='500'>
+        <Text
+          allowFontScaling={false}
+          fontSize={12}
+          color="text"
+          fontWeight="500"
+        >
           {!!item.total ? item.total : "0"}
         </Text>
       </Div>
@@ -280,26 +286,42 @@ elevation: 2,
         <>
           {/* Deals */}
           <Div mx={10}>
-          <DealComponent userData={userData} start={start} end={end} tipDeal={tipDeal} />
-          <LeadComponent onActiveLeadPress={() =>
-          navigation.navigate("SalesNewLeads", {
-            type: userData?.type,
-            id: userData?.id,
-            name: userData?.name,
-            startDate: !!start ? start : moment().startOf("month"),
-            endDate: !!end ? end : moment().endOf("month"),
-            isActive: 1,
-          })
-        } onPress={() =>
-          navigation.navigate("SalesNewLeads", {
-            type: userData?.type,
-            id: userData?.id,
-            name: userData?.name,
-            startDate: !!start ? start : moment().startOf("month"),
-            endDate: !!end ? end : moment().endOf("month"),
-            isActive: 0,
-          })
-        } tooltipRef={tooltipRef} userData={userData} start={start} end={end} tipLead={tipLead} data={data} isLoading={isLoading} tipActiveLead={tipActiveLead}/>
+            <DealComponent
+              userData={userData}
+              start={start}
+              end={end}
+              tipDeal={tipDeal}
+            />
+            <LeadComponent
+              onActiveLeadPress={() =>
+                navigation.navigate("SalesNewLeads", {
+                  type: userData?.type,
+                  id: userData?.id,
+                  name: userData?.name,
+                  startDate: !!start ? start : moment().startOf("month"),
+                  endDate: !!end ? end : moment().endOf("month"),
+                  isActive: 1,
+                })
+              }
+              onPress={() =>
+                navigation.navigate("SalesNewLeads", {
+                  type: userData?.type,
+                  id: userData?.id,
+                  name: userData?.name,
+                  startDate: !!start ? start : moment().startOf("month"),
+                  endDate: !!end ? end : moment().endOf("month"),
+                  isActive: 0,
+                })
+              }
+              tooltipRef={tooltipRef}
+              userData={userData}
+              start={start}
+              end={end}
+              tipLead={tipLead}
+              data={data}
+              isLoading={isLoading}
+              tipActiveLead={tipActiveLead}
+            />
           </Div>
           <Div
             mx={10}
@@ -319,7 +341,7 @@ elevation: 2,
               elevation: 3,
             }}
           >
-            <Div >
+            <Div>
               <Div row>
                 <Text
                   allowFontScaling={false}
@@ -349,15 +371,24 @@ elevation: 2,
                   text={`Jumlah Leads berdasarkan status COLD, WARM, dan HOT`}
                 />
               </Div>
-              <Div my={10} alignItems='center'>
-              <FlatList data={status}  contentContainerStyle={{ padding: 5 }}  horizontal renderItem={newRenderStatus} />
+              <Div my={10} alignItems="center">
+                <FlatList
+                  data={status}
+                  contentContainerStyle={{ padding: 5 }}
+                  horizontal
+                  renderItem={newRenderStatus}
+                />
               </Div>
             </Div>
           </Div>
 
           {/* Sales */}
-          <Div row  mt={8} justifyContent="center">
-          <QuotationComponent start={start} end={end} tipQuotation={tipQuotation} onPress={() =>
+          <Div row mt={8} justifyContent="center">
+            <QuotationComponent
+              start={start}
+              end={end}
+              tipQuotation={tipQuotation}
+              onPress={() =>
                 navigation.navigate("QuotationInside", {
                   type: userData?.type,
                   id: userData?.id,
@@ -366,8 +397,9 @@ elevation: 2,
                   startDate: !!start ? start : moment().startOf("month"),
                   endDate: !!end ? end : moment().endOf("month"),
                 })
-              }/>
-          
+              }
+            />
+
             <Pressable
               onPress={() =>
                 navigation.navigate("EstimatedInside", {
@@ -483,462 +515,44 @@ elevation: 2,
       ) : (
         <>
           {/* Deals */}
-          <Div>
-            <Div
-              row
-              style={{
-                shadowColor: "#000",
-                shadowOffset: {
-                  width: 0,
-                  height: 1,
-                },
-                shadowOpacity: 0.22,
-                shadowRadius: 2.22,
-
-                elevation: 3,
-              }}
-              // justifyContent="space-between"
-              rounded={4}
-              // w={widthPercentageToDP(60)}
-              p={8}
-              mx={10}
-              h={heightPercentageToDP(18.5)}
-              bg="#1746A2"
-            >
-              <Div justifyContent="center">
-                <Progress.Circle
-                  fill="transparent"
-                  unfilledColor="white"
-                  borderWidth={0}
-                  size={100}
-                  progress={
-                    data?.deals?.value / data?.deals?.target_deals ===
-                      Infinity ||
-                    isNaN(data?.deals?.value / data?.deals?.target_deals)
-                      ? 0
-                      : data?.deals?.value / data?.deals?.target_deals
-                  }
-                  animated={false}
-                  thickness={8}
-                  showsText={true}
-                  color={"#FF731D"}
-                />
-              </Div>
-
-              <Div ml={heightPercentageToDP(2)}>
-                <Div row alignItems="center" mt={10}>
-                  <Text
-                    allowFontScaling={false}
-                    fontSize={responsive(10)}
-                    color="white"
-                  >
-                    Deals
-                  </Text>
-                  <TouchableOpacity
-                    onPress={() => {
-                      if (tipDeal.current) {
-                        tipDeal.current.show()
-                      }
-                    }}
-                  >
-                    <Icon
-                      ml={5}
-                      name="info"
-                      color="grey"
-                      fontFamily="Feather"
-                      fontSize={12}
-                    />
-                  </TouchableOpacity>
-                  <Tooltip
-                    ref={tipDeal}
-                    mr={widthPercentageToDP(10)}
-                    text={`Jumlah total pencapaian anda`}
-                  />
-                </Div>
-                <Div row>
-                  <Text
-                    allowFontScaling={false}
-                    fontSize={responsive(12)}
-                    fontWeight="bold"
-                    color="white"
-                  >
-                    {isLoading === true ? (
-                      <Skeleton.Box
-                        w={widthPercentageToDP(20)}
-                        h={heightPercentageToDP(3)}
-                      />
-                    ) : (
-                      formatCurrency(data?.deals?.value)
-                    )}
-                  </Text>
-                  <Icon
-                    ml={3}
-                    name={
-                      data?.deals?.value < data?.deals?.compare
-                        ? "caretdown"
-                        : "caretup"
-                    }
-                    fontFamily="AntDesign"
-                    fontSize={8}
-                    color={
-                      data?.deals?.value < data?.deals?.compare
-                        ? "#F44336"
-                        : "#2DCC70"
-                    }
-                  />
-                </Div>
-                <Text
-                  allowFontScaling={false}
-                  fontSize={responsive(10)}
-                  my={7}
-                  color="#c4c4c4"
-                >
-                  Target
-                </Text>
-                <Text
-                  allowFontScaling={false}
-                  fontSize={responsive(10)}
-                  my={7}
-                  color="#c4c4c4"
-                >
-                  {isLoading === true ? (
-                    <Skeleton.Box
-                      h={heightPercentageToDP(1)}
-                      w={widthPercentageToDP(40)}
-                    />
-                  ) : !!data?.deals?.target_deals ? (
-                    formatCurrency(data?.deals?.target_deals)
-                  ) : (
-                    formatCurrency(0)
-                  )}
-                </Text>
-              </Div>
-            </Div>
+          <Div mx={10}>
+            <DealComponent
+              userData={userData}
+              start={start}
+              end={end}
+              tipDeal={tipDeal}
+            />
+            <LeadComponent
+              onActiveLeadPress={() =>
+                navigation.navigate("SalesNewLeads", {
+                  type: userData?.type,
+                  id: userData?.id,
+                  name: userData?.name,
+                  startDate: !!start ? start : moment().startOf("month"),
+                  endDate: !!end ? end : moment().endOf("month"),
+                  isActive: 1,
+                })
+              }
+              onPress={() =>
+                navigation.navigate("SalesNewLeads", {
+                  type: userData?.type,
+                  id: userData?.id,
+                  name: userData?.name,
+                  startDate: !!start ? start : moment().startOf("month"),
+                  endDate: !!end ? end : moment().endOf("month"),
+                  isActive: 0,
+                })
+              }
+              tooltipRef={tooltipRef}
+              userData={userData}
+              start={start}
+              end={end}
+              tipLead={tipLead}
+              data={data}
+              isLoading={isLoading}
+              tipActiveLead={tipActiveLead}
+            />
           </Div>
-
-          {/* Leads */}
-          <Div row mx={10} mt={8} justifyContent="space-around">
-            <Div>
-              <Div
-                style={{
-                  shadowColor: "#000",
-                  shadowOffset: {
-                    width: 0,
-                    height: 1,
-                  },
-                  shadowOpacity: 0.22,
-                  shadowRadius: 2.22,
-
-                  elevation: 3,
-                }}
-                rounded={4}
-                p={10}
-                w={widthPercentageToDP(31)}
-                h={heightPercentageToDP(12)}
-                bg="#FF731D"
-              >
-                <Div row>
-                  <Text
-                    allowFontScaling={false}
-                    fontSize={responsive(10)}
-                    color="white"
-                  >
-                    New Leads
-                  </Text>
-                  <TouchableOpacity
-                    onPress={() => {
-                      if (tipLead.current) {
-                        tipLead.current.show()
-                      }
-                    }}
-                  >
-                    <Icon
-                      ml={5}
-                      name="info"
-                      color="grey"
-                      fontFamily="Feather"
-                      fontSize={12}
-                    />
-                  </TouchableOpacity>
-                  <Tooltip
-                    ref={tipLead}
-                    mr={widthPercentageToDP(10)}
-                    text={`Jumlah lead baru anda pada bulan ini`}
-                  />
-                </Div>
-                <Div row>
-                  <Text
-                    allowFontScaling={false}
-                    fontSize={responsive(10)}
-                    fontWeight="bold"
-                    color="white"
-                  >
-                    {isLoading === true ? (
-                      <Skeleton.Box
-                        h={heightPercentageToDP(2.5)}
-                        w={widthPercentageToDP(10)}
-                      />
-                    ) : !!data?.new_leads?.value ? (
-                      data?.new_leads?.value
-                    ) : (
-                      "0"
-                    )}
-                  </Text>
-                  <Icon
-                    ml={3}
-                    name={
-                      data?.new_leads?.value < data?.new_leads?.compare
-                        ? "caretdown"
-                        : "caretup"
-                    }
-                    fontFamily="AntDesign"
-                    fontSize={8}
-                    color={
-                      data?.new_leads?.value < data?.new_leads?.compare
-                        ? "#F44336"
-                        : "#2DCC70"
-                    }
-                  />
-                </Div>
-                <Div row>
-                  <Div>
-                    <Progress.Bar
-                      borderRadius={0}
-                      color="#FFFFFF"
-                      borderWidth={0}
-                      height={3}
-                      useNativeDriver
-                      unfilledColor="#c4c4c4"
-                      width={widthPercentageToDP(20)}
-                      style={{ marginTop: 5 }}
-                      progress={
-                        data?.new_leads?.value /
-                          data?.new_leads?.target_leads ===
-                          Infinity ||
-                        isNaN(
-                          data?.new_leads?.value /
-                            data?.new_leads?.target_leads,
-                        )
-                          ? 0
-                          : data?.new_leads?.value /
-                            data?.new_leads?.target_leads
-                      }
-                    />
-                  </Div>
-                  {/* <Text
-                    fontSize={responsive(8)}
-                    color="#fff"
-                    ml={heightPercentageToDP(1)}
-                  >
-                    {`${Math.round(
-                      (data?.new_leads?.value / data?.new_leads?.target_leads) *
-                        100,
-                    )}%`}
-                  </Text> */}
-                  <Text
-                    fontSize={responsive(8)}
-                    color="#fff"
-                    ml={heightPercentageToDP(1)}
-                  >
-                    (0%)
-                  </Text>
-                </Div>
-                <Text
-                  fontSize={responsive(10)}
-                  color="white"
-                  allowFontScaling={false}
-                >
-                  Target{" "}
-                  {!!data?.new_leads?.target_leads
-                    ? data?.new_leads?.target_leads
-                    : "0"}
-                </Text>
-              </Div>
-              <Div
-                style={{
-                  shadowColor: "#000",
-                  shadowOffset: {
-                    width: 0,
-                    height: 1,
-                  },
-                  shadowOpacity: 0.22,
-                  shadowRadius: 2.22,
-
-                  elevation: 3,
-                }}
-                rounded={4}
-                p={5}
-                px={10}
-                w={widthPercentageToDP(31)}
-                h={heightPercentageToDP(6)}
-                mt={heightPercentageToDP(0.5)}
-                bg="white"
-              >
-                <Div>
-                  <Div row>
-                    <Text
-                      allowFontScaling={false}
-                      fontSize={responsive(9)}
-                      color="#979797"
-                    >
-                      Active Leads
-                    </Text>
-                    <TouchableOpacity
-                      onPress={() => {
-                        if (tipActiveLead.current) {
-                          tipActiveLead.current.show()
-                        }
-                      }}
-                    >
-                      <Icon
-                        ml={5}
-                        name="info"
-                        color="#c4c4c4"
-                        fontFamily="Feather"
-                        fontSize={12}
-                      />
-                    </TouchableOpacity>
-                    <Tooltip
-                      ref={tipActiveLead}
-                      mr={widthPercentageToDP(10)}
-                      text={`Jumlah total active lead`}
-                    />
-                  </Div>
-                  <Text
-                    allowFontScaling={false}
-                    fontSize={responsive(10)}
-                    fontWeight="bold"
-                    color="#5F9DF7"
-                  >
-                    {!!data?.active_leads?.value
-                      ? data?.active_leads?.value
-                      : "0"}
-                  </Text>
-                </Div>
-              </Div>
-            </Div>
-            <Div
-              p={8}
-              bg="#fff"
-              rounded={6}
-              w={widthPercentageToDP(60)}
-              style={{
-                shadowColor: "#000",
-                shadowOffset: {
-                  width: 0,
-                  height: 1,
-                },
-                shadowOpacity: 0.22,
-                shadowRadius: 2.22,
-
-                elevation: 3,
-              }}
-            >
-              <Div row>
-                <Text
-                  allowFontScaling={false}
-                  fontSize={responsive(10)}
-                  color="text"
-                >
-                  Follow Up
-                </Text>
-                <TouchableOpacity
-                  onPress={() => {
-                    if (tooltipRef.current) {
-                      tooltipRef.current.show()
-                    }
-                  }}
-                >
-                  <Icon
-                    ml={5}
-                    name="info"
-                    color="grey"
-                    fontFamily="Feather"
-                    fontSize={12}
-                  />
-                </TouchableOpacity>
-                <Tooltip
-                  ref={tooltipRef}
-                  mr={widthPercentageToDP(10)}
-                  text={`Jumlah Follow up yang dilakukan ke customer`}
-                />
-              </Div>
-              <Div row alignItems="center">
-                <Text
-                  allowFontScaling={false}
-                  fontSize={responsive(12)}
-                  my={5}
-                  fontWeight="bold"
-                  color="#5F9DF7"
-                >
-                  {isLoading === true ? (
-                    <Skeleton.Box
-                      h={heightPercentageToDP(2.5)}
-                      w={widthPercentageToDP(10)}
-                    />
-                  ) : !!data?.follow_up?.total_activities?.value ? (
-                    data?.follow_up?.total_activities?.value
-                  ) : (
-                    "0"
-                  )}
-                </Text>
-                <Icon
-                  ml={5}
-                  name={
-                    data?.follow_up?.total_activities?.value <
-                    data?.follow_up?.total_activities?.compare
-                      ? "caretdown"
-                      : "caretup"
-                  }
-                  fontFamily="AntDesign"
-                  fontSize={10}
-                  color={
-                    data?.follow_up?.total_activities?.value <
-                    data?.follow_up?.total_activities?.compare
-                      ? "#F44336"
-                      : "#2DCC70"
-                  }
-                />
-              </Div>
-              <Progress.Bar
-                borderRadius={0}
-                progress={
-                  data?.follow_up?.total_activities?.value /
-                    data?.follow_up?.total_activities?.target_activities ===
-                    Infinity ||
-                  isNaN(
-                    data?.follow_up?.total_activities?.value /
-                      data?.follow_up?.total_activities?.target_activities,
-                  )
-                    ? 0
-                    : data?.follow_up?.total_activities?.value /
-                      data?.follow_up?.total_activities?.target_activities
-                }
-                color="#5F9DF7"
-                borderWidth={0}
-                height={5}
-                useNativeDriver
-                unfilledColor="#c4c4c4"
-                width={widthPercentageToDP("55%")}
-              />
-              {/* <Text my={5} fontSize={responsive(8)} color="#c4c4c4">
-                Target {data?.follow_up?.total_activities?.target_activities}{" "}
-                {`(${Math.round(
-                  (data?.follow_up?.total_activities?.value /
-                    data?.follow_up?.total_activities?.target_activities) *
-                    100,
-                )}%)`}
-              </Text> */}
-              <Text my={5} fontSize={responsive(8)} color="#c4c4c4">
-                Target{" "}
-                {!!data?.follow_up?.total_activities?.target_activities
-                  ? data?.follow_up?.total_activities?.target_activities
-                  : "0"}{" "}
-                (0%)
-              </Text>
-            </Div>
-          </Div>
-
           <Div
             mx={10}
             p={8}
@@ -957,7 +571,7 @@ elevation: 2,
               elevation: 3,
             }}
           >
-            <Div >
+            <Div>
               <Div row>
                 <Text
                   ml={10}
@@ -988,15 +602,24 @@ elevation: 2,
                   text={`Jumlah Leads berdasarkan status COLD, WARM, dan HOT`}
                 />
               </Div>
-              <Div my={10} alignItems='center'>
-              <FlatList data={status}  contentContainerStyle={{ padding: 5 }}  horizontal renderItem={newRenderStatus} />
+              <Div my={10} alignItems="center">
+                <FlatList
+                  data={status}
+                  contentContainerStyle={{ padding: 5 }}
+                  horizontal
+                  renderItem={newRenderStatus}
+                />
               </Div>
             </Div>
           </Div>
 
           <Div row mx={15} mt={10} justifyContent="center">
-            <QuotationComponent start={start} end={end} tipQuotation={tipQuotation}/>
-        
+            <QuotationComponent
+              start={start}
+              end={end}
+              tipQuotation={tipQuotation}
+            />
+
             <Div
               style={{
                 shadowColor: "#000",
@@ -1100,7 +723,7 @@ elevation: 2,
       )}
     </>
   )
-  const [tempCompany, ] = useState<any>("")
+  const [tempCompany] = useState<any>("")
   const FilterBase = () => (
     <Modal
       isVisible={filterVisible}
