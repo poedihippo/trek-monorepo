@@ -131,7 +131,7 @@ export default function FilterBase<FilterType extends Record<string, any>>({
                 setFilterValues({ ...filterValues, [searchBy]: val })
               }}
             />
-            {renderFilterButton()}
+            {/* {renderFilterButton()} */}
           </Div>
         </Div>
       </Div>

@@ -7,7 +7,7 @@ import { StackNavigationProp } from "@react-navigation/stack"
 import { LinearGradient } from "expo-linear-gradient"
 import React, { useState } from "react"
 import { FlatList, TouchableOpacity } from "react-native"
-import { Button, Div } from "react-native-magnus"
+import { Button, Div, Input } from "react-native-magnus"
 import {
   heightPercentageToDP,
   widthPercentageToDP,
@@ -51,7 +51,6 @@ type CurrentScreenNavigationProp = CompositeNavigationProp<
 export default () => {
   const navigation = useNavigation<CurrentScreenNavigationProp>()
   const { addItem } = useCart()
-
   const [filters, setFilter] = useState({})
 
   const {
@@ -84,7 +83,7 @@ export default () => {
   }
   return (
     <>
-      <ProductUnitFilter activeFilterValues={filters} onSetFilter={setFilter} />
+      <ProductUnitFilter activeFilterValues={filters} onSetFilter={setFilter} />    
       <FlatList
         contentContainerStyle={[{ flexGrow: 1 }, s.p20, s.bgWhite]}
         data={data}

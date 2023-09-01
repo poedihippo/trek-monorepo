@@ -809,7 +809,7 @@ const TargetScreen = () => {
                 marginTop: heightPercentageToDP(5),
               }}
               locations={[0.5, 1.0]}
-              colors={["#20B5C0", "#17949D"]}
+              colors={["#1d4076", "#1F3B62"]}
             >
               <Text
                 allowFontScaling={false}

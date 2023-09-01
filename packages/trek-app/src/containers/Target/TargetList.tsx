@@ -196,7 +196,7 @@ const TargetList = ({ type }: PropTypes) => {
                   allowFontScaling={false}
                   fontSize={responsive(8)}
                   fontWeight="bold"
-                  color={COLOR_PRIMARY}
+                  color={"#000"}
                 >
                   {formatCurrency(item?.deals?.value)}
                 </Text>
@@ -224,7 +224,7 @@ const TargetList = ({ type }: PropTypes) => {
                     ? 0
                     : item?.deals?.value / item?.deals?.target_deals
                 }
-                color={COLOR_PRIMARY}
+                color={"#000"}
                 borderWidth={0}
                 height={3}
                 useNativeDriver
@@ -264,7 +264,7 @@ const TargetList = ({ type }: PropTypes) => {
                 <Text
                   allowFontScaling={false}
                   fontSize={responsive(8)}
-                  color="#17949D"
+                  color="#000"
                   fontWeight="bold"
                 >
                   {item?.new_leads?.value}
@@ -294,7 +294,7 @@ const TargetList = ({ type }: PropTypes) => {
                     ? 0
                     : item?.new_leads?.value / item?.new_leads?.target_leads
                 }
-                color="#17949D"
+                color="#000"
                 borderWidth={0}
                 height={3}
                 useNativeDriver
@@ -361,7 +361,7 @@ const TargetList = ({ type }: PropTypes) => {
                     : item?.follow_up?.total_activities?.value /
                       item?.follow_up?.total_activities?.target_activities
                 }
-                color={COLOR_PRIMARY}
+                color={"#000"}
                 borderWidth={0}
                 height={3}
                 useNativeDriver
@@ -443,7 +443,7 @@ const TargetList = ({ type }: PropTypes) => {
                         allowFontScaling={false}
                         fontSize={responsive(8)}
                         mr={2}
-                        color={COLOR_PRIMARY}
+                        color={"#000"}
                         fontWeight="bold"
                       >{`${item?.active_leads?.value} Active`}</Text>
                     </Div>
@@ -478,7 +478,7 @@ const TargetList = ({ type }: PropTypes) => {
                       allowFontScaling={false}
                       fontSize={responsive(8)}
                       fontWeight="bold"
-                      color={COLOR_PRIMARY}
+                      color={"#000"}
                     >
                       {formatCurrency(item?.quotation?.value)}
                     </Text>
@@ -527,7 +527,7 @@ const TargetList = ({ type }: PropTypes) => {
                     <Text
                       allowFontScaling={false}
                       fontSize={responsive(8)}
-                      color={COLOR_PRIMARY}
+                      color={"#000"}
                       fontWeight="bold"
                     >
                       {formatCurrency(item?.estimation?.value)}
@@ -957,9 +957,9 @@ const TargetList = ({ type }: PropTypes) => {
       <FlatList
         refreshControl={
           <RefreshControl
-            colors={[COLOR_PRIMARY]}
-            tintColor={COLOR_PRIMARY}
-            titleColor={COLOR_PRIMARY}
+            colors={["#000"]}
+            tintColor={"#000"}
+            titleColor={"#000"}
             title="Loading..."
             refreshing={isFetching}
             onRefresh={refetch}
