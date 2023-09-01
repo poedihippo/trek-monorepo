@@ -4,11 +4,11 @@ import { formatCurrency, responsive } from 'helper'
 import useMultipleQueries from 'hooks/useMultipleQueries'
 import moment from 'moment'
 import React from 'react'
-import { TouchableOpacity } from 'react-native'
+import { Pressable, TouchableOpacity } from 'react-native'
 import { Div, Icon, Skeleton, Text, Tooltip } from 'react-native-magnus'
 import { heightPercentageToDP, widthPercentageToDP } from 'react-native-responsive-screen'
 
-const QuotationComponent = ({tipQuotation, start,end}) => {
+const QuotationComponent = ({tipQuotation, start,end, onPress}) => {
     const {
         queries: [{ data: dataDeals }],
         meta: { isLoading, isFetching, refetch },
@@ -18,6 +18,7 @@ const QuotationComponent = ({tipQuotation, start,end}) => {
       })] as const)
       const data = dataDeals?.data
   return (
+    <Pressable onPress={onPress}>
     <Div
     style={{
       shadowColor: "#000",
@@ -116,6 +117,7 @@ const QuotationComponent = ({tipQuotation, start,end}) => {
       Target {formatCurrency(950000)}
     </Text> */}
   </Div>
+    </Pressable>
   )
 }
 

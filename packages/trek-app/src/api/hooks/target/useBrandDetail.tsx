@@ -1,8 +1,8 @@
 import { useQuery } from "react-query"
 
-import useApi, { useAxios } from "hooks/useApi"
+import { useAxios } from "hooks/useApi"
 
-import { Paginated, standardExtraQueryParam } from "helper/pagination"
+import { standardExtraQueryParam } from "helper/pagination"
 
 import standardErrorHandling from "../../errors"
 
