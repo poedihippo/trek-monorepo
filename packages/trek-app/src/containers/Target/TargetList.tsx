@@ -303,11 +303,11 @@ const TargetList = ({ type }: PropTypes) => {
                 style={{ marginBottom: 5 }}
               />
               <Text color="#c4c4c4" fontSize={10}>
-                Target {item?.new_leads?.target_leads}{" "}
-                {`(${Math.round(
+                Target {item?.new_leads?.target_leads}
+                {/* {`(${Math.round(
                   (item?.new_leads?.value / item?.new_leads?.target_leads) *
                     100,
-                )}%)`}{" "}
+                )}%)`} */}
               </Text>
             </Div>
           </Pressable>
@@ -370,10 +370,10 @@ const TargetList = ({ type }: PropTypes) => {
               />
               <Text my={5} fontSize={responsive(8)} color="#c4c4c4">
                 Target {item?.follow_up?.total_activities?.target_activities}{" "}
-                {`(${Math.round(
+                {/* {`(${Math.round(
                   (item?.new_leads?.value / item?.new_leads?.target_leads) *
                     100,
-                )}%)`}
+                )}%)`} */}
               </Text>
               <FlatList
                 data={status}
