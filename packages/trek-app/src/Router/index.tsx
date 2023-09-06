@@ -715,6 +715,14 @@ const ProductStackScreen = () => {
         }}
         component={Stocks}
       />
+
+      <Product.Screen
+        name="PromoDetail"
+        options={{
+          title: "Promo Detail",
+        }}
+        component={PromoDetailScreen}
+      />
     </Product.Navigator>
   )
 }

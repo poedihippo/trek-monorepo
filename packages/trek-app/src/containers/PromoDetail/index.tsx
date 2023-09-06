@@ -7,6 +7,7 @@ import {
 } from "@react-navigation/native"
 import { StackNavigationProp } from "@react-navigation/stack"
 import { LinearGradient } from "expo-linear-gradient"
+import moment from "moment"
 import React from "react"
 import {
   FlatList,
@@ -39,18 +40,19 @@ type CurrentScreenNavigationProp = CompositeNavigationProp<
 >
 
 export default () => {
-  const route = useRoute<CurrentScreenRouteProp>()
-  const navigation = useNavigation<CurrentScreenNavigationProp>()
-  const promoId = route?.params?.id ?? -1
-  if (promoId === -1) {
-    if (navigation.canGoBack()) {
-      navigation.goBack()
-    } else {
-      navigation.navigate("Main")
-    }
-    // toast(Languages.PageNotFound)
-    return null
-  }
+  const route = useRoute<any>()
+  const params = route.params.data
+  const navigation = useNavigation<CurrentScreenNavigationProp>()  
+  // const promoId = route?.params?.id ?? -1
+  // if (promoId === -1) {
+  //   if (navigation.canGoBack()) {
+  //     navigation.goBack()
+  //   } else {
+  //     navigation.navigate("Main")
+  //   }
+  //   // toast(Languages.PageNotFound)
+  //   return null
+  // }
 
   const { width: screenWidth } = useWindowDimensions()
 
@@ -63,8 +65,7 @@ export default () => {
       <Image
         width={screenWidth}
         source={{
-          uri:
-            route.params.images?.length > 0 ? route.params.images[0].url : null,
+          uri: params.images[0].url,
         }}
         style={[s.mB10, { height: 215 }]}
       />
@@ -72,19 +73,23 @@ export default () => {
         <Text fontWeight="bold" mb={5}>
           Promo Name
         </Text>
-        <Text mb={20}>{route.params.name}</Text>
+        <Text mb={20}>{params.name}</Text>
         <Text fontWeight="bold" mb={5}>
           Period
         </Text>
         <Text fontWeight="normal" mb={20}>
-          {formatDate(route.params.startTime)} -{" "}
-          {formatDate(route.params.endTime)}
+          {moment(params.start_time).format("DD-MMMM-YYYY")} - {moment(params.end_time).format("DD-MMMM-YYYY")}
         </Text>
 
         <Text fontWeight="bold" mb={5}>
           Term and Condition:
         </Text>
-        <WYSIWYG body={route.params.description} />
+        <Text fontWeight="normal" mb={20}>
+          {params.description === null
+            ? "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quam, quas! Unde consectetur eos a odit facere eveniet soluta maiores ex."
+            : params.description}
+        </Text>
+        {/* <WYSIWYG body={route.params.description} /> */}
         {/* <Div row justifyContent="space-between">
           <TouchableOpacity disabled={true}>
             <Div
