@@ -59,10 +59,8 @@ const DealComponent = ({ userData, start, end, tipDeal }) => {
           h={heightPercentageToDP(12)}
           bg="#1746A2"
         >
-      
-
-          <Div >
-            <Div row alignItems="center" >
+          <Div>
+            <Div row alignItems="center">
               <Text
                 allowFontScaling={false}
                 fontSize={responsive(10)}
@@ -92,90 +90,86 @@ const DealComponent = ({ userData, start, end, tipDeal }) => {
               />
             </Div>
             <Div justifyContent="center" my={10}>
-            <Progress.Bar
-              unfilledColor="white"
-              borderWidth={0}
-              height={5}
-              width={widthPercentageToDP("90%")}
-              progress={
-                data?.deals?.value / data?.deals?.target_deals === Infinity ||
-                isNaN(data?.deals?.value / data?.deals?.target_deals)
-                  ? 0
-                  : data?.deals?.value / data?.deals?.target_deals
-              }
-              animated={false}
-              color={"#FF731D"}
-            />
-          </Div>
-            <Div row justifyContent='space-between' >
-            <Div >
-              <Div row>
-              <Text
-                allowFontScaling={false}
-                fontSize={responsive(10)}
-                fontWeight="bold"
-                color="white"
-              >
-                {isLoading === true ? (
-                  <Skeleton.Box
-                    w={widthPercentageToDP(20)}
-                    h={heightPercentageToDP(3)}
-                  />
-                ) : (
-                  formatCurrency(data?.deals?.value)
-                )}
-              </Text>
-              <Icon
-                ml={3}
-                name={
-                  data?.deals?.value < data?.deals?.compare
-                    ? "caretdown"
-                    : "caretup"
+              <Progress.Bar
+                unfilledColor="white"
+                borderWidth={0}
+                height={5}
+                width={widthPercentageToDP("90%")}
+                progress={
+                  data?.deals?.value / data?.deals?.target_deals === Infinity ||
+                  isNaN(data?.deals?.value / data?.deals?.target_deals)
+                    ? 0
+                    : data?.deals?.value / data?.deals?.target_deals
                 }
-                fontFamily="AntDesign"
-                fontSize={8}
-                color={
-                  data?.deals?.value < data?.deals?.compare
-                    ? "#F44336"
-                    : "#2DCC70"
-                }
+                animated={false}
+                color={"#FF731D"}
               />
+            </Div>
+            <Div row justifyContent="space-between">
+              <Div>
+                <Div row>
+                  <Text
+                    allowFontScaling={false}
+                    fontSize={responsive(10)}
+                    fontWeight="bold"
+                    color="white"
+                  >
+                    {isLoading === true ? (
+                      <Skeleton.Box
+                        w={widthPercentageToDP(20)}
+                        h={heightPercentageToDP(3)}
+                      />
+                    ) : (
+                      formatCurrency(data?.deals?.value)
+                    )}
+                  </Text>
+                  <Icon
+                    ml={3}
+                    name={
+                      data?.deals?.value < data?.deals?.compare
+                        ? "caretdown"
+                        : "caretup"
+                    }
+                    fontFamily="AntDesign"
+                    fontSize={8}
+                    color={
+                      data?.deals?.value < data?.deals?.compare
+                        ? "#F44336"
+                        : "#2DCC70"
+                    }
+                  />
+                </Div>
+                <Text allowFontScaling={false} fontSize={10} color="#c4c4c4">
+                  Progress
+                </Text>
               </Div>
-              <Text
-              allowFontScaling={false}
-              fontSize={10}
-              color="#c4c4c4"
-            >
-              Progress
-            </Text>
-            </Div>
-            <Div >    
-            <Text
-              allowFontScaling={false}
-              fontSize={responsive(10)}
-              color="white"
-              textAlign='right'
-            >
-              {isLoading === true ? (
-                <Skeleton.Box
-                  h={heightPercentageToDP(1)}
-                  w={widthPercentageToDP(40)}
-                />
-              ) : !!data?.deals?.target_deals ? (
-                formatCurrency(data?.deals?.target_deals)
-              ) : (
-                formatCurrency(0)
-              )}
-            </Text>
-            <Text
-              allowFontScaling={false}
-              fontSize={10}
-              color="#c4c4c4"
-              textAlign='right'
-            >
-              Target
-            </Text>
-            </Div>
+              <Div>
+                <Text
+                  allowFontScaling={false}
+                  fontSize={responsive(10)}
+                  color="white"
+                  textAlign="right"
+                >
+                  {isLoading === true ? (
+                    <Skeleton.Box
+                      h={heightPercentageToDP(1)}
+                      w={widthPercentageToDP(40)}
+                    />
+                  ) : !!data?.deals?.target_deals ? (
+                    formatCurrency(data?.deals?.target_deals)
+                  ) : (
+                    formatCurrency(0)
+                  )}
+                </Text>
+                <Text
+                  allowFontScaling={false}
+                  fontSize={10}
+                  color="#c4c4c4"
+                  textAlign="right"
+                >
+                  Target
+                </Text>
+              </Div>
             </Div>
           </Div>
         </Div>

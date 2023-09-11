@@ -16,6 +16,7 @@ import {
 } from "react-native"
 import { Swipeable } from "react-native-gesture-handler"
 import { Avatar, Button, Div, Icon, Modal } from "react-native-magnus"
+import { widthPercentageToDP } from "react-native-responsive-screen"
 
 import Text from "components/Text"
 import UserDropdownInput from "components/UserDropdownInput"
@@ -37,7 +38,6 @@ import { Lead, leadStatusConfig } from "types/Lead"
 import { User } from "types/User"
 
 import LeadBrand from "./LeadBrand"
-import { widthPercentageToDP } from "react-native-responsive-screen"
 
 type CurrentScreenNavigationProp = CompositeNavigationProp<
   StackNavigationProp<CustomerStackParamList, any>,
@@ -208,7 +208,7 @@ export default ({ lead, isUnhandled = false }: PropTypes) => {
                   {getFullName(lead.customer)}
                 </Text>
                 {!!lead.leadCategory && (
-                  <Text  mt={5} numberOfLines={1}>
+                  <Text mt={5} numberOfLines={1}>
                     Customer from {lead.leadCategory.name}
                   </Text>
                 )}
@@ -217,14 +217,30 @@ export default ({ lead, isUnhandled = false }: PropTypes) => {
                     {lead.leadSubCategory?.name}
                   </Text>
                 )} */}
-            
               </Div>
             </Div>
           </Div>
-          <View style={[{ height: 1, overflow: 'hidden', marginVertical: 10, marginHorizontal: -20 }]}>
-            <View style={[{ height: 2, borderWidth: 1, borderColor: '#979797', borderStyle: 'dashed' }]}>
-            </View>
-            </View>
+          <View
+            style={[
+              {
+                height: 1,
+                overflow: "hidden",
+                marginVertical: 10,
+                marginHorizontal: -20,
+              },
+            ]}
+          >
+            <View
+              style={[
+                {
+                  height: 2,
+                  borderWidth: 1,
+                  borderColor: "#979797",
+                  borderStyle: "dashed",
+                },
+              ]}
+            ></View>
+          </View>
           <Div row justifyContent="space-between">
             <Div row alignItems="center" justifyContent="center">
               <Icon
@@ -260,38 +276,54 @@ export default ({ lead, isUnhandled = false }: PropTypes) => {
                   source={require("../../assets/Loc.png")}
                   style={{ width: 11, resizeMode: "contain" }}
                 />
-                <Text
-                  ml={5}
-                  color="primary"
-                  numberOfLines={1}
-                >
+                <Text ml={5} color="primary" numberOfLines={1}>
                   {lead.channel.name}
                 </Text>
               </Div>
             )}
           </Div>
-          <View style={[{ height: 1, overflow: 'hidden', marginVertical: 10, marginHorizontal: -20 }]}>
-            <View style={[{ height: 2, borderWidth: 1, borderColor: '#979797', borderStyle: 'dashed' }]}>
-            </View>
-            </View>
+          <View
+            style={[
+              {
+                height: 1,
+                overflow: "hidden",
+                marginVertical: 10,
+                marginHorizontal: -20,
+              },
+            ]}
+          >
+            <View
+              style={[
+                {
+                  height: 2,
+                  borderWidth: 1,
+                  borderColor: "#979797",
+                  borderStyle: "dashed",
+                },
+              ]}
+            ></View>
+          </View>
           {!lead.hasActivity && (
-            <Div roundedBottomRight={6} roundedTopRight={6} ml={-20} bg="#1746A2" alignSelf='flex-start' p={3} px={10} alignItems='center'>
-                  <Text fontWeight="bold" mt={5} numberOfLines={1} color="white">
-                    No Activity Yet
-                  </Text>
-              </Div>
-                )}
-                {!!lead.hasActivity && (
-                  <Text
-                    fontWeight="normal"
-                    mt={5}
-                    numberOfLines={1}
-                    color="#c4c4c4"
-                  >
-                    Last follow up{" "}
-                    {moment(lead.updatedAt).format("DD-MM-YYYY ")}
-                  </Text>
-                )}
+            <Div
+              roundedBottomRight={6}
+              roundedTopRight={6}
+              ml={-20}
+              bg="#1746A2"
+              alignSelf="flex-start"
+              p={3}
+              px={10}
+              alignItems="center"
+            >
+              <Text fontWeight="bold" mt={5} numberOfLines={1} color="white">
+                No Activity Yet
+              </Text>
+            </Div>
+          )}
+          {!!lead.hasActivity && (
+            <Text fontWeight="normal" mt={5} numberOfLines={1} color="#c4c4c4">
+              Last follow up {moment(lead.updatedAt).format("DD-MM-YYYY ")}
+            </Text>
+          )}
         </Div>
       </Swipeable>
     </TouchableOpacity>

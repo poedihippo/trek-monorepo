@@ -83,7 +83,7 @@ export default () => {
   }
   return (
     <>
-      <ProductUnitFilter activeFilterValues={filters} onSetFilter={setFilter} />    
+      <ProductUnitFilter activeFilterValues={filters} onSetFilter={setFilter} />
       <FlatList
         contentContainerStyle={[{ flexGrow: 1 }, s.p20, s.bgWhite]}
         data={data}

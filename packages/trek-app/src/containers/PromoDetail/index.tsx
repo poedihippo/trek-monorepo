@@ -42,7 +42,7 @@ type CurrentScreenNavigationProp = CompositeNavigationProp<
 export default () => {
   const route = useRoute<any>()
   const params = route.params.data
-  const navigation = useNavigation<CurrentScreenNavigationProp>()  
+  const navigation = useNavigation<CurrentScreenNavigationProp>()
   // const promoId = route?.params?.id ?? -1
   // if (promoId === -1) {
   //   if (navigation.canGoBack()) {
@@ -78,7 +78,8 @@ export default () => {
           Period
         </Text>
         <Text fontWeight="normal" mb={20}>
-          {moment(params.start_time).format("DD-MMMM-YYYY")} - {moment(params.end_time).format("DD-MMMM-YYYY")}
+          {moment(params.start_time).format("DD-MMMM-YYYY")} -{" "}
+          {moment(params.end_time).format("DD-MMMM-YYYY")}
         </Text>
 
         <Text fontWeight="bold" mb={5}>

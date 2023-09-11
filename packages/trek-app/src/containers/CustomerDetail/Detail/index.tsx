@@ -7,7 +7,12 @@ import { StackNavigationProp } from "@react-navigation/stack"
 import Case from "case"
 import React, { useState } from "react"
 import { FlatList, Pressable, ScrollView } from "react-native"
+import { TouchableOpacity } from "react-native-gesture-handler"
 import { Button, Div, Icon, Overlay, Image } from "react-native-magnus"
+import {
+  heightPercentageToDP,
+  widthPercentageToDP,
+} from "react-native-responsive-screen"
 
 import Error from "components/Error"
 import InfoBlock from "components/InfoBlock"
@@ -30,7 +35,6 @@ import { formatDate, formatDateOnly } from "helper"
 
 import { activityStatusConfig } from "types/Activity"
 import { Lead, leadStatusConfig } from "types/Lead"
-import { heightPercentageToDP, widthPercentageToDP } from "react-native-responsive-screen"
 
 type CurrentScreenNavigationProp = CompositeNavigationProp<
   CompositeNavigationProp<
@@ -48,7 +52,7 @@ export default ({ lead }: PropTypes) => {
   const navigation = useNavigation<CurrentScreenNavigationProp>()
   const [typeAction, setTypeAction] = useState("")
   const [overlayVisible, setOverlayVisible] = useState(false)
-
+  const [state, setState] = useState(0)
   const {
     id,
     customer,
@@ -78,55 +82,88 @@ export default ({ lead }: PropTypes) => {
     useAddressById(defaultAddressId),
     useUserLoggedInData(),
   ] as const)
-
   const { addressLine1, addressLine2, addressLine3, city, province, postcode } =
     addressData || {}
 
-    const RightSelector = () => {
-      return (
-        <ScrollView
-          contentContainerStyle={{ flexGrow: 1,}}
-          showsVerticalScrollIndicator={false}
-          bounces={false}
-        >
-          {/* Lead */}
-          <Div row justifyContent="space-between" px={20} mt={30}>
-            <Text fontSize={14} fontWeight="bold">
-              Lead
-            </Text>
-            <Pressable
-              onPress={() => navigation.navigate("EditLead", { id: lead.id })}
-            >
-              <Icon
-                bg="white"
-                p={5}
-                name="edit"
-                color="primary"
-                fontSize={16}
-                fontFamily="FontAwesome5"
-              />
-            </Pressable>
+  const RightSelector = () => {
+    return (
+      <ScrollView
+        contentContainerStyle={{ flexGrow: 1 }}
+        showsVerticalScrollIndicator={false}
+        bounces={false}
+      >
+        {/* Lead */}
+        {state === 0 ? (
+          <Div
+            bg="white"
+            m={10}
+            rounded={4}
+            style={{
+              shadowColor: "#000",
+              shadowOffset: {
+                width: 0,
+                height: 1,
+              },
+              shadowOpacity: 0.2,
+              shadowRadius: 1.41,
+
+              elevation: 2,
+            }}
+          >
+            <Div row justifyContent="space-between" px={20} mt={30}>
+              <Text fontSize={14} fontWeight="bold">
+                Lead
+              </Text>
+              <Pressable
+                onPress={() => navigation.navigate("EditLead", { id: lead.id })}
+              >
+                <Icon
+                  bg="white"
+                  p={5}
+                  name="edit"
+                  color="primary"
+                  fontSize={16}
+                  fontFamily="FontAwesome5"
+                />
+              </Pressable>
+            </Div>
+            <InfoBlock
+              title="Priority"
+              data={
+                !!status && (
+                  <Tag
+                    containerColor={leadStatusConfig[status].bg}
+                    textColor={leadStatusConfig[status].textColor}
+                  >
+                    {leadStatusConfig[status].displayText}
+                  </Tag>
+                )
+              }
+            />
+            <InfoBlock title="Type" data={Case.title(type)} />
+            <InfoBlock title="Channel" data={channel.name} length="channel" />
+            <InfoBlock title="Label" data={label} />
+            <InfoBlock title="Interest" data={interest} />
           </Div>
-          <InfoBlock
-            title="Priority"
-            data={
-              !!status && (
-                <Tag
-                  containerColor={leadStatusConfig[status].bg}
-                  textColor={leadStatusConfig[status].textColor}
-                >
-                  {leadStatusConfig[status].displayText}
-                </Tag>
-              )
-            }
-          />
-          <InfoBlock title="Type" data={Case.title(type)} />
-          <InfoBlock title="Channel" data={channel.name} length="channel" />
-          <InfoBlock title="Label" data={label} />
-          <InfoBlock title="Interest" data={interest} />
-  
-          {/* Lastest Activity */}
-          {latestActivity ? (
+        ) : null}
+        {/* Lastest Activity */}
+        {latestActivity && state === 1 ? (
+          <Div
+            bg="white"
+            m={10}
+            rounded={4}
+            style={{
+              shadowColor: "#000",
+              shadowOffset: {
+                width: 0,
+                height: 1,
+              },
+              shadowOpacity: 0.2,
+              shadowRadius: 1.41,
+
+              elevation: 2,
+            }}
+          >
             <>
               <Text fontSize={14} fontWeight="bold" px={20} mt={30}>
                 Lastest Activity
@@ -158,58 +195,84 @@ export default ({ lead }: PropTypes) => {
                 data={formatDate(latestActivity.createdAt)}
               />
             </>
-          ) : null}
-  
-          <Text fontSize={14} fontWeight="bold" px={20} mt={30}>
-            Basic Information
-          </Text>
-          <InfoBlock title="Title" data={Case.title(title)} />
-          <InfoBlock title="First Name" data={firstName} />
-          <InfoBlock title="Last Name" data={lastName} />
-          {!!dateOfBirth && (
-            <InfoBlock title="DoB" data={formatDateOnly(dateOfBirth)} />
-          )}
-          <InfoBlock title="Phone Number" data={phone} />
-          <InfoBlock title="Email" data={email} />
-  
-          <Text fontSize={14} fontWeight="bold" px={20} mt={30}>
-            Default Address
-          </Text>
-          <InfoBlock title="Address Line 1" data={addressLine1} />
-          {!!addressLine2 && (
-            <InfoBlock title="Address Line 2" data={addressLine2} />
-          )}
-          {!!addressLine3 && (
-            <InfoBlock title="Address Line 3" data={addressLine3} />
-          )}
-          <InfoBlock title="City" data={city} />
-          <InfoBlock title="Province" data={province} />
-          <InfoBlock title="Postcode" data={postcode} />
-          {type === "LEADS" && (
-            <>
+          </Div>
+        ) : null}
+        {/* Profile*/}
+        {state === 2 ? (
+          <Div
+            bg="white"
+            m={10}
+            rounded={4}
+            style={{
+              shadowColor: "#000",
+              shadowOffset: {
+                width: 0,
+                height: 1,
+              },
+              shadowOpacity: 0.2,
+              shadowRadius: 1.41,
+
+              elevation: 2,
+            }}
+          >
+            <Text fontSize={14} fontWeight="bold" px={20} mt={30}>
+              Basic Information
+            </Text>
+            <InfoBlock title="Title" data={Case.title(title)} />
+            <InfoBlock title="First Name" data={firstName} />
+            <InfoBlock title="Last Name" data={lastName} />
+            {!!dateOfBirth && (
+              <InfoBlock title="DoB" data={formatDateOnly(dateOfBirth)} />
+            )}
+            <InfoBlock title="Phone Number" data={phone} />
+            <InfoBlock title="Email" data={email} />
+            {type === "LEADS" && (
+              <>
+                <Button
+                  block
+                  m={20}
+                  bg="primary"
+                  color="white"
+                  borderWidth={0}
+                  disabled={
+                    userData.type === "DIRECTOR" &&
+                    userData.app_create_lead === false
+                      ? true
+                      : false
+                  }
+                  onPress={async () => {
+                    await setTypeAction("PROSPECT")
+                    setOverlayVisible(true)
+                  }}
+                >
+                  Upgrade To Prospect
+                </Button>
+                <Button
+                  block
+                  m={20}
+                  mt={-10}
+                  bg="#d63031"
+                  color="white"
+                  borderWidth={0}
+                  disabled={
+                    userData.type === "DIRECTOR" &&
+                    userData.app_create_lead === false
+                      ? true
+                      : false
+                  }
+                  onPress={async () => {
+                    await setTypeAction("DROP")
+                    setOverlayVisible(true)
+                  }}
+                >
+                  Drop Lead
+                </Button>
+              </>
+            )}
+            {type === "PROSPECT" && (
               <Button
                 block
                 m={20}
-                bg="primary"
-                color="white"
-                borderWidth={0}
-                disabled={
-                  userData.type === "DIRECTOR" &&
-                  userData.app_create_lead === false
-                    ? true
-                    : false
-                }
-                onPress={async () => {
-                  await setTypeAction("PROSPECT")
-                  setOverlayVisible(true)
-                }}
-              >
-                Upgrade To Prospect
-              </Button>
-              <Button
-                block
-                m={20}
-                mt={-10}
                 bg="#d63031"
                 color="white"
                 borderWidth={0}
@@ -226,32 +289,46 @@ export default ({ lead }: PropTypes) => {
               >
                 Drop Lead
               </Button>
-            </>
-          )}
-          {type === "PROSPECT" && (
-            <Button
-              block
-              m={20}
-              bg="#d63031"
-              color="white"
-              borderWidth={0}
-              disabled={
-                userData.type === "DIRECTOR" && userData.app_create_lead === false
-                  ? true
-                  : false
-              }
-              onPress={async () => {
-                await setTypeAction("DROP")
-                setOverlayVisible(true)
-              }}
-            >
-              Drop Lead
-            </Button>
-          )}
-        </ScrollView>
-        )
-        
-      }
+            )}
+          </Div>
+        ) : null}
+
+        {/* Default Address */}
+        {state === 3 ? (
+          <Div
+            bg="white"
+            m={10}
+            rounded={4}
+            style={{
+              shadowColor: "#000",
+              shadowOffset: {
+                width: 0,
+                height: 1,
+              },
+              shadowOpacity: 0.2,
+              shadowRadius: 1.41,
+
+              elevation: 2,
+            }}
+          >
+            <Text fontSize={14} fontWeight="bold" px={20} mt={30}>
+              Default Address
+            </Text>
+            <InfoBlock title="Address Line 1" data={addressLine1} />
+            {!!addressLine2 && (
+              <InfoBlock title="Address Line 2" data={addressLine2} />
+            )}
+            {!!addressLine3 && (
+              <InfoBlock title="Address Line 3" data={addressLine3} />
+            )}
+            <InfoBlock title="City" data={city} />
+            <InfoBlock title="Province" data={province} />
+            <InfoBlock title="Postcode" data={postcode} />
+          </Div>
+        ) : null}
+      </ScrollView>
+    )
+  }
   if (isError) {
     return <Error refreshing={isFetching} onRefresh={refetch} />
   }
@@ -292,44 +369,55 @@ export default ({ lead }: PropTypes) => {
           </Button>
         </Div>
       </Overlay>
-      <Div row>
-            <LeftSelector />
-            <RightSelector />
+      <Div row flex={1}>
+        <LeftSelector state={state} setState={setState} />
+        <RightSelector />
       </Div>
     </>
   )
 }
-  // source={require('../../../assets/SplashPempek.jpg')}
+// source={require('../../../assets/SplashPempek.jpg')}
 
-  const LeftSelector = () => {
-    const data = [
-      {
-        name: "activity",
-        image: require('../../../assets/activity.png')
-      },
-      {
-        name: "Lead",
-        image: require('../../../assets/lead.png')
-      },
-      {
-        name: "Profile",
-        image: require('../../../assets/lead_profile.png')
-      },
-      {
-        name: "Address",
-        image: require('../../../assets/address.png')
-      },
-    ]
-    const renderItem = ({item}) => (
-      <Div alignItems="center" justifyContent="center" bg='white' h={heightPercentageToDP(10)} borderBottomWidth={1} borderColor={'#979797'}>
-        <Image source={item.image} style={{width: 30, height: 30, tintColor: "#979797"}}/>
+const LeftSelector = ({ state, setState }) => {
+  const data = [
+    {
+      name: "activity",
+      image: require("../../../assets/activity.png"),
+    },
+    {
+      name: "Lead",
+      image: require("../../../assets/lead.png"),
+    },
+    {
+      name: "Profile",
+      image: require("../../../assets/lead_profile.png"),
+    },
+    {
+      name: "Address",
+      image: require("../../../assets/address.png"),
+    },
+  ]
+  const renderItem = ({ item, index }) => (
+    <TouchableOpacity onPress={() => setState(index)}>
+      <Div
+        alignItems="center"
+        justifyContent="center"
+        bg="white"
+        h={heightPercentageToDP(10)}
+        borderBottomWidth={1}
+        borderColor={"#979797"}
+      >
+        <Image
+          source={item.image}
+          style={{ width: 30, height: 30, tintColor: "#979797" }}
+        />
         <Text textAlign="center">{item.name}</Text>
       </Div>
-    )
-    return (
-      <Div w={widthPercentageToDP(20)} bg='white'>
-        <FlatList bounces={false} data={data} renderItem={renderItem}/>
-        </Div>
-    )
-  }
-
+    </TouchableOpacity>
+  )
+  return (
+    <Div w={widthPercentageToDP(20)} bg="white">
+      <FlatList bounces={false} data={data} renderItem={renderItem} />
+    </Div>
+  )
+}

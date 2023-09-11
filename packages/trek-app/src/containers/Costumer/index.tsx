@@ -7,6 +7,11 @@ import { StackNavigationProp } from "@react-navigation/stack"
 import React, { useCallback, useEffect } from "react"
 import { useMemo } from "react"
 import { Dimensions } from "react-native"
+import { Div, Text } from "react-native-magnus"
+import {
+  heightPercentageToDP,
+  widthPercentageToDP,
+} from "react-native-responsive-screen"
 import { SceneMap, TabBar, TabView } from "react-native-tab-view"
 
 import useMultipleQueries from "hooks/useMultipleQueries"
@@ -23,8 +28,6 @@ import { COLOR_PRIMARY } from "helper/theme"
 
 import LeadFab from "./LeadFab"
 import LeadList from "./LeadList"
-import { heightPercentageToDP, widthPercentageToDP } from "react-native-responsive-screen"
-import { Div , Text} from "react-native-magnus"
 
 type CurrentScreenNavigationProp = CompositeNavigationProp<
   StackNavigationProp<CustomerStackParamList, "CustomerList">,
@@ -96,39 +99,48 @@ export default () => {
     ],
   )
 
-  const renderTabBar = useCallback(
-    (props) => {
-      return(
-        <Div  mx={10} my={10} rounded={5} >
-          <TabBar
-            {...props}
-            indicatorStyle={{ height: 0 }} // Hide the indicator
-            style={{ backgroundColor: '#D9D9D9', borderRadius: 5,height: heightPercentageToDP(5) }}
-            renderLabel={({ route, focused }) => {
-              return (
-                <Div rounded={5} top={-5}  justifyContent="center" bg={focused ? 'white' : '#D9D9D9'} w={widthPercentageToDP(30)} h={heightPercentageToDP(4)}>
-                <Text textAlign="center" color="#1746A2" fontWeight='500'>
+  const renderTabBar = useCallback((props) => {
+    return (
+      <Div mx={10} my={10} rounded={5}>
+        <TabBar
+          {...props}
+          indicatorStyle={{ height: 0 }} // Hide the indicator
+          style={{
+            backgroundColor: "#D9D9D9",
+            borderRadius: 5,
+            height: heightPercentageToDP(5),
+          }}
+          renderLabel={({ route, focused }) => {
+            return (
+              <Div
+                rounded={5}
+                top={-5}
+                justifyContent="center"
+                bg={focused ? "white" : "#D9D9D9"}
+                w={widthPercentageToDP(30)}
+                h={heightPercentageToDP(4)}
+              >
+                <Text textAlign="center" color="#1746A2" fontWeight="500">
                   {route.title}
                 </Text>
-                  </Div>
-              )
-            }}
-          />
-        </Div>
-    )},
-    [],
-  )
+              </Div>
+            )
+          }}
+        />
+      </Div>
+    )
+  }, [])
   return (
     <>
-    <>
-      <TabView
-        navigationState={{ index, routes }}
-        renderTabBar={renderTabBar}
-        renderScene={renderScene}
-        onIndexChange={setIndex}
-        initialLayout={{ width: Dimensions.get("window").width }}
-      />
-    </>
+      <>
+        <TabView
+          navigationState={{ index, routes }}
+          renderTabBar={renderTabBar}
+          renderScene={renderScene}
+          onIndexChange={setIndex}
+          initialLayout={{ width: Dimensions.get("window").width }}
+        />
+      </>
       {userData.type === "DIRECTOR" &&
       userData.app_create_lead === false ? null : (
         <>

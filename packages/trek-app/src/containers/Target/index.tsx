@@ -10,7 +10,7 @@ import {
   Pressable,
   RefreshControl,
   ScrollView,
-  TouchableOpacity
+  TouchableOpacity,
 } from "react-native"
 import {
   Button,
@@ -19,11 +19,11 @@ import {
   Modal,
   Skeleton,
   Text,
-  Tooltip
+  Tooltip,
 } from "react-native-magnus"
 import {
   heightPercentageToDP,
-  widthPercentageToDP
+  widthPercentageToDP,
 } from "react-native-responsive-screen"
 
 import BotSection from "containers/Dashboard/BotSection"
@@ -42,8 +42,8 @@ import { COLOR_PRIMARY } from "helper/theme"
 
 import DealComponent from "./sub/DealComponent"
 import LeadComponent from "./sub/LeadComponent"
-import QuotationComponent from "./sub/QuotationComponent"
 import LeadStatusComponet from "./sub/LeadStatusComponet"
+import QuotationComponent from "./sub/QuotationComponent"
 
 const TargetScreen = () => {
   const tooltipRef = React.createRef(),
@@ -71,7 +71,7 @@ const TargetScreen = () => {
     : moment().endOf("month").format("YYYY-MM-DD")
 
   const {
-    queries: [ { data: target }],
+    queries: [{ data: target }],
     meta: { isLoading, isFetching, refetch },
   } = useMultipleQueries([
     // useSuperstarList("target", "yahaha", defaultStart, defaultEnd),
@@ -304,7 +304,7 @@ const TargetScreen = () => {
           </Div>
           <LeadStatusComponet tipLeadStatus={tipLeadStatus} status={status} />
           {/* Sales */}
-          <Div row mt={8} justifyContent='space-between' mx={10}>
+          <Div row mt={8} justifyContent="space-between" mx={10}>
             <QuotationComponent
               start={start}
               end={end}
@@ -320,7 +320,7 @@ const TargetScreen = () => {
                 })
               }
             />
-              
+
             <Pressable
               onPress={() =>
                 navigation.navigate("EstimatedInside", {

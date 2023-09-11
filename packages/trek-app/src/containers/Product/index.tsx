@@ -5,11 +5,7 @@ import {
 } from "@react-navigation/native"
 import { StackNavigationProp } from "@react-navigation/stack"
 import React, { useState } from "react"
-import {
-  FlatList,  
-  TouchableOpacity,
-  useWindowDimensions,
-} from "react-native"
+import { FlatList, TouchableOpacity, useWindowDimensions } from "react-native"
 import { Div } from "react-native-magnus"
 import {
   heightPercentageToDP,
@@ -81,10 +77,12 @@ export default () => {
               underlayColor="none"
               renderItem={({ item }) => (
                 <TouchableOpacity
-                  onPress={() => navigation.navigate("PromoDetail", {data: item})}
+                  onPress={() =>
+                    navigation.navigate("PromoDetail", { data: item })
+                  }
                 >
                   <Image
-                    width={widthPercentageToDP(100)}                    
+                    width={widthPercentageToDP(100)}
                     scalable
                     source={
                       item.length === 0
