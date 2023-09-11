@@ -56,7 +56,6 @@ const DealComponent = ({ userData, start, end, tipDeal }) => {
           row
           rounded={4}
           p={8}
-          h={heightPercentageToDP(12)}
           bg="#1746A2"
         >
           <Div>

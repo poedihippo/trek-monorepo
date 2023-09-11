@@ -32,6 +32,8 @@ import Activity from "./Activity"
 import Detail from "./Detail"
 import TopSection from "./TopSection"
 import Voucher from "./Voucher"
+import { Div, Text } from "react-native-magnus"
+import { heightPercentageToDP, widthPercentageToDP } from "react-native-responsive-screen"
 
 type CurrentScreenRouteProp = RouteProp<
   CustomerStackParamList,
@@ -80,7 +82,7 @@ export default () => {
   ] as const)
 
   const { isError, isLoading, isFetching, refetch } = meta
-
+  console.log(leadData,'lead')
   useEffect(() => {
     if (!!leadData) {
       navigation.setOptions({
@@ -103,12 +105,6 @@ export default () => {
     ),
     [leadData, leadId],
   )
-
-  const voucherScreen = useCallback(
-    () => <Voucher customerId={leadData.customer.id} leadId={leadId} />,
-    [leadData, leadId],
-  )
-
   // TabView config
   const [index, setIndex] = useState(0)
 
@@ -148,15 +144,37 @@ export default () => {
   )
 
   const renderTabBar = (props) => (
-    <>
-      <TopSection customer={leadData.customer} />
-      <TabBar
-        {...props}
-        indicatorStyle={{ backgroundColor: "white" }}
-        style={{ backgroundColor: COLOR_PRIMARY }}
-      />
-    </>
-  )
+      <Div>
+            <TopSection customer={leadData.customer} />
+      <Div mx={10} my={10} bg='blue' rounded={5}>
+        <TabBar
+          {...props}
+          indicatorStyle={{ height: 0 }} // Hide the indicator
+          style={{
+            backgroundColor: "#D9D9D9",
+            borderRadius: 5,
+            height: heightPercentageToDP(5),
+          }}
+          renderLabel={({ route, focused }) => {
+            return (
+              <Div
+                rounded={5}
+                top={-5}
+                justifyContent="center"
+                bg={focused ? "white" : "#D9D9D9"}
+                w={widthPercentageToDP(30)}
+                h={heightPercentageToDP(4)}
+              >
+                <Text textAlign="center" color="#1746A2" fontWeight="500">
+                  {route.title}
+                </Text>
+              </Div>
+            )
+          }}
+        />
+      </Div>
+      </Div>
+    )
   //  End of TabView config
 
   if (isError) {

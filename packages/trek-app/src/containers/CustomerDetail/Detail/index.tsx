@@ -97,6 +97,7 @@ export default ({ lead }: PropTypes) => {
           <Div
             bg="white"
             m={10}
+            mt={0}
             rounded={4}
             style={{
               shadowColor: "#000",
@@ -151,6 +152,7 @@ export default ({ lead }: PropTypes) => {
           <Div
             bg="white"
             m={10}
+            mt={0}
             rounded={4}
             style={{
               shadowColor: "#000",
@@ -202,6 +204,7 @@ export default ({ lead }: PropTypes) => {
           <Div
             bg="white"
             m={10}
+            mt={0}
             rounded={4}
             style={{
               shadowColor: "#000",
@@ -298,6 +301,7 @@ export default ({ lead }: PropTypes) => {
           <Div
             bg="white"
             m={10}
+            mt={0}
             rounded={4}
             style={{
               shadowColor: "#000",
@@ -409,9 +413,9 @@ const LeftSelector = ({ state, setState }) => {
       >
         <Image
           source={item.image}
-          style={{ width: 30, height: 30, tintColor: "#979797" }}
+          style={{ width: 30, height: 30, tintColor: index === state ? "#1746A2" : "#979797" }}
         />
-        <Text textAlign="center">{item.name}</Text>
+        <Text color={index === state ? "#1746A2" : "#979797"} textAlign="center">{item.name}</Text>
       </Div>
     </TouchableOpacity>
   )
