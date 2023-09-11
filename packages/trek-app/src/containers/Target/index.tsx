@@ -10,7 +10,7 @@ import {
   Pressable,
   RefreshControl,
   ScrollView,
-  TouchableOpacity,
+  TouchableOpacity
 } from "react-native"
 import {
   Button,
@@ -19,12 +19,11 @@ import {
   Modal,
   Skeleton,
   Text,
-  Tooltip,
+  Tooltip
 } from "react-native-magnus"
-import * as Progress from "react-native-progress"
 import {
   heightPercentageToDP,
-  widthPercentageToDP,
+  widthPercentageToDP
 } from "react-native-responsive-screen"
 
 import BotSection from "containers/Dashboard/BotSection"
@@ -44,6 +43,7 @@ import { COLOR_PRIMARY } from "helper/theme"
 import DealComponent from "./sub/DealComponent"
 import LeadComponent from "./sub/LeadComponent"
 import QuotationComponent from "./sub/QuotationComponent"
+import LeadStatusComponet from "./sub/LeadStatusComponet"
 
 const TargetScreen = () => {
   const tooltipRef = React.createRef(),
@@ -71,10 +71,10 @@ const TargetScreen = () => {
     : moment().endOf("month").format("YYYY-MM-DD")
 
   const {
-    queries: [{ data: topSalesData }, { data: target }],
+    queries: [ { data: target }],
     meta: { isLoading, isFetching, refetch },
   } = useMultipleQueries([
-    useSuperstarList("target", "yahaha", defaultStart, defaultEnd),
+    // useSuperstarList("target", "yahaha", defaultStart, defaultEnd),
     useTarget({
       start_date: !!start ? moment(start).format("YYYY-MM-DD") : "",
       end_date: !!end ? moment(end).format("YYYY-MM-DD") : "",
@@ -98,7 +98,7 @@ const TargetScreen = () => {
     {
       status: "Cold",
       total: data?.follow_up?.cold_activities,
-      color: "#0553B7",
+      color: "#5597FD",
     },
   ]
 
@@ -129,7 +129,7 @@ const TargetScreen = () => {
             </Div>
           </Div>
         ) : userData?.type === "SUPERVISOR" ? (
-          <Div row m={5} alignItems="center">
+          <Div row mx={10} mb={8} alignItems="center">
             <Div flex={1} mr={10}>
               <DatePickerInput
                 placeholder="Start Date"
@@ -164,7 +164,7 @@ const TargetScreen = () => {
             </TouchableOpacity>
           </Div>
         ) : userData?.type === "DIRECTOR" ? (
-          <Div row m={10} alignItems="center">
+          <Div row mx={10} mb={8} alignItems="center">
             <Div flex={1} mr={10}>
               <DatePickerInput
                 placeholder="Start Date"
@@ -202,27 +202,6 @@ const TargetScreen = () => {
       </>
     )
   }
-  const renderStatus = ({ item }) => (
-    <Div
-      alignItems="center"
-      row
-      h={heightPercentageToDP(5)}
-      justifyContent="space-between"
-      borderBottomWidth={1}
-      borderColor="#D9D9D9"
-    >
-      <Div row justifyContent="center" alignItems="center">
-        <Div mx={8} h={8} w={8} rounded={8 / 2} bg={item.color} />
-        <Text allowFontScaling={false} color="text">
-          {item.status}
-        </Text>
-      </Div>
-      <Text allowFontScaling={false} color="text">
-        {!!item.total ? item.total : "0"}
-      </Text>
-    </Div>
-  )
-
   const newRenderStatus = ({ item }) => (
     <Div
       alignItems="center"
@@ -323,67 +302,9 @@ const TargetScreen = () => {
               tipActiveLead={tipActiveLead}
             />
           </Div>
-          <Div
-            mx={10}
-            p={8}
-            mt={5}
-            bg="white"
-            rounded={6}
-            style={{
-              shadowColor: "#000",
-              shadowOffset: {
-                width: 0,
-                height: 1,
-              },
-              shadowOpacity: 0.22,
-              shadowRadius: 2.22,
-
-              elevation: 3,
-            }}
-          >
-            <Div>
-              <Div row>
-                <Text
-                  allowFontScaling={false}
-                  fontSize={responsive(10)}
-                  color="text"
-                >
-                  Lead Status
-                </Text>
-                <TouchableOpacity
-                  onPress={() => {
-                    if (tipLeadStatus.current) {
-                      tipLeadStatus.current.show()
-                    }
-                  }}
-                >
-                  <Icon
-                    ml={5}
-                    name="info"
-                    color="grey"
-                    fontFamily="Feather"
-                    fontSize={12}
-                  />
-                </TouchableOpacity>
-                <Tooltip
-                  ref={tipLeadStatus}
-                  mr={widthPercentageToDP(10)}
-                  text={`Jumlah Leads berdasarkan status COLD, WARM, dan HOT`}
-                />
-              </Div>
-              <Div my={10} alignItems="center">
-                <FlatList
-                  data={status}
-                  contentContainerStyle={{ padding: 5 }}
-                  horizontal
-                  renderItem={newRenderStatus}
-                />
-              </Div>
-            </Div>
-          </Div>
-
+          <LeadStatusComponet tipLeadStatus={tipLeadStatus} status={status} />
           {/* Sales */}
-          <Div row mt={8} justifyContent="center">
+          <Div row mt={8} justifyContent='space-between' mx={10}>
             <QuotationComponent
               start={start}
               end={end}
@@ -399,7 +320,7 @@ const TargetScreen = () => {
                 })
               }
             />
-
+              
             <Pressable
               onPress={() =>
                 navigation.navigate("EstimatedInside", {
@@ -420,14 +341,11 @@ const TargetScreen = () => {
                   },
                   shadowOpacity: 0.22,
                   shadowRadius: 2.22,
-
                   elevation: 3,
                 }}
                 w={widthPercentageToDP(46)}
                 rounded={4}
-                px={5}
-                mx={5}
-                h={heightPercentageToDP(11)}
+                p={10}
                 bg="#3F82D9"
                 justifyContent="center"
               >
@@ -1310,7 +1228,7 @@ const TargetScreen = () => {
       <Div mt={10} />
       <BotSection
         userData={userData}
-        data={topSalesData?.data}
+        data={[]}
         startDate={defaultStart}
         endDate={defaultEnd}
       />

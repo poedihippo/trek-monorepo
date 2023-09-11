@@ -50,15 +50,15 @@ export default () => {
   const navigation = useNavigation<CurrentScreenNavigationProp>()
 
   const leadId = route?.params?.leadId ?? -1
-  if (leadId === -1) {
-    if (navigation.canGoBack()) {
-      navigation.goBack()
-    } else {
-      navigation.navigate("Dashboard")
-    }
-    toast(Languages.PageNotFound)
-    return null
-  }
+  // if (leadId === -1) {
+  //   if (navigation.canGoBack()) {
+  //     navigation.goBack()
+  //   } else {
+  //     navigation.navigate("Dashboard")
+  //   }
+  //   toast(Languages.PageNotFound)
+  //   return null
+  // }
 
   const {
     queries: [{ data: leadData }],

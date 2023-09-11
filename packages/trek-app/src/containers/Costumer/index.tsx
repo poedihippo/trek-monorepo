@@ -23,6 +23,8 @@ import { COLOR_PRIMARY } from "helper/theme"
 
 import LeadFab from "./LeadFab"
 import LeadList from "./LeadList"
+import { heightPercentageToDP, widthPercentageToDP } from "react-native-responsive-screen"
+import { Div , Text} from "react-native-magnus"
 
 type CurrentScreenNavigationProp = CompositeNavigationProp<
   StackNavigationProp<CustomerStackParamList, "CustomerList">,
@@ -95,17 +97,29 @@ export default () => {
   )
 
   const renderTabBar = useCallback(
-    (props) => (
-      <TabBar
-        {...props}
-        indicatorStyle={{ backgroundColor: "white" }}
-        style={{ backgroundColor: COLOR_PRIMARY }}
-        labelStyle={{ fontSize: responsive(10) }}
-      />
-    ),
+    (props) => {
+      return(
+        <Div  mx={10} my={10} rounded={5} >
+          <TabBar
+            {...props}
+            indicatorStyle={{ height: 0 }} // Hide the indicator
+            style={{ backgroundColor: '#D9D9D9', borderRadius: 5,height: heightPercentageToDP(5) }}
+            renderLabel={({ route, focused }) => {
+              return (
+                <Div rounded={5} top={-5}  justifyContent="center" bg={focused ? 'white' : '#D9D9D9'} w={widthPercentageToDP(30)} h={heightPercentageToDP(4)}>
+                <Text textAlign="center" color="#1746A2" fontWeight='500'>
+                  {route.title}
+                </Text>
+                  </Div>
+              )
+            }}
+          />
+        </Div>
+    )},
     [],
   )
   return (
+    <>
     <>
       <TabView
         navigationState={{ index, routes }}
@@ -114,6 +128,7 @@ export default () => {
         onIndexChange={setIndex}
         initialLayout={{ width: Dimensions.get("window").width }}
       />
+    </>
       {userData.type === "DIRECTOR" &&
       userData.app_create_lead === false ? null : (
         <>

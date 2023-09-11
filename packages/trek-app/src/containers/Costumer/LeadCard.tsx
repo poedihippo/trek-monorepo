@@ -12,6 +12,7 @@ import {
   Pressable,
   TouchableOpacity,
   Image,
+  View,
 } from "react-native"
 import { Swipeable } from "react-native-gesture-handler"
 import { Avatar, Button, Div, Icon, Modal } from "react-native-magnus"
@@ -36,6 +37,7 @@ import { Lead, leadStatusConfig } from "types/Lead"
 import { User } from "types/User"
 
 import LeadBrand from "./LeadBrand"
+import { widthPercentageToDP } from "react-native-responsive-screen"
 
 type CurrentScreenNavigationProp = CompositeNavigationProp<
   StackNavigationProp<CustomerStackParamList, any>,
@@ -184,7 +186,7 @@ export default ({ lead, isUnhandled = false }: PropTypes) => {
             <Avatar
               bg={leadStatusConfig[lead.status].bg}
               color="white"
-              size={responsive(32)}
+              size={responsive(40)}
               mr={10}
             >
               {getInitials(lead.customer)}
@@ -206,44 +208,33 @@ export default ({ lead, isUnhandled = false }: PropTypes) => {
                   {getFullName(lead.customer)}
                 </Text>
                 {!!lead.leadCategory && (
-                  <Text fontWeight="bold" mt={5} numberOfLines={1}>
+                  <Text  mt={5} numberOfLines={1}>
                     Customer from {lead.leadCategory.name}
                   </Text>
                 )}
-                {!!lead.leadSubCategory && (
+                {/* {!!lead.leadSubCategory && (
                   <Text fontWeight="normal" mt={5} numberOfLines={1}>
                     {lead.leadSubCategory?.name}
                   </Text>
-                )}
-                {!lead.hasActivity && (
-                  <Text fontWeight="bold" mt={5} numberOfLines={1} color="red">
-                    No Activity Yet
-                  </Text>
-                )}
-                {!!lead.hasActivity && (
-                  <Text
-                    fontWeight="normal"
-                    mt={5}
-                    numberOfLines={1}
-                    color="#c4c4c4"
-                  >
-                    Last follow up{" "}
-                    {moment(lead.updatedAt).format("DD-MM-YYYY ")}
-                  </Text>
-                )}
+                )} */}
+            
               </Div>
             </Div>
           </Div>
+          <View style={[{ height: 1, overflow: 'hidden', marginVertical: 10, marginHorizontal: -20 }]}>
+            <View style={[{ height: 2, borderWidth: 1, borderColor: '#979797', borderStyle: 'dashed' }]}>
+            </View>
+            </View>
           <Div row justifyContent="space-between">
             <Div row alignItems="center" justifyContent="center">
               <Icon
-                color="grey"
+                color="primary"
                 name="person"
                 fontSize={12}
                 fontFamily="Ionicons"
                 mr={5}
               />
-              <Text color="grey">{lead.user.name}</Text>
+              <Text color="primary">{lead.user.name}</Text>
             </Div>
 
             {isUnhandled && (
@@ -261,49 +252,6 @@ export default ({ lead, isUnhandled = false }: PropTypes) => {
                     {userData?.type === "SALES" ? "Take" : "Assign"}
                   </Text>
                 </Button>
-                <Modal
-                  useNativeDriver
-                  isVisible={assignModalOpened}
-                  animationIn="slideInUp"
-                  animationOut="slideOutDown"
-                  onBackdropPress={onHideModal}
-                  onModalHide={onHideModal}
-                  onBackButtonPress={onHideModal}
-                  h="40%"
-                >
-                  <Div h="100%" px={20} pt={20}>
-                    <Text mb={10}>
-                      Select Product Brand <Text color="red">*</Text>
-                    </Text>
-                    <Div h={50}>
-                      <LeadBrand
-                        leadId={lead.id}
-                        value={selectedBrand}
-                        onSelect={setSelectedBrand}
-                      />
-                    </Div>
-                    <Button
-                      bg="primary"
-                      mx={20}
-                      mt={10}
-                      block
-                      alignSelf="center"
-                      disabled={!selectedBrand}
-                      onPress={() => {
-                        assignLead({ id: lead.id, brand: selectedBrand }, (x) =>
-                          x.finally(() => {
-                            onHideModal()
-                          }),
-                        )
-                      }}
-                      loading={isLoading}
-                    >
-                      <Text fontWeight="bold" color="white">
-                        Take to my lead
-                      </Text>
-                    </Button>
-                  </Div>
-                </Modal>
               </>
             )}
             {!isUnhandled && (
@@ -314,8 +262,7 @@ export default ({ lead, isUnhandled = false }: PropTypes) => {
                 />
                 <Text
                   ml={5}
-                  fontWeight="bold"
-                  color="#1746A2"
+                  color="primary"
                   numberOfLines={1}
                 >
                   {lead.channel.name}
@@ -323,6 +270,28 @@ export default ({ lead, isUnhandled = false }: PropTypes) => {
               </Div>
             )}
           </Div>
+          <View style={[{ height: 1, overflow: 'hidden', marginVertical: 10, marginHorizontal: -20 }]}>
+            <View style={[{ height: 2, borderWidth: 1, borderColor: '#979797', borderStyle: 'dashed' }]}>
+            </View>
+            </View>
+          {!lead.hasActivity && (
+            <Div roundedBottomRight={6} roundedTopRight={6} ml={-20} bg="#1746A2" alignSelf='flex-start' p={3} px={10} alignItems='center'>
+                  <Text fontWeight="bold" mt={5} numberOfLines={1} color="white">
+                    No Activity Yet
+                  </Text>
+              </Div>
+                )}
+                {!!lead.hasActivity && (
+                  <Text
+                    fontWeight="normal"
+                    mt={5}
+                    numberOfLines={1}
+                    color="#c4c4c4"
+                  >
+                    Last follow up{" "}
+                    {moment(lead.updatedAt).format("DD-MM-YYYY ")}
+                  </Text>
+                )}
         </Div>
       </Swipeable>
     </TouchableOpacity>

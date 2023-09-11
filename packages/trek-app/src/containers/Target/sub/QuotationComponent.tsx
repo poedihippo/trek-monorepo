@@ -41,9 +41,7 @@ const QuotationComponent = ({ tipQuotation, start, end, onPress }) => {
         }}
         w={widthPercentageToDP(46)}
         rounded={4}
-        px={5}
-        mx={5}
-        h={heightPercentageToDP(11)}
+        p={10}
         bg="#17519D"
         justifyContent="center"
       >
@@ -110,20 +108,6 @@ const QuotationComponent = ({ tipQuotation, start, end, onPress }) => {
             }
           />
         </Div>
-        {/* <Progress.Bar
-      borderRadius={0}
-      progress={0.6}
-      color="#FFFFFF"
-      borderWidth={0}
-      height={3}
-      useNativeDriver
-      unfilledColor="#c4c4c4"
-      width={widthPercentageToDP(40)}
-      style={{ marginBottom: 5 }}
-    />
-    <Text fontSize={10} color="white">
-      Target {formatCurrency(950000)}
-    </Text> */}
       </Div>
     </Pressable>
   )

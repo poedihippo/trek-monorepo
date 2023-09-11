@@ -56,30 +56,13 @@ const DealComponent = ({ userData, start, end, tipDeal }) => {
           row
           rounded={4}
           p={8}
-          h={heightPercentageToDP(18.5)}
+          h={heightPercentageToDP(12)}
           bg="#1746A2"
         >
-          <Div justifyContent="center">
-            <Progress.Circle
-              unfilledColor="white"
-              fill="transparent"
-              borderWidth={0}
-              size={100}
-              progress={
-                data?.deals?.value / data?.deals?.target_deals === Infinity ||
-                isNaN(data?.deals?.value / data?.deals?.target_deals)
-                  ? 0
-                  : data?.deals?.value / data?.deals?.target_deals
-              }
-              animated={false}
-              thickness={8}
-              showsText={true}
-              color={"white"}
-            />
-          </Div>
+      
 
-          <Div ml={heightPercentageToDP(3)}>
-            <Div row alignItems="center" mt={10}>
+          <Div >
+            <Div row alignItems="center" >
               <Text
                 allowFontScaling={false}
                 fontSize={responsive(10)}
@@ -108,10 +91,28 @@ const DealComponent = ({ userData, start, end, tipDeal }) => {
                 text={`Jumlah total pencapaian anda`}
               />
             </Div>
-            <Div row>
+            <Div justifyContent="center" my={10}>
+            <Progress.Bar
+              unfilledColor="white"
+              borderWidth={0}
+              height={5}
+              width={widthPercentageToDP("90%")}
+              progress={
+                data?.deals?.value / data?.deals?.target_deals === Infinity ||
+                isNaN(data?.deals?.value / data?.deals?.target_deals)
+                  ? 0
+                  : data?.deals?.value / data?.deals?.target_deals
+              }
+              animated={false}
+              color={"#FF731D"}
+            />
+          </Div>
+            <Div row justifyContent='space-between' >
+            <Div >
+              <Div row>
               <Text
                 allowFontScaling={false}
-                fontSize={responsive(12)}
+                fontSize={responsive(10)}
                 fontWeight="bold"
                 color="white"
               >
@@ -139,20 +140,21 @@ const DealComponent = ({ userData, start, end, tipDeal }) => {
                     : "#2DCC70"
                 }
               />
-            </Div>
-            <Text
+              </Div>
+              <Text
               allowFontScaling={false}
-              fontSize={responsive(10)}
-              // my={7}
+              fontSize={10}
               color="#c4c4c4"
             >
-              Target
+              Progress
             </Text>
+            </Div>
+            <Div >    
             <Text
               allowFontScaling={false}
               fontSize={responsive(10)}
-              // my={7}
-              color="#c4c4c4"
+              color="white"
+              textAlign='right'
             >
               {isLoading === true ? (
                 <Skeleton.Box
@@ -165,6 +167,16 @@ const DealComponent = ({ userData, start, end, tipDeal }) => {
                 formatCurrency(0)
               )}
             </Text>
+            <Text
+              allowFontScaling={false}
+              fontSize={10}
+              color="#c4c4c4"
+              textAlign='right'
+            >
+              Target
+            </Text>
+            </Div>
+            </Div>
           </Div>
         </Div>
       </Pressable>

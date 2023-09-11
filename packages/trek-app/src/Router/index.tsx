@@ -124,9 +124,9 @@ export const Router = React.forwardRef<NavigationContainerRef>((prop, ref) => {
     <NavigationContainer ref={ref}>
       <EntryStack.Navigator
         screenOptions={{
-          headerTitleStyle: {
-            fontFamily: "FontBold",
-          },
+          // headerTitleStyle: {
+          //   fontFamily: "FontBold",
+          // },
           headerTitleAlign: "center",
           headerTintColor: "#FFF",
           headerStyle: {

@@ -2,7 +2,7 @@ import { useNavigation } from "@react-navigation/native"
 import { isLoading } from "expo-font"
 import moment from "moment"
 import React from "react"
-import { Pressable, TouchableOpacity } from "react-native"
+import { Pressable, TouchableOpacity, View } from "react-native"
 import { Div, Icon, Tooltip, Skeleton, Text } from "react-native-magnus"
 import * as Progress from "react-native-progress"
 import {
@@ -26,9 +26,8 @@ const LeadComponent = ({
 }) => {
   const navigation = useNavigation()
   return (
-    <Div row mt={8} justifyContent="space-between">
-      <Div>
-        <Pressable onPress={onPress}>
+    <Div mt={8} justifyContent="space-between">
+      <Div >
           <Div
             style={{
               shadowColor: "#000",
@@ -42,14 +41,16 @@ const LeadComponent = ({
               elevation: 3,
             }}
             rounded={4}
-            p={5}
-            bg="#FF731D"
+            p={10}
+            bg="white"
           >
-            <Div row justifyContent="space-between">
+            <Pressable onPress={onPress}>
+            <Div bg="white" row alignItems="center" justifyContent='space-between'>
+              <Div py={5} row alignItems="center">
               <Text
                 allowFontScaling={false}
                 fontSize={responsive(10)}
-                color="white"
+                color="primary"
               >
                 New Leads
               </Text>
@@ -68,18 +69,19 @@ const LeadComponent = ({
                   fontSize={12}
                 />
               </TouchableOpacity>
+              </Div>
               <Tooltip
                 ref={tipLead}
                 mr={widthPercentageToDP(10)}
                 text={`Jumlah lead baru anda pada bulan ini`}
               />
-            </Div>
-            <Div row>
+              <Div>
+            <Div row  justifyContent='flex-end' alignItems="center">
               <Text
                 allowFontScaling={false}
                 fontSize={responsive(10)}
                 fontWeight="bold"
-                color="white"
+                color="primary"
               >
                 {isLoading === true ? (
                   <Skeleton.Box
@@ -93,7 +95,6 @@ const LeadComponent = ({
                 )}
               </Text>
               <Icon
-                ml={3}
                 name={
                   data?.new_leads?.value < data?.new_leads?.compare
                     ? "caretdown"
@@ -108,32 +109,8 @@ const LeadComponent = ({
                 }
               />
             </Div>
-            <Div row w={widthPercentageToDP(40)}>
-              <Div>
-                <Progress.Bar
-                  borderRadius={0}
-                  color="#FFFFFF"
-                  borderWidth={0}
-                  height={3}
-                  useNativeDriver
-                  unfilledColor="#c4c4c4"
-                  width={widthPercentageToDP(25)}
-                  style={{ marginTop: 5 }}
-                  progress={
-                    data?.new_leads?.value / data?.new_leads?.target_leads ===
-                      Infinity ||
-                    isNaN(
-                      data?.new_leads?.value / data?.new_leads?.target_leads,
-                    )
-                      ? 0
-                      : data?.new_leads?.value / data?.new_leads?.target_leads
-                  }
-                />
-              </Div>
-            </Div>
             <Text
-              fontSize={responsive(10)}
-              color="white"
+         fontSize={responsive(8)} color="#c4c4c4"
               allowFontScaling={false}
             >
               Target{" "}
@@ -141,34 +118,23 @@ const LeadComponent = ({
                 ? data?.new_leads?.target_leads
                 : "0"}
             </Text>
-          </Div>
-        </Pressable>
+              </Div>
+            </Div>
+            </Pressable>   
+            <View style={[{ height: 1, overflow: 'hidden', marginVertical: 10 }]}>
+            <View style={[{ height: 2, borderWidth: 1, borderColor: '#979797', borderStyle: 'dashed' }]}></View>
+            </View>
         <Pressable onPress={onActiveLeadPress}>
           <Div
-            style={{
-              shadowColor: "#000",
-              shadowOffset: {
-                width: 0,
-                height: 1,
-              },
-              shadowOpacity: 0.22,
-              shadowRadius: 2.22,
-
-              elevation: 3,
-            }}
-            rounded={4}
-            p={5}
-            px={10}
-            h={heightPercentageToDP(6)}
             mt={heightPercentageToDP(0.5)}
             bg="white"
           >
-            <Div>
+            <Div py={5} row justifyContent='space-between'>
               <Div row>
                 <Text
                   allowFontScaling={false}
                   fontSize={responsive(9)}
-                  color="#979797"
+                  color="primary"
                 >
                   Active Leads
                 </Text>
@@ -197,18 +163,20 @@ const LeadComponent = ({
                 allowFontScaling={false}
                 fontSize={responsive(10)}
                 fontWeight="bold"
-                color="#5F9DF7"
+                color="primary"
               >
                 {!!data?.active_leads?.value ? data?.active_leads?.value : "0"}
               </Text>
             </Div>
           </Div>
         </Pressable>
+          </Div>
+      
       </Div>
       <Div
+        mt={8}
         bg="#fff"
         overflow="hidden"
-        w={widthPercentageToDP(50)}
         p={8}
         rounded={6}
         style={{
@@ -219,12 +187,12 @@ const LeadComponent = ({
           },
           shadowOpacity: 0.22,
           shadowRadius: 2.22,
-
           elevation: 3,
         }}
       >
-        <Div row>
-          <Text allowFontScaling={false} fontSize={responsive(10)} color="text">
+        <Div row justifyContent='space-between' mx={5}>
+          <Div row alignItems="center">
+          <Text allowFontScaling={false} fontSize={responsive(10)} color="primary">
             Follow Up
           </Text>
           <TouchableOpacity
@@ -247,14 +215,15 @@ const LeadComponent = ({
             mr={widthPercentageToDP(10)}
             text={`Jumlah Follow up yang dilakukan ke customer`}
           />
-        </Div>
-        <Div row alignItems="center">
+          </Div>
+        <Div alignItems='flex-end'>
+        <Div row bg="white">
           <Text
             allowFontScaling={false}
-            fontSize={responsive(12)}
+            fontSize={12}
             my={5}
             fontWeight="bold"
-            color="#5F9DF7"
+            color="primary"
           >
             {isLoading === true ? (
               <Skeleton.Box
@@ -285,42 +254,14 @@ const LeadComponent = ({
             }
           />
         </Div>
-        <Progress.Bar
-          borderRadius={0}
-          progress={
-            data?.follow_up?.total_activities?.value /
-              data?.follow_up?.total_activities?.target_activities ===
-              Infinity ||
-            isNaN(
-              data?.follow_up?.total_activities?.value /
-                data?.follow_up?.total_activities?.target_activities,
-            )
-              ? 0
-              : data?.follow_up?.total_activities?.value /
-                data?.follow_up?.total_activities?.target_activities
-          }
-          color="#5F9DF7"
-          borderWidth={0}
-          height={5}
-          useNativeDriver
-          unfilledColor="#c4c4c4"
-          width={widthPercentageToDP(40)}
-        />
-        {/* <Text my={5} fontSize={responsive(8)} color="#c4c4c4">
-        Target {data?.follow_up?.total_activities?.target_activities}{" "}
-        {`(${Math.round(
-          (data?.follow_up?.total_activities?.value /
-            data?.follow_up?.total_activities?.target_activities) *
-            100,
-        )}%)`}
-      </Text> */}
         <Text my={5} fontSize={responsive(8)} color="#c4c4c4">
           Target{" "}
           {!!data?.follow_up?.total_activities?.target_activities
             ? data?.follow_up?.total_activities?.target_activities
             : "0"}{" "}
-          (0%)
         </Text>
+        </Div>
+        </Div>
       </Div>
     </Div>
   )
