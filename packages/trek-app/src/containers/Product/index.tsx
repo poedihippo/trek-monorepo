@@ -5,7 +5,11 @@ import {
 } from "@react-navigation/native"
 import { StackNavigationProp } from "@react-navigation/stack"
 import React, { useState } from "react"
-import { FlatList, TouchableOpacity, useWindowDimensions } from "react-native"
+import {
+  FlatList,  
+  TouchableOpacity,
+  useWindowDimensions,
+} from "react-native"
 import { Div } from "react-native-magnus"
 import {
   heightPercentageToDP,
@@ -21,6 +25,7 @@ import Text from "components/Text"
 import useMultipleQueries from "hooks/useMultipleQueries"
 
 import useBrandList from "api/hooks/pos/productCategorization/useBrandList"
+import usePromo from "api/hooks/promo/usePromo"
 
 import {
   MainTabParamList,
@@ -39,16 +44,15 @@ type CurrentScreenNavigationProp = CompositeNavigationProp<
 >
 
 export default () => {
-  const navigation = useNavigation<CurrentScreenNavigationProp>()
+  const navigation = useNavigation()
   const { width: screenWidth } = useWindowDimensions()
 
   const [isModalVisible, setIsModalVisible] = useState(false)
 
   const {
-    queries: [{ data: brandPaginatedData }],
+    queries: [{ data: brandPaginatedData }, { data: promoData }],
     meta: { isLoading, isFetchingNextPage, hasNextPage, fetchNextPage },
-  } = useMultipleQueries([useBrandList({})] as const)
-
+  } = useMultipleQueries([useBrandList({}), usePromo({})] as const)
   return (
     <>
       <FlatList
@@ -67,26 +71,33 @@ export default () => {
           <Div>
             <Carousel
               // @ts-ignore
-              data={["1", "2"]}
+              data={promoData?.data}
               sliderWidth={screenWidth}
               itemWidth={screenWidth}
               showsHorizontalScrollIndicator={false}
-              // loop
-              // autoplay
-              // autoplayInterval={8000}
+              loop
+              autoplay
+              autoplayInterval={8000}
               underlayColor="none"
-              renderItem={({ item: image }) => (
-                <Image
-                  width={widthPercentageToDP(50)}
-                  // height={'50%'}
-                  scalable
-                  source={require("assets/TrekLogo.png")}
-                  style={{
-                    marginTop: heightPercentageToDP(2),
-                    justifyContent: "center",
-                    alignSelf: "center",
-                  }}
-                />
+              renderItem={({ item }) => (
+                <TouchableOpacity
+                  onPress={() => navigation.navigate("PromoDetail", {data: item})}
+                >
+                  <Image
+                    width={widthPercentageToDP(100)}                    
+                    scalable
+                    source={
+                      item.length === 0
+                        ? require("assets/TrekLogo.png")
+                        : { uri: item?.images[0]?.url }
+                    }
+                    style={{
+                      marginTop: heightPercentageToDP(2),
+                      justifyContent: "center",
+                      alignSelf: "center",
+                    }}
+                  />
+                </TouchableOpacity>
               )}
             />
 
