@@ -15,7 +15,8 @@ class CreateStocksTable extends Migration
     {
         Schema::create('stocks', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('location_id')->constrained()->cascadeOnDelete();
+            // $table->foreignId('location_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('location_id');
             // $table->foreignId('product_unit_id')->constrained();
             $table->integer('product_unit_id')->index();
             $table->integer('stock')->default(0);
