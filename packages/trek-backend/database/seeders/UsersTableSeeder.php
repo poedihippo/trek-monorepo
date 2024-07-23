@@ -16,7 +16,7 @@ class UsersTableSeeder extends Seeder
         $director = User::factory()->create(
             [
                 'name'           => 'Director',
-                'email'          => 'director@melandas.id',
+                'email'          => 'director@gmail.com',
                 'password'       => bcrypt('password'),
                 'remember_token' => null,
                 'type'           => UserType::DIRECTOR,
@@ -29,7 +29,7 @@ class UsersTableSeeder extends Seeder
         $supervisor = User::factory()->supervisor()->create(
             [
                 'name'           => 'Supervisor',
-                'email'          => 'supervisor@melandas.id',
+                'email'          => 'supervisor@gmail.com',
                 'password'       => bcrypt('password'),
                 'remember_token' => null,
                 'channel_id'     => 1
@@ -40,7 +40,7 @@ class UsersTableSeeder extends Seeder
         $sales = User::factory()->supervisedBy($supervisor)->create(
             [
                 'name'           => 'Sales',
-                'email'          => 'sales@melandas.id',
+                'email'          => 'sales@gmail.com',
                 'password'       => bcrypt('password'),
                 'remember_token' => null,
                 'type'           => UserType::SALES,

@@ -17,7 +17,7 @@ class AdminUsersTableSeeder extends Seeder
             [
                 'id'             => 1,
                 'name'           => 'Admin',
-                'email'          => 'admin@melandas.id',
+                'email'          => 'admin@gmail.com',
                 'password'       => bcrypt('password'),
                 'remember_token' => null,
                 'channel_id'     => 1
