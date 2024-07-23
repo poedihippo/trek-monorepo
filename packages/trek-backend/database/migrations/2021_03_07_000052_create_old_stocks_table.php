@@ -1,11 +1,11 @@
 <?php
 
-// use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Migrations\Migration;
 // use Illuminate\Database\Schema\Blueprint;
 // use Illuminate\Support\Facades\Schema;
 
-// class CreateOldStocksTable extends Migration
-// {
+class CreateOldStocksTable extends Migration
+{
 //     public function up()
 //     {
         // Schema::create('stocks', function (Blueprint $table) {
@@ -19,4 +19,4 @@
         //     $table->unique(['channel_id', 'product_unit_id']);
         // });
     // }
-// }
+}
