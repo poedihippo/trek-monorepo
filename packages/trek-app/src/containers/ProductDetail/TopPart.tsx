@@ -1,10 +1,7 @@
-import { LinearGradient } from "expo-linear-gradient"
 import React from "react"
-import { TouchableOpacity, useWindowDimensions } from "react-native"
-import { Button, Div } from "react-native-magnus"
-import Carousel from "react-native-snap-carousel"
+import { useWindowDimensions } from "react-native"
+import { Div } from "react-native-magnus"
 
-import Image from "components/Image"
 import Text from "components/Text"
 
 import { formatCurrency } from "helper"
@@ -21,7 +18,7 @@ export default ({ productModel, onProductSelect }: PropTypes) => {
 
   return (
     <>
-      <Carousel
+      {/* <Carousel
         // @ts-ignore
         data={productModel?.images ?? []}
         sliderWidth={screenWidth}
@@ -34,7 +31,7 @@ export default ({ productModel, onProductSelect }: PropTypes) => {
         renderItem={({ item: image }) => (
           <Image width={screenWidth} scalable source={{ uri: image.url }} />
         )}
-      />
+      /> */}
       <Div bg="white" pt={20} px={20}>
         <Div row justifyContent="space-between" mb={20}>
           <Div>

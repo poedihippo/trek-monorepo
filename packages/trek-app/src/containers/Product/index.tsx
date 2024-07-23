@@ -1,4 +1,5 @@
 import { BottomTabNavigationProp } from "@react-navigation/bottom-tabs"
+import Carousel from 'react-native-reanimated-carousel';
 import {
   CompositeNavigationProp,
   useNavigation,
@@ -7,11 +8,6 @@ import { StackNavigationProp } from "@react-navigation/stack"
 import React, { useState } from "react"
 import { FlatList, TouchableOpacity, useWindowDimensions } from "react-native"
 import { Div } from "react-native-magnus"
-import {
-  heightPercentageToDP,
-  widthPercentageToDP,
-} from "react-native-responsive-screen"
-import Carousel from "react-native-snap-carousel"
 
 import FooterLoading from "components/CommonList/FooterLoading"
 import Image from "components/Image"
@@ -33,6 +29,7 @@ import s from "helper/theme"
 import CafeButton from "./CafeButton"
 import NewArrival from "./NewArrival"
 import ProductCategory from "./ProductCategory"
+import { heightPercentageToDP, widthPercentageToDP } from "react-native-responsive-screen";
 
 type CurrentScreenNavigationProp = CompositeNavigationProp<
   StackNavigationProp<ProductStackParamList, "Product">,
@@ -66,36 +63,33 @@ export default () => {
         ListHeaderComponent={
           <Div>
             <Carousel
-              // @ts-ignore
-              data={promoData?.data}
-              sliderWidth={screenWidth}
-              itemWidth={screenWidth}
-              showsHorizontalScrollIndicator={false}
               loop
-              autoplay
-              autoplayInterval={8000}
-              underlayColor="none"
+              width={screenWidth}
+              height={screenWidth / 2}
+              autoPlay={true}
+              data={promoData?.data}
+              autoPlayInterval={8000}
+              scrollAnimationDuration={3000}
               renderItem={({ item }) => (
-                <TouchableOpacity
+                <>
+                  <TouchableOpacity
                   onPress={() =>
                     navigation.navigate("PromoDetail", { data: item })
                   }
                 >
                   <Image
-                    width={widthPercentageToDP(100)}
-                    scalable
-                    source={
-                      item.length === 0
-                        ? require("assets/TrekLogo.png")
-                        : { uri: item?.images[0]?.url }
-                    }
+                    source={{
+                      uri: item?.images?.[0]?.url
+                    }}
                     style={{
-                      marginTop: heightPercentageToDP(2),
-                      justifyContent: "center",
-                      alignSelf: "center",
+        
+                      width: widthPercentageToDP(100),
+                      height: heightPercentageToDP(18),
+                      resizeMode: "contain",
                     }}
                   />
                 </TouchableOpacity>
+                </>
               )}
             />
 

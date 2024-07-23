@@ -6,11 +6,7 @@ import { useAuth } from "providers/Auth"
 import { CustomAxiosErrorType } from "api/errors"
 import { V1Api } from "api/openapi"
 
-///http://178.128.214.193
-//http://139.59.224.48
-//http://167.172.83.249
-
-let baseUrl = "http://167.172.83.249"
+let baseUrl = "https://trek.albatech.id"
 
 const getHeader = (loggedIn: boolean, jwt: string) => ({
   headers: {

@@ -220,7 +220,7 @@ const BotSection = ({ data, startDate, endDate, userData }) => {
           </TouchableOpacity>
         )}
       </ScrollView>
-      {userData.type === "DIRECTOR" ? (
+      {/* {userData.type === "DIRECTOR" ? (
         <PageControlJaloro
           style={{ alignSelf: "center", marginBottom: 10 }}
           progress={index === 0 ? index : index === 1 ? 0.5 : 1}
@@ -232,7 +232,7 @@ const BotSection = ({ data, startDate, endDate, userData }) => {
           progress={index}
           numberOfPages={2}
         />
-      ) : null}
+      ) : null} */}
     </>
   )
 }

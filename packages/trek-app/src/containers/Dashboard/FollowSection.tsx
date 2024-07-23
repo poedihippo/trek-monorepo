@@ -1,8 +1,6 @@
 import { useNavigation } from "@react-navigation/native"
 import React from "react"
-import { FlatList, Pressable, View } from "react-native"
-import { Dimensions } from "react-native"
-import { PieChart } from "react-native-chart-kit"
+import { FlatList, Pressable } from "react-native"
 import { Div, Text } from "react-native-magnus"
 import * as Progress from "react-native-progress"
 import {
@@ -34,7 +32,7 @@ const FollowSection = ({ data }) => {
       }
     >
       <Text style={{ width: widthPercentageToDP(16) }}>{item.enum_value}</Text>
-      <Progress.Bar
+      {/* <Progress.Bar
         borderRadius={10}
         progress={item.value / percentage}
         color={
@@ -51,7 +49,7 @@ const FollowSection = ({ data }) => {
         borderWidth={0}
         height={17}
         width={widthPercentageToDP("50%")}
-      />
+      /> */}
       <Text ml={8} textAlign="right" style={{ width: widthPercentageToDP(16) }}>
         {item.value}
       </Text>
